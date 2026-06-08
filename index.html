@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cristian Tattoo | Los Andes Ink — Tatuajes a Domicilio en Los Andes, Chile</title>
+    <meta name="description" content="Tatuajes profesionales a domicilio en Los Andes por Cristian Venega. 28 años de experiencia. Blackwork, Realismo, Fine Line, Full Color. Promo Mundial 2026: hasta 30% OFF.">
+    <meta name="keywords" content="tatuajes los andes, tatuador a domicilio, cristian venega, tattoo chile, los andes ink, tatuajes a domicilio chile, tattoo los andes">
+    <meta name="author" content="Cristian Tattoo Los Andes Ink">
+    <meta property="og:title" content="Cristian Tattoo Los Andes Ink — Tatuajes a Domicilio">
+    <meta property="og:description" content="28 años tatuando. Servicio 100% a domicilio en Los Andes, Chile. Promo Mundial 2026: hasta 30% de descuento.">
+    <meta property="og:image" content="cristiantattoolosandesink.webp">
+    <meta property="og:type" content="website">
+    <meta name="google-site-verification" content="26c6bf16f3f9a82a">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@300;400;500;700;900&family=Great+Vibes&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://cristiantattoo.netlify.app/#business",
+          "name": "Cristian Tattoo Los Andes Ink",
+          "description": "Tatuajes profesionales a domicilio en Los Andes, Chile. 28 años de experiencia.",
+          "url": "https://cristiantattoo.netlify.app",
+          "telephone": "+56987383781",
+          "address": { "@type": "PostalAddress", "addressLocality": "Los Andes", "addressRegion": "Región de Valparaíso", "addressCountry": "CL" },
+          "priceRange": "$$",
+          "sameAs": ["https://www.instagram.com/cristiantattoolosandesink/","https://www.facebook.com/cristiantattoolosandesink","https://www.tiktok.com/@cristiantattoo12"],
+          "image": "https://cristiantattoo.netlify.app/cristiantattoolosandesink.webp"
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            { "@type": "Question", "name": "¿Cómo funciona el servicio de tatuajes a domicilio?", "acceptedAnswer": { "@type": "Answer", "text": "Cristian llega a tu hogar con camilla profesional, máquinas, tinta y materiales estériles de un solo uso." } },
+            { "@type": "Question", "name": "¿Cuánto cuesta un tatuaje a domicilio en Los Andes?", "acceptedAnswer": { "@type": "Answer", "text": "El precio varía según tamaño, estilo y complejidad. Escríbenos por WhatsApp para una cotización sin compromiso." } }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <!-- =====================================================
+         ESTILOS ADICIONALES — ESPACIO + FIXES
+    ====================================================== -->
+    <style>
+
+    /* ── Ocultar cursor custom por seguridad ── */
+    .cursor-dot, .cursor-ring, .chibi-cursor { display:none!important; opacity:0!important; pointer-events:none!important; }
+
+    /* ── Canvas espacio SIEMPRE detrás de todo ── */
+    #spaceCanvas {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        z-index: -1;          /* detrás de todo — no cubre el hero */
+        pointer-events: none;
+    }
+
+    /* El hero tiene fondo sólido propio — las estrellas no se ven en él */
+    section.hero {
+        background-color: #05000d !important;
+        isolation: isolate;
+    }
+
+    /* ── PORTAFOLIO: solución definitiva ── */
+    /* Container a ancho total */
+    .portfolio-section {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    .portfolio-section > .container,
+    .portfolio-section .container {
+        max-width: 100% !important;
+        width: 100% !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+    }
+    /* Centrar solo encabezado, filtros, videos y CTAs */
+    .portfolio-section .section-header,
+    .portfolio-section .portfolio-filters,
+    .portfolio-section .portfolio-videos,
+    .portfolio-section .portfolio-cta {
+        max-width: 1100px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 20px !important;
+        padding-right: 20px !important;
+    }
+    /* Grid — usa el ID real que script.js busca: portafolio */
+    #portafolio {
+        display: grid !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+        gap: 4px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 20px 0 24px !important;
+        padding: 0 !important;
+        box-sizing: border-box !important;
+    }
+    @media (max-width: 1024px) {
+        #portafolio { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+    }
+    @media (max-width: 600px) {
+        #portafolio { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+    }
+    /* Celda cuadrada con padding-trick — clase real: portafolio-item */
+    .portafolio-item {
+        position: relative !important;
+        display: block !important;
+        width: 100% !important;
+        height: 0 !important;
+        padding-top: 100% !important;
+        overflow: hidden !important;
+        background: #1a1a1a !important;
+        cursor: pointer !important;
+    }
+    /* El wrapper ocupa todo el espacio del padre */
+    .portafolio-wrapper {
+        position: absolute !important;
+        top: 0 !important; left: 0 !important;
+        width: 100% !important; height: 100% !important;
+    }
+    /* La imagen llena el wrapper */
+    .portafolio-wrapper img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        display: block !important;
+        transition: transform 0.35s ease !important;
+    }
+    .portafolio-item:hover .portafolio-wrapper img {
+        transform: scale(1.07) !important;
+    }
+    /* Overlay con nombre del estilo */
+    .portafolio-overlay {
+        position: absolute !important;
+        inset: 0 !important;
+        background: rgba(0,0,0,0.5) !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        opacity: 0 !important;
+        transition: opacity 0.25s ease !important;
+    }
+    .portafolio-item:hover .portafolio-overlay {
+        opacity: 1 !important;
+    }
+    .portafolio-overlay span {
+        color: #fff !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 1.5px !important;
+        text-transform: uppercase !important;
+        background: rgba(112,0,255,0.7) !important;
+        padding: 6px 14px !important;
+        border-radius: 20px !important;
+    }
+
+    /* ── VIDEOS: visibles y responsivos ── */
+    .videos-grid {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 24px !important;
+        justify-content: center !important;
+        margin-top: 20px !important;
+    }
+    .video-wrap {
+        flex: 1 1 300px !important;
+        max-width: 500px !important;
+    }
+    .portfolio-video {
+        width: 100% !important;
+        max-width: 500px !important;
+        border-radius: 14px !important;
+        background: #111 !important;
+        outline: none !important;
+        display: block !important;
+    }
+    .video-caption {
+        text-align: center !important;
+        margin-top: 8px !important;
+        font-size: 13px !important;
+        opacity: .65 !important;
+    }
+
+    /* ── MUNDIAL: visual SVG + tiers ── */
+    .mundial-visual { text-align: center; margin: 28px 0 8px; }
+    .mundial-visual svg { width: min(340px, 90vw); height: auto; }
+
+    /* ── CUIDADOS: más espacio ── */
+    .care-grid { gap: 14px !important; }
+
+    /* ── REDES SOCIALES: botón Google ── */
+    .btn-google {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #fff;
+        color: #222;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 12px 22px;
+        border-radius: 100px;
+        text-decoration: none;
+        transition: opacity .2s, transform .2s;
+        border: none;
+    }
+    .btn-google:hover { opacity: .9; transform: translateY(-2px); }
+    .btn-google svg { width: 18px; height: 18px; }
+
+    .btn-fb {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        background: #1877F2;
+        color: #fff;
+        font-weight: 700;
+        font-size: 14px;
+        padding: 12px 22px;
+        border-radius: 100px;
+        text-decoration: none;
+        transition: opacity .2s, transform .2s;
+    }
+    .btn-fb:hover { opacity: .9; transform: translateY(-2px); }
+
+    /* ── FOOTER SOCIAL ── */
+    .footer-socials a { transition: transform .2s, opacity .2s; }
+    .footer-socials a:hover { opacity: .75; transform: translateY(-2px); }
+
+    /* ════════════════════════════════════════════
+       MUNDIAL 2026 — Diseño dinámico completo
+    ════════════════════════════════════════════ */
+    .wc-section {
+        position: relative; overflow: hidden;
+        background: linear-gradient(180deg,#001208 0%,#000a04 25%,#020012 65%,#050008 100%);
+        padding-bottom: 0;
+    }
+    /* Focos de estadio */
+    .wc-spot {
+        position: absolute; top: -80px;
+        width: 350px; height: 500px;
+        background: linear-gradient(180deg,rgba(255,215,0,.055) 0%,transparent 70%);
+        pointer-events: none; z-index: 0;
+        transform-origin: top center;
+    }
+    .wc-spot-l { left: 0%;  transform: rotate(-22deg); }
+    .wc-spot-r { right: 0%; transform: rotate(22deg); }
+    /* Líneas de campo al fondo */
+    .wc-field-stripe {
+        position: absolute; bottom: 60px; left: 50%;
+        transform: translateX(-50%);
+        width: 240px; height: 110px;
+        border: 1px solid rgba(255,255,255,.06);
+        border-radius: 50%; pointer-events: none;
+    }
+    .wc-field-bottom {
+        position: absolute; bottom: 0; left: 0; right: 0; height: 100px;
+        background: linear-gradient(transparent,rgba(0,80,20,.18));
+        pointer-events: none;
+    }
+    /* Header */
+    .wc-header { text-align:center; padding: 56px 20px 16px; position:relative; z-index:1; }
+    .wc-tag-row { display:flex; justify-content:center; gap:10px; flex-wrap:wrap; margin-bottom:14px; }
+    .wc-tag { display:inline-flex; align-items:center; gap:6px; padding:5px 16px; border-radius:100px; font-size:11px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; }
+    .wc-tag-promo { background:rgba(255,215,0,.14); border:1px solid rgba(255,215,0,.3); color:#ffd700; }
+    .wc-tag-live  { background:rgba(0,200,80,.12); border:1px solid rgba(0,200,80,.28); color:#00c850; }
+    .wc-live-pulse { width:6px; height:6px; border-radius:50%; background:#00c850; animation:wcPulse 1.4s ease-in-out infinite; }
+    @keyframes wcPulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(1.5)} }
+    .wc-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.6rem,9vw,5.8rem); line-height:1.05; letter-spacing:3px; color:#fff; margin:0 0 4px; }
+    .wc-title .wc-gold { color:#ffd700; text-shadow:0 0 40px rgba(255,215,0,.45); }
+    .wc-subtitle { font-size:15px; color:rgba(255,255,255,.55); margin:0 0 28px; }
+    /* Trofeo animado */
+    .wc-trophy-wrap { display:flex; justify-content:center; margin:0 0 36px; }
+    .wc-trophy-svg { filter:drop-shadow(0 0 24px rgba(255,215,0,.35)); animation:trophyGlow 3s ease-in-out infinite; }
+    @keyframes trophyGlow { 0%,100%{filter:drop-shadow(0 0 18px rgba(255,215,0,.3))} 50%{filter:drop-shadow(0 0 40px rgba(255,215,0,.6))} }
+    /* Tiers */
+    .wc-tiers-wrap { position:relative; z-index:1; padding:0 16px 8px; }
+    .wc-tiers { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; max-width:940px; margin:0 auto; }
+    @media(max-width:768px){ .wc-tiers{ grid-template-columns:repeat(3,1fr); } }
+    @media(max-width:440px){ .wc-tiers{ grid-template-columns:repeat(2,1fr); } .wc-tier:last-child{ grid-column:1/-1; } }
+    .wc-tier {
+        border-radius:14px; padding:22px 10px 18px; text-align:center;
+        position:relative; border:1px solid rgba(255,255,255,.09);
+        transition:transform .25s cubic-bezier(.34,1.56,.64,1), box-shadow .25s;
+    }
+    .wc-tier:hover { transform:translateY(-7px); }
+    .wc-tier-june    { background:linear-gradient(150deg,#00280f,#000e06); border-color:rgba(0,200,80,.28); }
+    .wc-tier-june:hover { box-shadow:0 14px 36px rgba(0,200,80,.18); }
+    .wc-tier-predict { background:linear-gradient(150deg,#2a1400,#110800); border-color:rgba(255,140,0,.38); cursor:pointer; }
+    .wc-tier-predict:hover { box-shadow:0 14px 36px rgba(255,140,0,.22); }
+    .wc-tier-final   { background:linear-gradient(150deg,#2a2000,#110e00); border-color:rgba(255,215,0,.45); cursor:pointer; }
+    .wc-tier-final:hover { box-shadow:0 14px 36px rgba(255,215,0,.28); }
+    .wc-tier-badge {
+        position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+        background:#ffd700; color:#000; font-size:9px; font-weight:800;
+        padding:3px 11px; border-radius:20px; letter-spacing:1px; text-transform:uppercase; white-space:nowrap;
+    }
+    .wc-tier-ico { font-size:1.8rem; display:block; margin-bottom:8px; }
+    .wc-tier-num {
+        width:22px; height:22px; border-radius:50%; background:rgba(255,255,255,.1);
+        color:rgba(255,255,255,.65); font-size:10px; font-weight:700;
+        display:flex; align-items:center; justify-content:center; margin:0 auto 10px;
+    }
+    .wc-tier-pct { font-family:'Bebas Neue',sans-serif; font-size:clamp(2.6rem,5vw,3.6rem); line-height:1; display:block; margin-bottom:1px; }
+    .wc-tier-june    .wc-tier-pct { color:#00e06a; text-shadow:0 0 18px rgba(0,224,106,.4); }
+    .wc-tier-predict .wc-tier-pct { color:#ff9000; text-shadow:0 0 18px rgba(255,144,0,.4); }
+    .wc-tier-final   .wc-tier-pct { color:#ffd700; text-shadow:0 0 22px rgba(255,215,0,.55); }
+    .wc-tier-off  { font-size:11px; font-weight:800; letter-spacing:2px; opacity:.6; display:block; margin-bottom:8px; }
+    .wc-tier-lbl  { font-size:10px; font-weight:700; letter-spacing:.8px; text-transform:uppercase; color:rgba(255,255,255,.65); line-height:1.4; margin-bottom:10px; display:block; }
+    .wc-tier-cond { font-size:9px; color:rgba(255,255,255,.35); line-height:1.4; margin-bottom:10px; display:block; }
+    .wc-tier-btn {
+        display:inline-flex; align-items:center; gap:5px;
+        font-size:9px; font-weight:800; letter-spacing:.8px; text-transform:uppercase;
+        padding:5px 12px; border-radius:20px; border:none; cursor:pointer; font-family:inherit;
+        transition:background .2s;
+    }
+    .wc-tier-predict .wc-tier-btn { background:rgba(255,140,0,.2); color:#ff9000; border:1px solid rgba(255,140,0,.35); }
+    .wc-tier-predict .wc-tier-btn:hover { background:rgba(255,140,0,.32); }
+    .wc-tier-final .wc-tier-btn   { background:rgba(255,215,0,.14); color:#ffd700; border:1px solid rgba(255,215,0,.35); }
+    .wc-tier-final .wc-tier-btn:hover { background:rgba(255,215,0,.25); }
+    /* CTAs */
+    .wc-cta-row { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; padding:32px 16px 28px; position:relative; z-index:1; }
+    .wc-disclaimer { text-align:center; font-size:11px; color:rgba(255,255,255,.28); padding:0 16px 24px; position:relative; z-index:1; }
+    /* Ticker inferior */
+    .wc-ticker { overflow:hidden; border-top:1px solid rgba(0,200,80,.18); border-bottom:1px solid rgba(0,200,80,.18); padding:10px 0; background:linear-gradient(90deg,rgba(0,80,20,.35),rgba(0,120,40,.25),rgba(0,80,20,.35)); position:relative; z-index:1; }
+    .wc-ticker-track { display:flex; white-space:nowrap; animation:wctick 24s linear infinite; }
+    .wc-ticker-track span { font-size:11px; font-weight:700; letter-spacing:2px; text-transform:uppercase; color:#00e06a; padding:0 20px; }
+    .wc-ticker-track .wt-sep { color:#ffd700 !important; }
+    @keyframes wctick { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+    /* ── Modales de predicción ── */
+    .pred-overlay {
+        display:none; position:fixed; inset:0; z-index:9998;
+        background:rgba(0,0,0,.87); backdrop-filter:blur(12px);
+        align-items:center; justify-content:center; padding:20px;
+    }
+    .pred-overlay.open { display:flex; }
+    .pred-box {
+        border-radius:22px; padding:38px 28px 30px;
+        max-width:460px; width:100%; position:relative; text-align:center;
+    }
+    @media(max-width:480px){ .pred-box{ padding:30px 18px 24px; } }
+    .pred-box-40 { background:#0c0800; border:1px solid rgba(255,140,0,.35); }
+    .pred-box-50 { background:#0c0a00; border:1px solid rgba(255,215,0,.42); }
+    .pred-close {
+        position:absolute; top:12px; right:12px;
+        background:rgba(255,255,255,.08); border:1px solid rgba(255,255,255,.1);
+        color:rgba(255,255,255,.5); width:32px; height:32px; border-radius:8px;
+        cursor:pointer; font-size:19px; display:flex; align-items:center; justify-content:center; line-height:1;
+    }
+    .pred-close:hover { background:rgba(255,255,255,.15); color:#fff; }
+    .pred-pill { display:inline-block; padding:5px 16px; border-radius:20px; font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+    .pred-pill-40 { background:rgba(255,140,0,.14); border:1px solid rgba(255,140,0,.3); color:#ff9000; }
+    .pred-pill-50 { background:rgba(255,215,0,.12); border:1px solid rgba(255,215,0,.3); color:#ffd700; }
+    .pred-title { font-size:1.6rem; font-weight:900; color:#fff; margin:0 0 6px; }
+    .pred-desc  { font-size:13px; color:rgba(255,255,255,.5); line-height:1.55; margin:0 0 24px; }
+    .pred-group { margin-bottom:16px; text-align:left; }
+    .pred-group label { font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase; color:rgba(255,255,255,.42); display:block; margin-bottom:7px; }
+    .pred-group input {
+        width:100%; box-sizing:border-box;
+        background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+        border-radius:10px; padding:12px 14px; color:#fff; font-size:15px; font-family:inherit;
+    }
+    .pred-group input:focus { outline:none; border-color:rgba(255,255,255,.3); }
+    .score-row { display:flex; align-items:center; gap:8px; }
+    .score-row input { text-align:center; font-family:'Bebas Neue',sans-serif; font-size:24px; font-weight:900; width:70px; flex:0 0 70px; }
+    .score-vs { font-size:20px; font-weight:900; color:rgba(255,255,255,.35); }
+    .score-teams { display:flex; justify-content:space-between; font-size:10px; color:rgba(255,255,255,.3); margin-top:4px; letter-spacing:.5px; }
+    .pred-submit {
+        width:100%; padding:15px; border-radius:11px; border:none;
+        font-size:15px; font-weight:800; font-family:inherit; cursor:pointer;
+        transition:transform .2s, box-shadow .2s; margin-top:8px;
+    }
+    .pred-submit-40 { background:linear-gradient(135deg,#ff9000,#d06000); color:#fff; box-shadow:0 6px 24px rgba(255,140,0,.28); }
+    .pred-submit-50 { background:linear-gradient(135deg,#ffd700,#b89000); color:#000; box-shadow:0 6px 24px rgba(255,215,0,.28); }
+    .pred-submit:hover { transform:translateY(-2px); }
+    .pred-note { font-size:11px; color:rgba(255,255,255,.22); margin-top:12px; line-height:1.55; }
+    .pred-ok { display:none; padding:16px 0; }
+    .pred-ok.show { display:block; }
+    .pred-ok h3 { font-size:1.3rem; margin-bottom:8px; }
+    .pred-ok p  { font-size:13px; color:rgba(255,255,255,.5); }
+    .pred-ok-40 h3 { color:#ff9000; }
+    .pred-ok-50 h3 { color:#ffd700; }
+
+    </style>
+</head>
+<body>
+
+    <!-- ══════════════════════════════════════════
+         CANVAS ESPACIO (estrellas, cometas, fugaces)
+    ═══════════════════════════════════════════════ -->
+    <canvas id="spaceCanvas" aria-hidden="true"></canvas>
+
+    <!-- Grain texture overlay -->
+    <div class="grain-overlay" aria-hidden="true"></div>
+
+    <!-- ========= WHATSAPP FLOAT ========= -->
+    <a href="https://wa.me/56987383781?text=Hola%20Cristian,%20vengo%20de%20tu%20p%C3%A1gina%20web%20y%20quiero%20hacer%20una%20consulta."
+        class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="wa-pulse"></span>
+    </a>
+
+    <!-- ========= NAVBAR ========= -->
+    <nav class="navbar" id="navbar">
+        <a href="#inicio" class="nav-logo">
+            <span class="logo-main">CRISTIAN</span><span class="logo-accent">TATTOO</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#inicio" class="nav-link">Inicio</a></li>
+            <li><a href="#proceso" class="nav-link">Proceso</a></li>
+            <li><a href="#estilos" class="nav-link">Estilos</a></li>
+            <li><a href="#sec-portafolio" class="nav-link">Portafolio</a></li>
+            <li><a href="#cuidados" class="nav-link">Cuidados</a></li>
+            <li><a href="#testimonios" class="nav-link">Reseñas</a></li>
+            <li><a href="agenda.html" class="nav-cta">Agendar Cita <i class="fa-solid fa-arrow-right fa-xs"></i></a></li>
+        </ul>
+        <button class="hamburger" id="hamburger" aria-label="Menú">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <!-- Mobile overlay nav -->
+    <div class="mobile-menu" id="mobileMenu">
+        <ul>
+            <li><a href="#inicio" class="mob-link">Inicio</a></li>
+            <li><a href="#proceso" class="mob-link">Proceso</a></li>
+            <li><a href="#estilos" class="mob-link">Estilos</a></li>
+            <li><a href="#sec-portafolio" class="mob-link">Portafolio</a></li>
+            <li><a href="#cuidados" class="mob-link">Cuidados</a></li>
+            <li><a href="#testimonios" class="mob-link">Reseñas</a></li>
+            <li><a href="agenda.html" class="mob-link mob-cta">Agendar Cita</a></li>
+        </ul>
+        <div class="mob-socials">
+            <a href="https://www.instagram.com/cristiantattoolosandesink/" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/cristiantattoolosandesink" target="_blank"><i class="fa-brands fa-facebook"></i></a>
+            <a href="https://www.google.com/search?q=Cristian+Tattoo+Los+Andes+Ink" target="_blank"><i class="fa-brands fa-google"></i></a>
+        </div>
+    </div>
+
+    <!-- ========= HERO ========= -->
+    <section id="inicio" class="hero">
+        <canvas class="hero-canvas" id="heroCanvas"></canvas>
+        <div class="hero-inner">
+            <div class="hero-content reveal-left">
+                <span class="hero-badge"><i class="fa-solid fa-location-dot"></i> Los Andes, Chile</span>
+                <h1 class="hero-title">
+                    <span class="title-line line-1">LOS ANDES</span>
+                    <span class="title-line line-2 accent-text">INK</span>
+                </h1>
+                <p class="hero-desc">
+                    <strong>28 años de experiencia</strong> tatuando. Arte permanente en tu piel.<br>
+                    <strong>Servicio 100% a domicilio</strong> por Cristian Venega,<br>
+                    tatuador profesional con higiene y equipamiento de estudio.
+                </p>
+                <div class="hero-actions">
+                    <a href="#agenda" class="btn-primary">
+                        Cotizar Ahora
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    </a>
+                    <a href="#sec-portafolio" class="btn-ghost">Ver Portafolio</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat"><span class="stat-num" data-target="28">0</span><span>+</span><p>Años exp.</p></div>
+                    <div class="stat-divider"></div>
+                    <div class="stat"><span class="stat-num" data-target="1000">0</span><span>+</span><p>Clientes</p></div>
+                    <div class="stat-divider"></div>
+                    <div class="stat"><span class="stat-num" data-target="100">0</span><span>%</span><p>A domicilio</p></div>
+                </div>
+            </div>
+            <div class="hero-visual reveal-right">
+                <div class="logo-frame">
+                    <div class="logo-glow"></div>
+                    <img src="cristiantattoolosandesink.webp" alt="Cristian Tattoo Los Andes Ink" class="hero-logo" width="480" height="480" loading="eager">
+                    <div class="logo-ring ring-1"></div>
+                    <div class="logo-ring ring-2"></div>
+                </div>
+                <div class="scroll-badge">
+                    <svg viewBox="0 0 100 100" class="scroll-circle"><path id="scrollText" d="M 50,50 m -37,0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"/><text><textPath href="#scrollText">SCROLL DOWN • SCROLL DOWN • </textPath></text></svg>
+                    <i class="fa-solid fa-arrow-down"></i>
+                </div>
+            </div>
+        </div>
+        <div class="ticker-wrap" aria-hidden="true">
+            <div class="ticker-track">
+                <span>TATUAJES A DOMICILIO</span><span class="ticker-dot">◆</span>
+                <span>LOS ANDES</span><span class="ticker-dot">◆</span>
+                <span>BLACKWORK</span><span class="ticker-dot">◆</span>
+                <span>REALISMO</span><span class="ticker-dot">◆</span>
+                <span>NEGRO Y GRIS</span><span class="ticker-dot">◆</span>
+                <span>FULL COLOR</span><span class="ticker-dot">◆</span>
+                <span>WATERCOLOR</span><span class="ticker-dot">◆</span>
+                <span>GEOMÉTRICO</span><span class="ticker-dot">◆</span>
+                <span>TRIBAL</span><span class="ticker-dot">◆</span>
+                <span>TRADICIONAL</span><span class="ticker-dot">◆</span>
+                <span>NEOTRADICIONAL</span><span class="ticker-dot">◆</span>
+                <span>LETTERING</span><span class="ticker-dot">◆</span>
+                <span>FINE LINE</span><span class="ticker-dot">◆</span>
+                <span>TATUAJES A DOMICILIO</span><span class="ticker-dot">◆</span>
+                <span>LOS ANDES</span><span class="ticker-dot">◆</span>
+                <span>BLACKWORK</span><span class="ticker-dot">◆</span>
+                <span>REALISMO</span><span class="ticker-dot">◆</span>
+                <span>NEGRO Y GRIS</span><span class="ticker-dot">◆</span>
+                <span>FULL COLOR</span><span class="ticker-dot">◆</span>
+                <span>WATERCOLOR</span><span class="ticker-dot">◆</span>
+                <span>GEOMÉTRICO</span><span class="ticker-dot">◆</span>
+                <span>TRIBAL</span><span class="ticker-dot">◆</span>
+                <span>TRADICIONAL</span><span class="ticker-dot">◆</span>
+                <span>NEOTRADICIONAL</span><span class="ticker-dot">◆</span>
+                <span>LETTERING</span><span class="ticker-dot">◆</span>
+                <span>FINE LINE</span><span class="ticker-dot">◆</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PROMO FIFA WORLD CUP 2026 — DISEÑO DINÁMICO
+    ═══════════════════════════════════════════════ -->
+    <section id="mundial-2026" class="wc-section">
+
+        <!-- Focos de estadio -->
+        <div class="wc-spot wc-spot-l" aria-hidden="true"></div>
+        <div class="wc-spot wc-spot-r" aria-hidden="true"></div>
+        <div class="wc-field-stripe"   aria-hidden="true"></div>
+        <div class="wc-field-bottom"   aria-hidden="true"></div>
+
+        <!-- HEADER -->
+        <div class="wc-header reveal-up">
+            <div class="wc-tag-row">
+                <span class="wc-tag wc-tag-promo"><i class="fa-solid fa-futbol" style="animation:spin 3s linear infinite"></i> Promo Especial</span>
+                <span class="wc-tag wc-tag-live"><span class="wc-live-pulse"></span> Válida Ahora</span>
+            </div>
+            <h2 class="wc-title">PROMOCIÓN <span class="wc-gold">FIFA WORLD CUP</span> 2026</h2>
+            <p class="wc-subtitle">Chile es sede. Inmortaliza el momento en tu piel con <strong style="color:#ffd700">descuento de campeón</strong>.</p>
+        </div>
+
+        <!-- TROFEO SVG animado (sin logos externos) -->
+        <div class="wc-trophy-wrap reveal-up">
+            <svg class="wc-trophy-svg" width="220" height="200" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" aria-label="Trofeo FIFA World Cup 2026" role="img">
+                <defs>
+                    <radialGradient id="tg1" cx="38%" cy="22%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="45%" stop-color="#ffd700"/><stop offset="100%" stop-color="#a06000"/></radialGradient>
+                    <radialGradient id="tg2" cx="50%" cy="50%"><stop offset="0%" stop-color="rgba(255,215,0,.18)"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+                    <filter id="tglow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+                    <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd700"/><stop offset="100%" stop-color="#8b6000"/></linearGradient>
+                </defs>
+                <!-- Halo -->
+                <ellipse cx="110" cy="100" rx="90" ry="85" fill="url(#tg2)"/>
+                <!-- Rayos -->
+                <g stroke="#ffd700" stroke-width=".8" opacity=".2">
+                    <line x1="110" y1="20" x2="110" y2="0"/><line x1="150" y1="30" x2="165" y2="14"/>
+                    <line x1="178" y1="60" x2="198" y2="52"/><line x1="70" y1="30" x2="55" y2="14"/>
+                    <line x1="42" y1="60" x2="22" y2="52"/>
+                </g>
+                <!-- Copa principal -->
+                <g filter="url(#tglow)">
+                    <path d="M80 28 Q68 55 66 82 Q64 106 80 118 L80 138 L68 148 L152 148 L140 138 L140 118 Q156 106 154 82 Q152 55 140 28 Z" fill="url(#tg1)"/>
+                    <!-- Asa izquierda -->
+                    <path d="M68 55 Q44 60 46 82 Q48 102 68 96" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+                    <!-- Asa derecha -->
+                    <path d="M152 55 Q176 60 174 82 Q172 102 152 96" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
+                    <!-- Mapa mundo en la copa -->
+                    <ellipse cx="110" cy="82" rx="26" ry="28" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
+                    <text x="110" y="91" text-anchor="middle" font-size="22" fill="rgba(255,255,255,.7)">🌍</text>
+                    <!-- Brillo -->
+                    <ellipse cx="94" cy="52" rx="12" ry="8" fill="rgba(255,255,255,.22)" transform="rotate(-20,94,52)"/>
+                </g>
+                <!-- Base escalonada -->
+                <rect x="78" y="148" width="64" height="12" rx="3" fill="url(#baseGrad)"/>
+                <rect x="68" y="158" width="84" height="9"  rx="3" fill="#c89000"/>
+                <rect x="56" y="165" width="108" height="10" rx="4" fill="url(#baseGrad)"/>
+                <rect x="44" y="173" width="132" height="8"  rx="4" fill="#a07000"/>
+                <!-- Texto 2026 -->
+                <text x="110" y="188" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="16" fill="#ffd700" letter-spacing="4" opacity=".9">2026</text>
+                <!-- Estrellas flotantes -->
+                <g fill="#ffd700" opacity=".6"><circle cx="30" cy="40" r="2"/><circle cx="188" cy="35" r="2"/><circle cx="20" cy="110" r="1.5"/><circle cx="200" cy="115" r="1.5"/><circle cx="55" cy="170" r="1.5"/><circle cx="168" cy="168" r="1.5"/></g>
+            </svg>
+        </div>
+
+        <!-- TIER CARDS -->
+        <div class="wc-tiers-wrap reveal-up">
+            <div class="wc-tiers">
+
+                <!-- TIER 1: 10% — todo junio -->
+                <div class="wc-tier wc-tier-june">
+                    <div class="wc-tier-num">1</div>
+                    <span class="wc-tier-ico">⚽</span>
+                    <span class="wc-tier-pct">10%</span>
+                    <span class="wc-tier-off">OFF</span>
+                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
+                    <span class="wc-tier-cond">Todo junio 2026<br>Solo agenda por la web</span>
+                    <a href="agenda.html" class="wc-tier-btn"><i class="fa-solid fa-calendar-check"></i> Agendar</a>
+                </div>
+
+                <!-- TIER 2: 20% — todo junio -->
+                <div class="wc-tier wc-tier-june">
+                    <div class="wc-tier-num">2</div>
+                    <span class="wc-tier-ico">🥅</span>
+                    <span class="wc-tier-pct">20%</span>
+                    <span class="wc-tier-off">OFF</span>
+                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
+                    <span class="wc-tier-cond">Todo junio 2026<br>Solo agenda por la web</span>
+                    <a href="agenda.html" class="wc-tier-btn"><i class="fa-solid fa-calendar-check"></i> Agendar</a>
+                </div>
+
+                <!-- TIER 3: 30% — todo junio -->
+                <div class="wc-tier wc-tier-june">
+                    <div class="wc-tier-badge">⭐ Más pedido</div>
+                    <div class="wc-tier-num">3</div>
+                    <span class="wc-tier-ico">🌟</span>
+                    <span class="wc-tier-pct">30%</span>
+                    <span class="wc-tier-off">OFF</span>
+                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
+                    <span class="wc-tier-cond">Todo junio 2026<br>Solo agenda por la web</span>
+                    <a href="agenda.html" class="wc-tier-btn"><i class="fa-solid fa-calendar-check"></i> Agendar</a>
+                </div>
+
+                <!-- TIER 4: 40% — predice marcador pre-partido (cualquier partido Mundial) -->
+                <div class="wc-tier wc-tier-predict" onclick="openPredict('40')" role="button" tabindex="0" aria-label="Obtener 40% de descuento prediciendo el marcador">
+                    <div class="wc-tier-num">4</div>
+                    <span class="wc-tier-ico">🏆</span>
+                    <span class="wc-tier-pct">40%</span>
+                    <span class="wc-tier-off">OFF</span>
+                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
+                    <span class="wc-tier-cond">Durante el Mundial<br>Predice el marcador exacto<br><em style="color:rgba(255,140,0,.6)">antes del pitazo inicial</em></span>
+                    <button class="wc-tier-btn" type="button"><i class="fa-solid fa-futbol"></i> Predecir ahora</button>
+                </div>
+
+                <!-- TIER 5: 50% — solo la FINAL, predice marcador -->
+                <div class="wc-tier wc-tier-final" onclick="openPredict('50')" role="button" tabindex="0" aria-label="Obtener 50% de descuento prediciendo el marcador de la final">
+                    <div class="wc-tier-badge">👑 La Final</div>
+                    <div class="wc-tier-num">5</div>
+                    <span class="wc-tier-ico">🥇</span>
+                    <span class="wc-tier-pct">50%</span>
+                    <span class="wc-tier-off">OFF</span>
+                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
+                    <span class="wc-tier-cond"><strong style="color:#ffd700">Solo la Gran Final</strong><br>Predice el marcador exacto<br><em style="color:rgba(255,215,0,.55)">antes del pitazo inicial</em></span>
+                    <button class="wc-tier-btn" type="button"><i class="fa-solid fa-trophy"></i> Predecir Final</button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="wc-cta-row reveal-up">
+            <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20aprovechar%20la%20Promo%20FIFA%20World%20Cup%202026%21" target="_blank" rel="noopener noreferrer" class="btn-mundial">
+                <i class="fa-brands fa-whatsapp"></i> Cotizar con Descuento
+            </a>
+            <a href="agenda.html" class="btn-mundial-sec">
+                <i class="fa-solid fa-calendar-check"></i> Agendar Cita Online
+            </a>
+        </div>
+        <p class="wc-disclaimer">* 10/20/30%: válidos agendando por la web durante junio 2026. 40%: válido en cualquier partido del Mundial prediciendo el marcador exacto ANTES del inicio. 50%: solo la Gran Final, mismas condiciones. Comentarios durante o después del partido no son válidos.</p>
+
+        <!-- Ticker inferior -->
+        <div class="wc-ticker" aria-hidden="true">
+            <div class="wc-ticker-track">
+                <span>COMENTA EL MARCADOR ANTES DEL PARTIDO</span><span class="wt-sep">⚽</span>
+                <span>SI ACIERTAS GANAS TU DESCUENTO</span><span class="wt-sep">🏆</span>
+                <span>AGENDA TU CITA Y TATÚATE</span><span class="wt-sep">⭐</span>
+                <span>40% OFF EN CUALQUIER PARTIDO DEL MUNDIAL</span><span class="wt-sep">⚽</span>
+                <span>50% OFF SOLO EN LA GRAN FINAL</span><span class="wt-sep">👑</span>
+                <span>10/20/30% TODO JUNIO 2026</span><span class="wt-sep">🎨</span>
+                <!-- duplicado para loop continuo -->
+                <span>COMENTA EL MARCADOR ANTES DEL PARTIDO</span><span class="wt-sep">⚽</span>
+                <span>SI ACIERTAS GANAS TU DESCUENTO</span><span class="wt-sep">🏆</span>
+                <span>AGENDA TU CITA Y TATÚATE</span><span class="wt-sep">⭐</span>
+                <span>40% OFF EN CUALQUIER PARTIDO DEL MUNDIAL</span><span class="wt-sep">⚽</span>
+                <span>50% OFF SOLO EN LA GRAN FINAL</span><span class="wt-sep">👑</span>
+                <span>10/20/30% TODO JUNIO 2026</span><span class="wt-sep">🎨</span>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ══ MODAL PREDICCIÓN 40% ══ -->
+    <div id="pred40" class="pred-overlay" role="dialog" aria-modal="true" aria-labelledby="pred40Title">
+        <div class="pred-box pred-box-40">
+            <button class="pred-close" onclick="closePredict('40')" aria-label="Cerrar">×</button>
+            <span class="pred-pill pred-pill-40">🏆 40% OFF — Cualquier Partido</span>
+            <h2 class="pred-title" id="pred40Title">Predice el Marcador</h2>
+            <p class="pred-desc">Ingresa tu pronóstico <strong>antes del pitazo inicial</strong>.<br>Si aciertas el marcador exacto, ¡el 40% es tuyo para tatuarte!</p>
+            <div id="pred40Form">
+                <form name="Prediccion-40" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form40" novalidate>
+                    <input type="hidden" name="form-name" value="Prediccion-40">
+                    <input type="hidden" name="Descuento" value="40%">
+                    <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
+                    <div class="pred-group">
+                        <label for="p40name">Tu nombre *</label>
+                        <input type="text" id="p40name" name="Nombre" placeholder="Ej: Matías González" required>
+                    </div>
+                    <div class="pred-group">
+                        <label for="p40wa">WhatsApp *</label>
+                        <input type="tel" id="p40wa" name="WhatsApp" placeholder="+56 9 XXXX XXXX" required>
+                    </div>
+                    <div class="pred-group">
+                        <label for="p40partido">Partido *</label>
+                        <input type="text" id="p40partido" name="Partido" placeholder="Ej: Argentina vs Brasil — Cuartos de Final" required>
+                    </div>
+                    <div class="pred-group">
+                        <label>Marcador exacto que predices *</label>
+                        <div class="score-row">
+                            <input type="number" name="Goles_Local" id="p40g1" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
+                            <span class="score-vs">:</span>
+                            <input type="number" name="Goles_Visita" id="p40g2" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
+                        </div>
+                        <div class="score-teams"><span>Local</span><span>Visita</span></div>
+                    </div>
+                    <button type="button" class="pred-submit pred-submit-40" onclick="submitPredict('40')">
+                        <i class="fa-solid fa-futbol"></i> Enviar Mi Pronóstico
+                    </button>
+                </form>
+                <p class="pred-note">⏰ Solo válido antes del inicio del partido. Tu predicción quedará registrada con fecha y hora. Cristian verificará el resultado y te contactará si acertaste.</p>
+            </div>
+            <div id="pred40Ok" class="pred-ok pred-ok-40">
+                <h3>✅ Pronóstico Registrado</h3>
+                <p>Cristian recibirá tu predicción. Si aciertas el marcador exacto te contactará por WhatsApp para confirmar tu <strong style="color:#ff9000">40% de descuento</strong>.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ MODAL PREDICCIÓN 50% — SOLO LA FINAL ══ -->
+    <div id="pred50" class="pred-overlay" role="dialog" aria-modal="true" aria-labelledby="pred50Title">
+        <div class="pred-box pred-box-50">
+            <button class="pred-close" onclick="closePredict('50')" aria-label="Cerrar">×</button>
+            <span class="pred-pill pred-pill-50">👑 50% OFF — Solo La Gran Final</span>
+            <h2 class="pred-title" id="pred50Title">Predice La Final</h2>
+            <p class="pred-desc">Ingresa tu pronóstico del marcador de la <strong>Gran Final FIFA World Cup 2026</strong> antes del pitazo inicial.<br>Si aciertas el marcador exacto, ¡50% de descuento en cualquier tatuaje!</p>
+            <div id="pred50Form">
+                <form name="Prediccion-Final-50" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form50" novalidate>
+                    <input type="hidden" name="form-name" value="Prediccion-Final-50">
+                    <input type="hidden" name="Descuento" value="50% — LA FINAL">
+                    <input type="hidden" name="Partido" value="Gran Final FIFA World Cup 2026">
+                    <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
+                    <div class="pred-group">
+                        <label for="p50name">Tu nombre *</label>
+                        <input type="text" id="p50name" name="Nombre" placeholder="Ej: Valentina Rojas" required>
+                    </div>
+                    <div class="pred-group">
+                        <label for="p50wa">WhatsApp *</label>
+                        <input type="tel" id="p50wa" name="WhatsApp" placeholder="+56 9 XXXX XXXX" required>
+                    </div>
+                    <div class="pred-group">
+                        <label>Marcador exacto de la Final *</label>
+                        <div class="score-row">
+                            <input type="number" name="Goles_Local" id="p50g1" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
+                            <span class="score-vs">:</span>
+                            <input type="number" name="Goles_Visita" id="p50g2" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
+                        </div>
+                        <div class="score-teams"><span>Equipo 1</span><span>Equipo 2</span></div>
+                    </div>
+                    <button type="button" class="pred-submit pred-submit-50" onclick="submitPredict('50')">
+                        <i class="fa-solid fa-trophy"></i> Enviar Mi Pronóstico Final
+                    </button>
+                </form>
+                <p class="pred-note">⏰ Solo válido antes del inicio de la Gran Final. El envío queda registrado con hora exacta. ¡Este es el descuento máximo del año!</p>
+            </div>
+            <div id="pred50Ok" class="pred-ok pred-ok-50">
+                <h3>🏆 Pronóstico de la Final Registrado</h3>
+                <p>Si aciertas el marcador exacto de la Gran Final, Cristian te contactará por WhatsApp para confirmar tu <strong style="color:#ffd700">50% de descuento</strong> en cualquier tatuaje.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========= PROCESO ========= -->
+    <section id="proceso" class="process-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">¿Cómo funciona?</span>
+                <h2 class="section-title">El Proceso</h2>
+                <p>Desde tu idea hasta el tatuaje terminado, en la comodidad de tu hogar.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-card reveal-up" style="--delay:.1s"><div class="process-num">01</div><div class="process-icon"><i class="fa-solid fa-comments"></i></div><h3>Consulta</h3><p>Escríbeme por WhatsApp o agenda online. Me cuentas tu idea, zona del cuerpo y tamaño.</p></div>
+                <div class="process-card reveal-up" style="--delay:.2s"><div class="process-num">02</div><div class="process-icon"><i class="fa-solid fa-pen-nib"></i></div><h3>Diseño</h3><p>Preparo un boceto personalizado basado en tu idea. Ajustamos hasta que quedes 100% conforme.</p></div>
+                <div class="process-card reveal-up" style="--delay:.3s"><div class="process-num">03</div><div class="process-icon"><i class="fa-solid fa-house"></i></div><h3>A Domicilio</h3><p>Llego a tu hogar con camilla, todo el equipo y materiales estériles de un solo uso.</p></div>
+                <div class="process-card reveal-up" style="--delay:.4s"><div class="process-num">04</div><div class="process-icon"><i class="fa-solid fa-star"></i></div><h3>Arte Listo</h3><p>Termina tu sesión con instrucciones detalladas de cuidado para un resultado perfecto.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========= ESTILOS ========= -->
+    <section id="estilos" class="styles-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Mi especialidad</span>
+                <h2 class="section-title">Estilos que <span class="accent-text">Domino</span></h2>
+                <p>28 años de experiencia me permiten trabajar prácticamente cualquier estilo.</p>
+            </div>
+            <div class="styles-grid">
+                <div class="style-card reveal-up" style="--delay:.05s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g1)" stroke-width="1.5"/><path d="M20 40 Q25 20 30 25 Q35 30 40 15" stroke="url(#g1)" stroke-width="2" stroke-linecap="round" fill="none"/><circle cx="30" cy="28" r="6" fill="none" stroke="url(#g1)" stroke-width="1.5"/><defs><linearGradient id="g1" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Blackwork</h3><p>Diseños en negro sólido con alto contraste. Geométricos, tribales y ornamentales de gran impacto visual.</p><div class="style-tag">Especialidad</div></div>
+                <div class="style-card reveal-up" style="--delay:.1s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g2)" stroke-width="1.5"/><ellipse cx="30" cy="25" rx="8" ry="9" stroke="url(#g2)" stroke-width="1.5"/><path d="M22 34 Q25 44 30 45 Q35 44 38 34" stroke="url(#g2)" stroke-width="1.5" fill="none" stroke-linecap="round"/><path d="M27 22 Q30 18 33 22" stroke="url(#g2)" stroke-width="1" stroke-linecap="round" fill="none"/><defs><linearGradient id="g2" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Realismo</h3><p>Retratos y escenas hiperrealistas con técnica de sombreado avanzado en negro, grises y color.</p><div class="style-tag">Top demandado</div></div>
+                <div class="style-card reveal-up" style="--delay:.15s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g3)" stroke-width="1.5"/><path d="M18 38 L22 22 L30 30 L38 18 L42 38 Z" stroke="url(#g3)" stroke-width="1.8" stroke-linejoin="round" fill="none"/><circle cx="30" cy="30" r="3" fill="url(#g3)"/><defs><linearGradient id="g3" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Tradicional</h3><p>Old school y American Traditional con líneas gruesas, colores sólidos y diseños clásicos atemporales.</p><div class="style-tag">Clásico</div></div>
+                <div class="style-card reveal-up" style="--delay:.2s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g4)" stroke-width="1.5"/><path d="M18 30 Q22 24 26 30 Q30 36 34 30 Q38 24 42 30" stroke="url(#g4)" stroke-width="1.8" stroke-linecap="round" fill="none"/><path d="M22 36 Q30 28 38 36" stroke="url(#g4)" stroke-width="1.2" stroke-linecap="round" fill="none" opacity="0.6"/><defs><linearGradient id="g4" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Neo Tradicional</h3><p>Versión moderna del tradicional con mayor detalle, paleta ampliada y composiciones más complejas.</p><div class="style-tag">Muy popular</div></div>
+                <div class="style-card reveal-up" style="--delay:.25s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g5)" stroke-width="1.5"/><path d="M20 20 Q28 15 36 20 Q44 25 38 32 Q32 38 30 35 Q28 38 22 32 Q16 25 20 20Z" stroke="url(#g5)" stroke-width="1.5" fill="none"/><defs><linearGradient id="g5" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Fine Line</h3><p>Líneas ultra finas y delicadas para diseños minimalistas, florales y geométricos de gran elegancia.</p><div class="style-tag">Tendencia</div></div>
+                <div class="style-card reveal-up" style="--delay:.3s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g6)" stroke-width="1.5"/><path d="M18 35 Q20 25 22 22 L24 20 Q26 18 28 22 Q30 26 32 22 Q34 18 36 20 L38 22 Q40 25 42 35" stroke="url(#g6)" stroke-width="2" stroke-linecap="round" fill="none"/><path d="M20 38 L40 38" stroke="url(#g6)" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="g6" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Lettering</h3><p>Tipografía personalizada, frases y nombres con caligrafía artística. Cada letra diseñada a medida.</p><div class="style-tag">A medida</div></div>
+                <div class="style-card reveal-up" style="--delay:.35s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g7)" stroke-width="1.5"/><path d="M15 30 A15 15 0 1 1 45 30 A15 15 0 1 1 15 30" stroke="url(#g7)" stroke-width="2" fill="none"/><path d="M22 22 L38 38 M38 22 L22 38" stroke="url(#g7)" stroke-width="1.5" stroke-linecap="round"/><defs><linearGradient id="g7" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Full Color</h3><p>Tatuajes vibrantes con pigmentación intensa. Uso experto de la teoría del color para resultados duraderos.</p><div class="style-tag">Vibrante</div></div>
+                <div class="style-card reveal-up" style="--delay:.4s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g8)" stroke-width="1.5"/><path d="M20 30 Q30 20 40 30 Q30 40 20 30Z" stroke="url(#g8)" stroke-width="2" fill="none"/><defs><linearGradient id="g8" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Negro y Gris</h3><p>Sombreados suaves y transiciones perfectas en escala de grises. Realismo, retratos y arte con profundidad clásica.</p><div class="style-tag">Elegante</div></div>
+                <div class="style-card reveal-up" style="--delay:.45s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g9)" stroke-width="1.5"/><path d="M15 45 Q30 15 45 45" stroke="url(#g9)" stroke-width="2" fill="none"/><circle cx="30" cy="30" r="10" stroke="url(#g9)" stroke-width="1.5" stroke-dasharray="4 2"/><defs><linearGradient id="g9" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Watercolor</h3><p>Efectos de acuarela con manchas de color fluidas y sin bordes definidos. Un estilo artístico y pictórico único.</p><div class="style-tag">Artístico</div></div>
+                <div class="style-card reveal-up" style="--delay:.5s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g10)" stroke-width="1.5"/><rect x="20" y="20" width="20" height="20" stroke="url(#g10)" stroke-width="1.5" transform="rotate(45 30 30)"/><circle cx="30" cy="30" r="5" stroke="url(#g10)" stroke-width="1"/><defs><linearGradient id="g10" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Geométrico</h3><p>Composiciones basadas en formas matemáticas, líneas perfectas y simetría sagrada. Precisión absoluta.</p><div class="style-tag">Precisión</div></div>
+                <div class="style-card reveal-up" style="--delay:.55s"><div class="style-icon-wrap"><svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="style-svg"><circle cx="30" cy="30" r="28" stroke="url(#g11)" stroke-width="1.5"/><path d="M15 30 L30 15 L45 30 L30 45 Z" stroke="url(#g11)" stroke-width="2" fill="none"/><path d="M20 30 H40 M30 20 V40" stroke="url(#g11)" stroke-width="1"/><defs><linearGradient id="g11" x1="0" y1="0" x2="60" y2="60"><stop offset="0%" stop-color="#7000ff"/><stop offset="100%" stop-color="#c800b0"/></linearGradient></defs></svg></div><h3>Tribal</h3><p>Diseños inspirados en culturas ancestrales con líneas negras sólidas y formas orgánicas potentes.</p><div class="style-tag">Ancestral</div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         PORTAFOLIO — IMÁGENES GRANDES + REDES ACTUALIZADAS
+    ═══════════════════════════════════════════════ -->
+    <section id="sec-portafolio" class="portfolio-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Mis trabajos reales</span>
+                <h2 class="section-title">Portafolio <span class="accent-text">Real</span></h2>
+                <p>+40 tatuajes reales a domicilio en Los Andes, Chile. Sin filtros ni edición digital.</p>
+            </div>
+
+            <!-- Filtros — clase filter-btn que script.js busca -->
+            <div class="portfolio-filters reveal-up" role="tablist" aria-label="Filtrar por estilo">
+                <button class="filter-btn pf-btn active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+                <button class="filter-btn pf-btn" data-filter="realismo" role="tab">Realismo</button>
+                <button class="filter-btn pf-btn" data-filter="blackwork" role="tab">Blackwork</button>
+                <button class="filter-btn pf-btn" data-filter="full-color" role="tab">Full Color</button>
+                <button class="filter-btn pf-btn" data-filter="lettering" role="tab">Lettering</button>
+                <button class="filter-btn pf-btn" data-filter="fine-line" role="tab">Fine Line</button>
+                <button class="filter-btn pf-btn" data-filter="watercolor" role="tab">Watercolor</button>
+            </div>
+
+            <!-- Grid — ID "portafolio" que script.js busca con getElementById -->
+            <div class="portfolio-grid reveal-up" id="portafolio" aria-label="Galería de tatuajes"></div>
+
+            <!-- VIDEOS — con controles y bien visibles -->
+            <div class="portfolio-videos reveal-up">
+                <h3 class="videos-title"><i class="fa-solid fa-clapperboard"></i> Proceso en Video</h3>
+                <div class="videos-grid">
+                    <div class="video-wrap">
+                        <video controls preload="metadata" playsinline class="portfolio-video"
+                               aria-label="Cover Up Transición Rosa Color"
+                               poster="assets/portfolio/poster-coverup.jpg">
+                            <source src="assets/portfolio/tatuaje-transicion-cover-up-rosa-color-los-andes.v.mp4" type="video/mp4">
+                            Tu navegador no soporta video HTML5.
+                        </video>
+                        <p class="video-caption">Cover Up Transición — Rosa Color</p>
+                    </div>
+                    <div class="video-wrap">
+                        <video controls preload="metadata" playsinline class="portfolio-video"
+                               aria-label="Carrusel distintas zonas del cuerpo"
+                               poster="assets/portfolio/poster-carrusel.jpg">
+                            <source src="assets/portfolio/tatuajes-carrusel-de-fotos-en-distintas-areas-del-cuerpo-los-andes.v.mp4" type="video/mp4">
+                            Tu navegador no soporta video HTML5.
+                        </video>
+                        <p class="video-caption">Carrusel — Distintas Zonas del Cuerpo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA: Instagram + Facebook + Google — SIN TikTok -->
+            <div class="portfolio-cta reveal-up" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:32px;">
+                <a href="https://www.instagram.com/cristiantattoolosandesink/" target="_blank" rel="noopener noreferrer" class="btn-ig">
+                    <i class="fa-brands fa-instagram"></i> Ver más en Instagram
+                </a>
+                <a href="https://www.facebook.com/cristiantattoolosandesink" target="_blank" rel="noopener noreferrer" class="btn-fb">
+                    <i class="fa-brands fa-facebook"></i> Facebook
+                </a>
+                <a href="https://www.google.com/search?q=Cristian+Tattoo+Los+Andes+Ink" target="_blank" rel="noopener noreferrer" class="btn-google">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+                    Google Business
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========= LIGHTBOX ========= -->
+    <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Visualizador de tatuaje">
+        <button class="lb-close" id="lbClose" aria-label="Cerrar"><i class="fa-solid fa-xmark"></i></button>
+        <button class="lb-prev" id="lbPrev" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="lb-next" id="lbNext" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+        <div class="lb-inner">
+            <img id="lbImg" src="" alt="" loading="lazy">
+            <p id="lbCaption" class="lb-caption"></p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         CUIDADOS — GUÍA PROFESIONAL AMPLIADA
+    ═══════════════════════════════════════════════ -->
+    <section id="cuidados" class="care-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Post-tatuaje</span>
+                <h2 class="section-title">Guía de Cuidados</h2>
+                <p>El 50% del resultado final depende de cómo cuides tu tatuaje. Sigue esta guía profesional.</p>
+            </div>
+            <div class="care-tabs reveal-up">
+                <button class="care-tab active" data-tab="verano"><i class="fa-solid fa-sun"></i> Verano</button>
+                <button class="care-tab" data-tab="invierno"><i class="fa-solid fa-snowflake"></i> Invierno</button>
+                <button class="care-tab" data-tab="general"><i class="fa-solid fa-shield-heart"></i> General</button>
+            </div>
+            <div class="care-content">
+
+                <!-- VERANO -->
+                <div class="care-panel active reveal-up" data-panel="verano">
+                    <div class="care-grid">
+                        <div class="care-item danger"><i class="fa-solid fa-circle-xmark"></i><div><h4>Cero Sol Directo</h4><p>Mantén el tatuaje tapado o a la sombra los primeros 15–20 días. El UV destruye la tinta fresca y provoca decoloración irreversible.</p></div></div>
+                        <div class="care-item danger"><i class="fa-solid fa-circle-xmark"></i><div><h4>Sin Piscinas ni Mar</h4><p>Evita sumergirlo completamente durante mínimo 3 semanas. El agua con cloro, sal y bacterias puede causar infección grave y borrar detalles.</p></div></div>
+                        <div class="care-item danger"><i class="fa-solid fa-circle-xmark"></i><div><h4>Sin Sauna ni Vapor</h4><p>El calor extremo dilata los poros y puede expulsar la tinta antes de que cicatrice. Evita saunas, baños de vapor y jacuzzis el primer mes.</p></div></div>
+                        <div class="care-item good"><i class="fa-solid fa-check-circle"></i><div><h4>Bloqueador Solar SPF 50+</h4><p>Solo cuando esté 100% cicatrizado (después de 4 semanas). Aplica cada 2 horas en exposición prolongada para conservar colores y negros.</p></div></div>
+                        <div class="care-item good"><i class="fa-solid fa-check-circle"></i><div><h4>Ropa Transpirable</h4><p>Usa algodón o lycra holgada sobre el tatuaje. Evita telas sintéticas que acumulen calor y rozamiento. Preferir colores oscuros las primeras semanas.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-droplet"></i><div><h4>Control del Sudor</h4><p>Si sudas mucho, lava suavemente con agua y jabón neutro al terminar la actividad física. No dejes el sudor seco sobre el tatuaje más de 1 hora.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-thermometer-half"></i><div><h4>Hidratación Ligera</h4><p>En verano la piel pierde más agua. Aplica gel de aloe vera o crema sin fragancia 2 veces al día. El tatuaje debe verse brillante, no reseco.</p></div></div>
+                        <div class="care-item warning"><i class="fa-solid fa-triangle-exclamation"></i><div><h4>Actividad Física</h4><p>Evita el ejercicio intenso los primeros 5–7 días. El roce de ropa deportiva y el sudor pueden irritar la zona. Preferir ejercicios de bajo impacto.</p></div></div>
+                    </div>
+                </div>
+
+                <!-- INVIERNO -->
+                <div class="care-panel" data-panel="invierno">
+                    <div class="care-grid">
+                        <div class="care-item warning"><i class="fa-solid fa-triangle-exclamation"></i><div><h4>Cuidado con el Roce</h4><p>Evita ropa térmica apretada, lanas o telas ásperas sobre el tatuaje fresco. Usa algodón holgado debajo de la ropa abrigada. El roce constante levanta costras.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-droplet"></i><div><h4>Hidratación Extra</h4><p>El frío y la calefacción resecan enormemente la piel. Aplica crema cicatrizante (Bepanthen, Panthenol) 3 veces al día en capas finas. No dejes que se agriete.</p></div></div>
+                        <div class="care-item good"><i class="fa-solid fa-wind"></i><div><h4>Déjalo Respirar</h4><p>Aunque haga frío, dale al menos 10–15 minutos al día sin ropa encima para que el tatuaje oxigene y sane correctamente. Evita cubrirlo herméticamente.</p></div></div>
+                        <div class="care-item danger"><i class="fa-solid fa-circle-xmark"></i><div><h4>Evitar Calefacción Directa</h4><p>No coloques el tatuaje fresco cerca de estufas, chimeneas o radiadores. El calor seco reseca y agrieta la piel, rompiendo la cicatrización.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-shower"></i><div><h4>Duchas Templadas</h4><p>El agua muy caliente en invierno abre los poros y puede extraer tinta. Usa agua tibia y reduce el tiempo de exposición directa sobre el tatuaje.</p></div></div>
+                        <div class="care-item good"><i class="fa-solid fa-hand-holding-heart"></i><div><h4>Aceite de Rosa Mosqueta</h4><p>Una vez completamente cicatrizado (4+ semanas), el aceite de rosa mosqueta nutre la piel y ayuda a mantener los colores vivos durante el invierno.</p></div></div>
+                    </div>
+                </div>
+
+                <!-- GENERAL -->
+                <div class="care-panel" data-panel="general">
+                    <div class="care-grid">
+                        <div class="care-item good"><i class="fa-solid fa-soap"></i><div><h4>Lavar 2–3 veces al día</h4><p>Con agua tibia y jabón neutro sin fragancia (Dove, Johnson's Baby, pH5). Seca dando toquecitos suaves con papel de cocina limpio. Nunca frotar ni usar toalla reutilizable.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-droplet"></i><div><h4>Hidrata en capa fina</h4><p>Pantenol, Bepanthen o crema sin fragancia. Aplica una capa muy delgada, el tatuaje debe respirar. El exceso de crema tapa los poros y atrasa la cicatrización.</p></div></div>
+                        <div class="care-item danger"><i class="fa-solid fa-circle-xmark"></i><div><h4>No Rascarse nunca</h4><p>El picor es señal de cicatrización. Si rascas: arrancas costras, pierdes tinta y generas cicatrices. Si pica, da golpecitos suaves por encima de la ropa.</p></div></div>
+                        <div class="care-item warning"><i class="fa-solid fa-clock"></i><div><h4>Cicatrización: 15–90 días</h4><p>La capa superficial cura en 2–3 semanas. La cicatrización profunda toma hasta 3 meses. Durante ese tiempo el tatuaje puede verse opaco, es completamente normal.</p></div></div>
+                        <div class="care-item danger"><i class="fa-solid fa-circle-xmark"></i><div><h4>Sin Alcohol, Agua Oxigenada</h4><p>Nunca apliques alcohol, agua oxigenada ni antisépticos sobre el tatuaje fresco. Destruyen células nuevas y deterioran la tinta. Solo agua y jabón neutro.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-bandage"></i><div><h4>Segunda Piel (Saniderm)</h4><p>Si se colocó película protectora, mantenla 3–5 días sin mojarla. Al retirarla, hazlo en la ducha con agua tibia para que se desprenda sin dolor ni daño.</p></div></div>
+                        <div class="care-item good"><i class="fa-solid fa-apple-whole"></i><div><h4>Nutrición y Vitaminas</h4><p>Una dieta rica en vitamina C y proteínas acelera la cicatrización. Mantente bien hidratado, mínimo 2 litros de agua al día. Evita el alcohol las primeras 48 horas.</p></div></div>
+                        <div class="care-item warning"><i class="fa-solid fa-pills"></i><div><h4>Medicamentos</h4><p>Si tomas anticoagulantes o antiinflamatorios, consúltalo antes de la sesión. El ibuprofeno diluye la sangre y afecta el proceso de cicatrización del tatuaje.</p></div></div>
+                        <div class="care-item info"><i class="fa-solid fa-camera"></i><div><h4>Foto de control</h4><p>Si notas enrojecimiento excesivo, pus o fiebre después de las 48 horas, toma una foto y escríbeme. Son señales de posible infección que hay que tratar a tiempo.</p></div></div>
+                        <div class="care-item good"><i class="fa-solid fa-shield-virus"></i><div><h4>Evitar Contaminación</h4><p>Lávate las manos antes de tocar el tatuaje. Evita mascotas, polvo y tierra en la zona las primeras semanas. No vayas a la peluquería con el tatuaje reciente en la nuca.</p></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========= TESTIMONIOS ========= -->
+    <section id="testimonios" class="testimonials-section">
+        <div class="container">
+            <div class="section-header reveal-up">
+                <span class="section-tag">Clientes felices</span>
+                <h2 class="section-title">Experiencias</h2>
+                <p>Servicio profesional a domicilio. Esto es lo que dicen quienes ya se tatuaron conmigo.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="t-card reveal-up" style="--delay:.1s"><div class="t-stars">★★★★★</div><p>"Cristian vino a mi casa con todo esterilizado y fue súper profesional. El tatuaje quedó increíble y curó perfecto."</p><div class="t-author"><div class="t-avatar">MC</div><div><strong>Matías C.</strong><span>Cliente verificado</span></div></div></div>
+                <div class="t-card reveal-up featured" style="--delay:.2s"><div class="t-stars">★★★★★</div><p>"Me encantó la comodidad de tatuarme a domicilio. Trajo su camilla y todo el equipo. Los detalles de las sombras son brutales. 100% recomendado."</p><div class="t-author"><div class="t-avatar">VR</div><div><strong>Valentina R.</strong><span>Cliente verificada</span></div></div></div>
+                <div class="t-card reveal-up" style="--delay:.3s"><div class="t-stars">★★★★★</div><p>"Súper higiénico y detallista. Te explica paso a paso y te da mucha confianza. El mejor de Los Andes, sin duda volveré."</p><div class="t-author"><div class="t-avatar">DM</div><div><strong>Diego M.</strong><span>Cliente verificado</span></div></div></div>
+            </div>
+            <div class="review-cta reveal-up">
+                <p>¿Ya te tatuaste conmigo?</p>
+                <button id="btnOpenReview" class="btn-outline"><i class="fa-solid fa-pen"></i> Escribir mi experiencia</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         AGENDA — CONECTADA A EMAIL + WHATSAPP
+    ═══════════════════════════════════════════════ -->
+    <section id="agenda" class="booking-section">
+        <div class="container">
+            <div class="booking-inner">
+                <div class="booking-info reveal-left">
+                    <span class="section-tag">Reserva tu sesión</span>
+                    <h2 class="section-title">Agenda tu<br><span class="accent-text">Cita</span></h2>
+                    <p>Llego a donde estés con todo el equipamiento de un estudio profesional. <a href="agenda.html" style="color:var(--accent2);text-decoration:underline;">Agenda online</a> o escríbeme por WhatsApp.</p>
+                    <ul class="booking-perks">
+                        <li><i class="fa-solid fa-check"></i> Camilla y equipo completo incluido</li>
+                        <li><i class="fa-solid fa-check"></i> Materiales 100% estériles de un solo uso</li>
+                        <li><i class="fa-solid fa-check"></i> Boceto personalizado previo a la sesión</li>
+                        <li><i class="fa-solid fa-check"></i> Guía de cuidados post-tatuaje</li>
+                    </ul>
+                    <a href="https://wa.me/56987383781" target="_blank" class="btn-wa-inline">
+                        <i class="fa-brands fa-whatsapp"></i> Consultar por WhatsApp
+                    </a>
+                </div>
+                <div class="booking-form-wrap reveal-right">
+                    <!-- Formulario Netlify Forms → correo cristianrvenega2001@gmail.com -->
+                    <form id="bookingForm"
+                          name="Reservas"
+                          method="POST"
+                          data-netlify="true"
+                          netlify-honeypot="bot-field"
+                          action="/">
+                        <input type="hidden" name="form-name" value="Reservas">
+                        <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="resNombre">Nombre y Apellido *</label>
+                                <input type="text" id="resNombre" name="Nombre" required placeholder="Juan Pérez">
+                            </div>
+                            <div class="form-group">
+                                <label for="resWhatsApp">WhatsApp *</label>
+                                <input type="tel" id="resWhatsApp" name="WhatsApp" required placeholder="+56 9 1234 5678">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="resFecha">Fecha y Hora Deseada *</label>
+                            <input type="datetime-local" id="resFecha" name="Fecha_Deseada" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="resDetalles">Tu idea (zona, tamaño, diseño) *</label>
+                            <textarea id="resDetalles" name="Detalles_Tatuaje" rows="3" required placeholder="Ej: Brazo derecho, 10x10cm, calavera tradicional con rosas..."></textarea>
+                        </div>
+                        <button type="submit" class="btn-submit">
+                            <i class="fa-solid fa-calendar-check"></i> Solicitar Reserva
+                        </button>
+                        <div id="bookingSuccess" class="form-success hidden">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <div><strong>¡Reserva Enviada!</strong><p>Te contactaré por WhatsApp para confirmar los detalles.</p></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         FOOTER — CON GOOGLE BUSINESS + FACEBOOK
+    ═══════════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-brand">
+                    <div class="footer-logo">CRISTIAN<span>TATTOO</span></div>
+                    <p>Tatuajes profesionales a domicilio en Los Andes, Chile. Arte en tu piel, en la comodidad de tu hogar.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.instagram.com/cristiantattoolosandesink/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@cristiantattoo12" target="_blank" rel="noopener noreferrer" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/cristiantattoolosandesink" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                        <a href="https://kwai-video.com/u/@Cristian_Venega/qmy1CaWo" target="_blank" rel="noopener noreferrer" aria-label="Kwai"><i class="fa-solid fa-video"></i></a>
+                        <a href="https://www.google.com/search?q=Cristian+Tattoo+Los+Andes+Ink" target="_blank" rel="noopener noreferrer" aria-label="Google Business" style="background:rgba(255,255,255,0.1);width:38px;height:38px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:16px;color:#fff;text-decoration:none;"><i class="fa-brands fa-google"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Navegación</h4>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#proceso">Proceso</a></li>
+                        <li><a href="#estilos">Estilos</a></li>
+                        <li><a href="#sec-portafolio">Portafolio</a></li>
+                        <li><a href="#cuidados">Cuidados</a></li>
+                        <li><a href="#testimonios">Reseñas</a></li>
+                        <li><a href="#agenda">Agendar Cita</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contacto</h4>
+                    <ul>
+                        <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/56987383781" style="color:inherit;text-decoration:none;">+56 9 8738 3781</a></li>
+                        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:cristianrvenega2001@gmail.com" style="color:inherit;text-decoration:none;font-size:12px">cristianrvenega2001@gmail.com</a></li>
+                        <li><i class="fa-solid fa-location-dot"></i> Los Andes, Chile</li>
+                        <li><i class="fa-brands fa-instagram"></i> @cristiantattoolosandesink</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Cristian Tattoo | Los Andes Ink. Todos los derechos reservados.</p>
+                <p>Diseño web profesional · Verificado por Google</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========= MODAL MUNDIAL 2026 ========= -->
+    <div id="mundialModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="mundialModalTitle">
+        <div class="modal-content mundial-modal-content">
+            <button class="close-modal" id="closeMundial" aria-label="Cerrar">&times;</button>
+            <div class="promo-badge mundial-promo-badge"><i class="fa-solid fa-futbol"></i> Promo Mundial 2026</div>
+            <h2 id="mundialModalTitle" class="modal-title">Descuento de <span class="mundial-gold-text">Campeón</span></h2>
+            <p class="promo-desc">
+                Chile sede del Mundial 2026. <strong>Hasta 30% de descuento</strong> según el tamaño de tu tatuaje.<br><br>
+                <i class="fa-solid fa-futbol" style="color:var(--mundial-gold)"></i> <strong>XS:</strong> 10% OFF &nbsp;·&nbsp; <strong>S:</strong> 15% OFF &nbsp;·&nbsp; <strong>M:</strong> 20% OFF<br>
+                <i class="fa-solid fa-trophy" style="color:var(--mundial-gold)"></i> <strong>L:</strong> 25% OFF &nbsp;·&nbsp; <strong>XL Leyenda:</strong> 30% OFF
+            </p>
+            <div class="promo-actions">
+                <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20aprovechar%20la%20Promo%20Mundial%202026%21" target="_blank" class="btn-primary promo-btn" rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i> Cotizar con Descuento
+                </a>
+                <a href="agenda.html" class="btn-outline" style="margin-top:10px;display:flex;align-items:center;justify-content:center;gap:8px;">
+                    <i class="fa-solid fa-calendar-check"></i> Agendar Online
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========= MODAL RESEÑA ========= -->
+    <div id="reviewModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <div class="modal-content">
+            <button class="close-modal" id="closeModal" aria-label="Cerrar">&times;</button>
+            <h2 id="modalTitle" class="modal-title">Deja tu <span>Reseña</span></h2>
+            <p>Tu opinión ayuda a otros a conocer mi trabajo.</p>
+            <form id="reviewForm" name="Resenas" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+                <input type="hidden" name="form-name" value="Resenas">
+                <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
+                <div class="form-group">
+                    <label for="revNombre">Nombre o Inicial *</label>
+                    <input type="text" id="revNombre" name="Nombre" required placeholder="Ej: Diego M.">
+                </div>
+                <div class="form-group" style="margin-top:15px">
+                    <label>Puntuación</label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star active" data-val="1">★</span>
+                        <span class="star active" data-val="2">★</span>
+                        <span class="star active" data-val="3">★</span>
+                        <span class="star active" data-val="4">★</span>
+                        <span class="star active" data-val="5">★</span>
+                    </div>
+                    <input type="hidden" name="Puntuacion" id="puntuacion" value="5">
+                </div>
+                <div class="form-group" style="margin-top:15px">
+                    <label for="revExperiencia">Tu experiencia (servicio, higiene, calidad) *</label>
+                    <textarea id="revExperiencia" name="Experiencia" rows="4" required placeholder="El tatuaje quedó genial y fue muy cómodo..."></textarea>
+                </div>
+                <button type="submit" class="btn-submit" style="margin-top:20px;width:100%">Enviar Reseña</button>
+                <div id="revSuccess" class="form-success hidden" style="margin-top:15px">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <div><strong>¡Gracias!</strong><p>Reseña enviada para revisión.</p></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Datos del portafolio -->
+    <script src="portafolio-data.js"></script>
+    <!-- Adaptador: convierte PORTAFOLIO_DATA → portafolioData que script.js espera -->
+    <script>
+    (function() {
+        if (typeof PORTAFOLIO_DATA !== 'undefined' && typeof portafolioData === 'undefined') {
+            window.portafolioData = PORTAFOLIO_DATA.map(function(item) {
+                return {
+                    // Corrige ruta: assets/portafolio/ → assets/portfolio/
+                    src: item.src.replace('assets/portafolio/', 'assets/portfolio/'),
+                    // Mapea 'style' → 'category' que script.js usa
+                    category: item.style || item.name || 'General'
+                };
+            });
+        }
+    })();
+    </script>
+
+    <script src="script.js"></script>
+
+    <!-- ══════════════════════════════════════════
+         ESPACIO: estrellas, cometas, fugaces — tono morado minimalista
+    ═══════════════════════════════════════════════ -->
+    <script>
+    (function () {
+        const canvas = document.getElementById('spaceCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        let W, H;
+        function resize() {
+            W = canvas.width  = window.innerWidth;
+            H = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        /* ── Estrellas estáticas ── */
+        const STAR_N = 220;
+        const stars = Array.from({ length: STAR_N }, () => ({
+            x:  Math.random(),
+            y:  Math.random(),
+            r:  Math.random() * 1.2 + 0.2,
+            base: Math.random() * 0.55 + 0.15,
+            speed: Math.random() * 0.018 + 0.006,
+            phase: Math.random() * Math.PI * 2
+        }));
+
+        /* ── Estrellas fugaces ── */
+        const shoots = [];
+        function mkShoot() {
+            const angle = (Math.PI / 4) + (Math.random() - .5) * .45;
+            return {
+                x:    Math.random() * W,
+                y:    Math.random() * H * .55,
+                len:  Math.random() * 180 + 80,
+                spd:  Math.random() * 9 + 7,
+                angle,
+                life: 0,
+                max:  Math.random() * 55 + 35
+            };
+        }
+
+        /* ── Cometas (más lentas, más largas) ── */
+        const comets = [];
+        function mkComet() {
+            return {
+                x:    -80,
+                y:    Math.random() * H * .4,
+                len:  Math.random() * 280 + 160,
+                spd:  Math.random() * 3 + 1.5,
+                alpha: Math.random() * 0.4 + 0.25,
+                life: 0,
+                max:  Math.random() * 220 + 160
+            };
+        }
+
+        let frame = 0;
+        function draw() {
+            ctx.clearRect(0, 0, W, H);
+
+            /* Estrellas */
+            stars.forEach(s => {
+                s.phase += s.speed;
+                const a = s.base * (.55 + .45 * Math.sin(s.phase));
+                ctx.beginPath();
+                ctx.arc(s.x * W, s.y * H, s.r, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(196,165,255,${a})`;
+                ctx.fill();
+            });
+
+            /* Algunas estrellas con brillo puntual */
+            if (frame % 90 === 0) {
+                const s = stars[Math.floor(Math.random() * STAR_N)];
+                ctx.beginPath();
+                ctx.arc(s.x * W, s.y * H, s.r * 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(220,200,255,0.18)`;
+                ctx.fill();
+            }
+
+            /* Cometas */
+            if (Math.random() < 0.0015) comets.push(mkComet());
+            for (let i = comets.length - 1; i >= 0; i--) {
+                const c = comets[i];
+                c.x  += c.spd;
+                c.y  += c.spd * .18;
+                c.life++;
+                if (c.life >= c.max || c.x > W + 100) { comets.splice(i, 1); continue; }
+                const fade = 1 - c.life / c.max;
+                const gr = ctx.createLinearGradient(c.x, c.y, c.x - c.len, c.y - c.len * .18);
+                gr.addColorStop(0, `rgba(200,170,255,${c.alpha * fade})`);
+                gr.addColorStop(1, 'rgba(140,80,255,0)');
+                ctx.beginPath();
+                ctx.moveTo(c.x, c.y);
+                ctx.lineTo(c.x - c.len, c.y - c.len * .18);
+                ctx.strokeStyle = gr;
+                ctx.lineWidth = 1.8;
+                ctx.stroke();
+                /* Cabeza de cometa */
+                ctx.beginPath();
+                ctx.arc(c.x, c.y, 2, 0, Math.PI * 2);
+                ctx.fillStyle = `rgba(230,210,255,${.8 * fade})`;
+                ctx.fill();
+            }
+
+            /* Estrellas fugaces */
+            if (Math.random() < 0.006) shoots.push(mkShoot());
+            for (let i = shoots.length - 1; i >= 0; i--) {
+                const s = shoots[i];
+                s.x   += Math.cos(s.angle) * s.spd;
+                s.y   += Math.sin(s.angle) * s.spd;
+                s.life++;
+                if (s.life >= s.max) { shoots.splice(i, 1); continue; }
+                const fade = 1 - s.life / s.max;
+                const gr = ctx.createLinearGradient(s.x, s.y, s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+                gr.addColorStop(0, `rgba(240,220,255,${fade})`);
+                gr.addColorStop(1, 'rgba(160,80,255,0)');
+                ctx.beginPath();
+                ctx.moveTo(s.x, s.y);
+                ctx.lineTo(s.x - Math.cos(s.angle) * s.len, s.y - Math.sin(s.angle) * s.len);
+                ctx.strokeStyle = gr;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            frame++;
+            requestAnimationFrame(draw);
+        }
+        draw();
+    })();
+    </script>
+
+    <!-- Formulario agenda → email + WhatsApp -->
+    <script>
+    (function () {
+        const form    = document.getElementById('bookingForm');
+        const success = document.getElementById('bookingSuccess');
+        if (!form) return;
+        form.addEventListener('submit', async function (e) {
+            e.preventDefault();
+            const nombre  = document.getElementById('resNombre').value.trim();
+            const wa      = document.getElementById('resWhatsApp').value.trim();
+            const fecha   = document.getElementById('resFecha').value;
+            const detalle = document.getElementById('resDetalles').value.trim();
+            try {
+                const body = new URLSearchParams({ 'form-name':'Reservas','Nombre':nombre,'WhatsApp':wa,'Fecha_Deseada':fecha,'Detalles_Tatuaje':detalle });
+                await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body.toString() });
+            } catch(err) { console.warn('Netlify form error:', err); }
+            const fechaFmt = fecha ? new Date(fecha).toLocaleString('es-CL',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}) : fecha;
+            const msg = encodeURIComponent(`Hola Cristian! Acabo de reservar desde tu página web 🎨\n\n👤 Nombre: ${nombre}\n📱 WhatsApp: ${wa}\n📅 Fecha deseada: ${fechaFmt}\n✏️ Idea: ${detalle}\n\nQuedo atento/a a tu confirmación!`);
+            window.open(`https://wa.me/56987383781?text=${msg}`, '_blank', 'noopener,noreferrer');
+            form.style.opacity = '0'; form.style.transition = 'opacity .3s';
+            setTimeout(() => { form.style.display = 'none'; success.classList.remove('hidden'); }, 300);
+        });
+    })();
+    </script>
+
+    <!-- JS modales de predicción Mundial -->
+    <script>
+    // Abrir modal
+    function openPredict(tier) {
+        document.getElementById('pred' + tier).classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    // Cerrar modal
+    function closePredict(tier) {
+        document.getElementById('pred' + tier).classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    // Cerrar al clic en overlay
+    document.querySelectorAll('.pred-overlay').forEach(el => {
+        el.addEventListener('click', function(e) {
+            if (e.target === this) closePredict(this.id.replace('pred',''));
+        });
+    });
+    // Cerrar con Escape
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape') {
+            ['40','50'].forEach(t => {
+                document.getElementById('pred'+t).classList.remove('open');
+            });
+            document.body.style.overflow = '';
+        }
+    });
+    // Teclado en tier cards
+    document.querySelectorAll('.wc-tier-predict, .wc-tier-final').forEach(card => {
+        card.addEventListener('keydown', e => {
+            if (e.key === 'Enter' || e.key === ' ') card.click();
+        });
+    });
+
+    // Enviar pronóstico
+    async function submitPredict(tier) {
+        const form   = document.getElementById('form' + tier);
+        const nombre = form.querySelector('[name="Nombre"]').value.trim();
+        const wa     = form.querySelector('[name="WhatsApp"]').value.trim();
+        const g1     = form.querySelector('[name="Goles_Local"]').value;
+        const g2     = form.querySelector('[name="Goles_Visita"]').value;
+        const partido = tier === '40'
+            ? (form.querySelector('[name="Partido"]')?.value.trim() || '')
+            : 'Gran Final FIFA World Cup 2026';
+
+        if (!nombre || !wa || g1 === '' || g2 === '') {
+            alert('Por favor completa todos los campos obligatorios.');
+            return;
+        }
+
+        /* 1. Envío a Netlify Forms → llega a tu correo al deployer */
+        try {
+            const body = new URLSearchParams();
+            new FormData(form).forEach((v, k) => body.append(k, v));
+            await fetch('/', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: body.toString()
+            });
+        } catch(err) { console.warn('Netlify form:', err); }
+
+        /* 2. También abrir WhatsApp con el pronóstico */
+        const descuento = tier === '50' ? '50% (La Final)' : '40%';
+        const msg = encodeURIComponent(
+            `⚽ Pronóstico FIFA World Cup 2026 — ${descuento} OFF\n\n` +
+            `👤 Nombre: ${nombre}\n` +
+            `📱 WhatsApp: ${wa}\n` +
+            `🏟️ Partido: ${partido}\n` +
+            `🎯 Marcador que predigo: ${g1} : ${g2}\n\n` +
+            `Envío registrado antes del partido. Si acierto el marcador exacto, ¡confirmo el descuento!`
+        );
+        window.open(`https://wa.me/56987383781?text=${msg}`, '_blank', 'noopener,noreferrer');
+
+        /* 3. Mostrar confirmación en el modal */
+        document.getElementById('pred' + tier + 'Form').style.display = 'none';
+        document.getElementById('pred' + tier + 'Ok').classList.add('show');
+    }
+    </script>
+
+</body>
+</html>

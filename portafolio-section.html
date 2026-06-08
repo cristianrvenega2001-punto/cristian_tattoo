@@ -1,0 +1,840 @@
+<!-- ============================================================
+     SECCIÓN PORTAFOLIO — Cristian Tattoo Los Andes Ink
+     Generado automáticamente por generar-portafolio.js
+     05-06-2026, 4:44:10 p. m. · 50 imágenes
+     ============================================================ -->
+
+<!-- Estilos de la sección -->
+<style>
+#portafolio {
+  padding: 90px 24px;
+}
+.portfolio-wrap {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+.portfolio-ig-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 420px;
+  margin: 36px auto;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.09);
+  border-radius: 16px;
+  padding: 14px 18px;
+  text-align: left;
+}
+.ig-av {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.14);
+  flex-shrink: 0;
+}
+.ig-av img { width: 100%; height: 100%; object-fit: cover; }
+.ig-info strong { display: block; font-size: 14px; font-weight: 700; color: #fff; }
+.ig-info span   { font-size: 12px; color: rgba(255,255,255,0.45); }
+.ig-follow {
+  margin-left: auto;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: background .2s;
+}
+.ig-follow:hover { background: rgba(255,255,255,0.14); }
+
+/* Filtros de estilo */
+.portfolio-filters {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 28px;
+}
+.pf-btn {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.55);
+  font-size: 12px;
+  font-weight: 600;
+  padding: 7px 16px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all .2s;
+  font-family: inherit;
+}
+.pf-btn:hover { background: rgba(255,255,255,0.09); color: #fff; }
+.pf-btn.active {
+  background: rgba(255,255,255,0.12);
+  border-color: rgba(255,255,255,0.3);
+  color: #fff;
+}
+
+/* Grid de fotos */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 36px;
+}
+@media (max-width: 600px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 360px) {
+  .portfolio-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+}
+.portfolio-item {
+  aspect-ratio: 1;
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.07);
+  cursor: pointer;
+}
+.portfolio-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+.portfolio-item:hover img { transform: scale(1.07); }
+.portfolio-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0);
+  display: flex;
+  align-items: flex-end;
+  padding: 12px;
+  transition: background .25s;
+}
+.portfolio-item:hover .portfolio-item-overlay {
+  background: rgba(0,0,0,0.5);
+}
+.portfolio-item-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: #fff;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 6px;
+  padding: 4px 10px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: all .25s;
+}
+.portfolio-item:hover .portfolio-item-label {
+  opacity: 1;
+  transform: translateY(0);
+}
+.portfolio-item.hidden { display: none; }
+
+/* Lightbox */
+.portfolio-lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.portfolio-lightbox.open { display: flex; }
+.lb-inner {
+  max-width: 860px;
+  width: 100%;
+  position: relative;
+}
+.lb-img {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+.lb-caption {
+  text-align: center;
+  margin-top: 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.65);
+}
+.lb-close {
+  position: absolute;
+  top: -16px;
+  right: -16px;
+  width: 40px;
+  height: 40px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 10px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background .2s;
+}
+.lb-close:hover { background: rgba(255,255,255,0.2); }
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 50%;
+  color: #fff;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background .2s;
+}
+.lb-nav:hover { background: rgba(255,255,255,0.16); }
+.lb-prev { left: -60px; }
+.lb-next { right: -60px; }
+@media (max-width: 680px) {
+  .lb-prev { left: 8px; }
+  .lb-next { right: 8px; }
+}
+
+/* Botones ver más */
+.portfolio-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+.portfolio-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.13);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 13px 24px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background .2s, transform .2s;
+  font-family: inherit;
+  cursor: pointer;
+}
+.portfolio-cta-btn:hover { background: rgba(255,255,255,0.13); transform: translateY(-2px); }
+</style>
+
+<!-- ── HTML de la sección ─────────────────────────────────── -->
+<section id="portafolio">
+  <div class="portfolio-wrap">
+
+    <p class="section-label">Mis trabajos reales</p>
+    <h2 class="section-title">Portafolio</h2>
+    <p class="section-desc">50 diseños reales, realizados a domicilio en Los Andes.</p>
+
+    <!-- Perfil Instagram -->
+    <div class="portfolio-ig-row">
+      <div class="ig-av">
+        <img src="cristiantattoolosandesink.jpg"
+             alt="Cristian Tattoo Los Andes Ink"
+             loading="lazy">
+      </div>
+      <div class="ig-info">
+        <strong>@cristiantattoolosandesink</strong>
+        <span>Tatuador profesional · Los Andes, Chile</span>
+      </div>
+      <a href="https://www.instagram.com/cristiantattoolosandesink/"
+         class="ig-follow"
+         target="_blank" rel="noopener noreferrer">Seguir</a>
+    </div>
+
+    <!-- Filtros -->
+    <div class="portfolio-filters" id="portfolioFilters">
+      <button class="pf-btn active" data-filter="all">Todos (50)</button>
+      <button class="pf-btn" data-filter="Blackwork">Blackwork (5)</button>
+      <button class="pf-btn" data-filter="Full Color">Full Color (16)</button>
+      <button class="pf-btn" data-filter="Lettering">Lettering (1)</button>
+      <button class="pf-btn" data-filter="Realismo">Realismo (6)</button>
+    </div>
+
+    <!-- Grid de fotos -->
+    <div class="portfolio-grid" id="portfolioGrid">
+      
+      <div class="portfolio-item" data-style="Lettering" data-index="1" onclick="openLightbox(1)">
+        <img src="assets/portafolio/primer-tatuaje-lettering-72años-negro.webp"
+             alt="Tatuaje Lettering a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Lettering</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="2" onclick="openLightbox(2)">
+        <img src="assets/portafolio/tatuaje-acuarela-watercolor-familia-elefantes-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="3" onclick="openLightbox(3)">
+        <img src="assets/portafolio/tatuaje-acuarela-watercolor-libelula-mariposa-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="4" onclick="openLightbox(4)">
+        <img src="assets/portafolio/tatuaje-anime-majin-buu-dragon-ball-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Anime Majin Buu Dragon Ball Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="5" onclick="openLightbox(5)">
+        <img src="assets/portafolio/tatuaje-anime-majin-vegeta-dragon-ball-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Anime Majin Vegeta Dragon Ball Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="6" onclick="openLightbox(6)">
+        <img src="assets/portafolio/tatuaje-anime-vegeta-dragon-ball-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Anime Vegeta Dragon Ball Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="7" onclick="openLightbox(7)">
+        <img src="assets/portafolio/tatuaje-atrapasuenos-mandala-sombras-brazo-cover-up-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Atrapasuenos Mandala Sombras Brazo Cover Up Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="8" onclick="openLightbox(8)">
+        <img src="assets/portafolio/tatuaje-buda-mistico-sombras-escala-grises.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Buda Mistico Sombras Escala Grises</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="9" onclick="openLightbox(9)">
+        <img src="assets/portafolio/tatuaje-cartas-as-realista-negro-y-grises-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Cartas As Realista Negro Y Grises Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Realismo" data-index="10" onclick="openLightbox(10)">
+        <img src="assets/portafolio/tatuaje-catrina-monja-realismo-black-and-grey-los-andes.webp"
+             alt="Tatuaje Realismo a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Realismo</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="11" onclick="openLightbox(11)">
+        <img src="assets/portafolio/tatuaje-corazon-ornamental-joya-hombro-mujer-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Corazon Ornamental Joya Hombro Mujer Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Blackwork" data-index="12" onclick="openLightbox(12)">
+        <img src="assets/portafolio/tatuaje-cruz-ornamental-celta-blackwork-brazo-los-andes.webp"
+             alt="Tatuaje Blackwork a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Blackwork</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Blackwork" data-index="13" onclick="openLightbox(13)">
+        <img src="assets/portafolio/tatuaje-escorpion-blackwork-alto-contraste-los-andes.webp"
+             alt="Tatuaje Blackwork a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Blackwork</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="14" onclick="openLightbox(14)">
+        <img src="assets/portafolio/tatuaje-flor-cataleya-fullcolor-pierna-gemelo-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="15" onclick="openLightbox(15)">
+        <img src="assets/portafolio/tatuaje-flor-de-loto-pierna-acuarela-color-linea-fina-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="16" onclick="openLightbox(16)">
+        <img src="assets/portafolio/tatuaje-flor-fuego-color-pierna-gemelo-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="17" onclick="openLightbox(17)">
+        <img src="assets/portafolio/tatuaje-flores-de-cerezo-fullcolors-brazo-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Realismo" data-index="18" onclick="openLightbox(18)">
+        <img src="assets/portafolio/tatuaje-flores-de-cerezo-hiperrealismo-fullcolors-espalda-los-andes.webp"
+             alt="Tatuaje Realismo a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Realismo</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="19" onclick="openLightbox(19)">
+        <img src="assets/portafolio/tatuaje-flores-hombro-linea-fina-mujer-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Flores Hombro Linea Fina Mujer Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="20" onclick="openLightbox(20)">
+        <img src="assets/portafolio/tatuaje-leon-realista-sombras-brazo-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Leon Realista Sombras Brazo Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="21" onclick="openLightbox(21)">
+        <img src="assets/portafolio/tatuaje-mariposa-color-clavicula-pecho-mujer.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="22" onclick="openLightbox(22)">
+        <img src="assets/portafolio/tatuaje-mariposa-rosas-personalizado-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Mariposa Rosas Personalizado Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="23" onclick="openLightbox(23)">
+        <img src="assets/portafolio/tatuaje-mariposas-y-flores-pierna-mujer-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Mariposas Y Flores Pierna Mujer Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="24" onclick="openLightbox(24)">
+        <img src="assets/portafolio/tatuaje-minnie-mouse-color-disney-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="25" onclick="openLightbox(25)">
+        <img src="assets/portafolio/tatuaje-moana-sol-astros-linea-fina-sombras-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Moana Sol Astros Linea Fina Sombras Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Blackwork" data-index="26" onclick="openLightbox(26)">
+        <img src="assets/portafolio/tatuaje-ojo-de-la-providencia-geometrico-blackwork.jpg-2.webp"
+             alt="Tatuaje Blackwork a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Blackwork</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Blackwork" data-index="27" onclick="openLightbox(27)">
+        <img src="assets/portafolio/tatuaje-ojo-de-la-providencia-geometrico-blackwork.webp"
+             alt="Tatuaje Blackwork a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Blackwork</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="28" onclick="openLightbox(28)">
+        <img src="assets/portafolio/tatuaje-ornamental-mandala-cadera-linea-fina.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Ornamental Mandala Cadera Linea Fina</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="29" onclick="openLightbox(29)">
+        <img src="assets/portafolio/tatuaje-ornamental-mandala-flor-de-loto-cadera-linea-fina.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Ornamental Mandala Flor De Loto Cadera Linea Fina</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="30" onclick="openLightbox(30)">
+        <img src="assets/portafolio/tatuaje-ornamental-mandala-nalga-linea-fina.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Ornamental Mandala Nalga Linea Fina</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="31" onclick="openLightbox(31)">
+        <img src="assets/portafolio/tatuaje-pez-koi-full-color-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="32" onclick="openLightbox(32)">
+        <img src="assets/portafolio/tatuaje-pez-koi-fullcolor-los-andes.jpg-2.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="33" onclick="openLightbox(33)">
+        <img src="assets/portafolio/tatuaje-pez-koi-fullcolor-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Blackwork" data-index="34" onclick="openLightbox(34)">
+        <img src="assets/portafolio/tatuaje-pistola-revolver-blackwork-cintura-los-andes.webp"
+             alt="Tatuaje Blackwork a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Blackwork</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="35" onclick="openLightbox(35)">
+        <img src="assets/portafolio/tatuaje-porta-electrodo-personalizado-black-and-grey-antebrazo.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Porta Electrodo Personalizado Black And Grey Antebrazo</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="36" onclick="openLightbox(36)">
+        <img src="assets/portafolio/tatuaje-principito-color-ante-brazo-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="37" onclick="openLightbox(37)">
+        <img src="assets/portafolio/tatuaje-principito-color-personalizado-ante-brazo-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Realismo" data-index="38" onclick="openLightbox(38)">
+        <img src="assets/portafolio/tatuaje-realismo-joker-payaso-sombras-los-andes.webp"
+             alt="Tatuaje Realismo a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Realismo</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Realismo" data-index="39" onclick="openLightbox(39)">
+        <img src="assets/portafolio/tatuaje-retrato-realismo-guason-sombras-los-andes.webp"
+             alt="Tatuaje Realismo a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Realismo</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Realismo" data-index="40" onclick="openLightbox(40)">
+        <img src="assets/portafolio/tatuaje-retrato-realismo-guason-terror-sombras-los-andes.webp"
+             alt="Tatuaje Realismo a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Realismo</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="41" onclick="openLightbox(41)">
+        <img src="assets/portafolio/tatuaje-retrato-realista-black-and-grey-los-andes.jpg-2.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Retrato Realista Black And Grey Los Andes.Jpg</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="42" onclick="openLightbox(42)">
+        <img src="assets/portafolio/tatuaje-retrato-realista-black-and-grey-los-andes.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Retrato Realista Black And Grey Los Andes</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="43" onclick="openLightbox(43)">
+        <img src="assets/portafolio/tatuaje-rosa-clavos-linea-fina-color-antebrazo-hombre-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="44" onclick="openLightbox(44)">
+        <img src="assets/portafolio/tatuaje-rosa-color-y-negro-degradado-espalda-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Full Color" data-index="45" onclick="openLightbox(45)">
+        <img src="assets/portafolio/tatuaje-rosa-roja-color-brazo-los-andes.webp"
+             alt="Tatuaje Full Color a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Full Color</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="46" onclick="openLightbox(46)">
+        <img src="assets/portafolio/tatuaje-rosario-cruces-flores-linea-fina-cover-up-pierna.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Rosario Cruces Flores Linea Fina Cover Up Pierna</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="47" onclick="openLightbox(47)">
+        <img src="assets/portafolio/tatuaje-secuencia-flor-de-loto-columna-espalda-los-andes.pg.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Secuencia Flor De Loto Columna Espalda Los Andes.Pg</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="48" onclick="openLightbox(48)">
+        <img src="assets/portafolio/tatuaje-silueta-elefantes-familia-espalda-chile.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Silueta Elefantes Familia Espalda Chile</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="" data-index="49" onclick="openLightbox(49)">
+        <img src="assets/portafolio/tatuaje-silueta-globos-sombras-brazo-cover-up-mujer.webp"
+             alt="Tatuaje a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Tatuaje Silueta Globos Sombras Brazo Cover Up Mujer</span>
+        </div>
+      </div>
+      <div class="portfolio-item" data-style="Realismo" data-index="50" onclick="openLightbox(50)">
+        <img src="assets/portafolio/tatuaje-virgen-realismo-black-and-grey-los-andes.webp"
+             alt="Tatuaje Realismo a domicilio Los Andes por Cristian Venega"
+             loading="lazy"
+             width="400" height="400">
+        <div class="portfolio-item-overlay">
+          <span class="portfolio-item-label">Realismo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTAs -->
+    <div class="portfolio-cta">
+      <a href="https://www.instagram.com/cristiantattoolosandesink/"
+         class="portfolio-cta-btn"
+         target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+        </svg>
+        Ver más en Instagram
+      </a>
+      <a href="https://www.tiktok.com/@cristiantattoo12"
+         class="portfolio-cta-btn"
+         style="color:#ff6b8a;border-color:rgba(255,107,138,0.2);background:rgba(255,0,80,0.06)"
+         target="_blank" rel="noopener noreferrer">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.79a8.18 8.18 0 004.78 1.52V6.84a4.85 4.85 0 01-1.01-.15z"/>
+        </svg>
+        TikTok
+      </a>
+    </div>
+
+  </div>
+</section>
+
+<!-- Lightbox -->
+<div class="portfolio-lightbox" id="portfolioLightbox" role="dialog" aria-label="Ver imagen">
+  <div class="lb-inner">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Cerrar">×</button>
+    <button class="lb-nav lb-prev" onclick="navLightbox(-1)" aria-label="Anterior">&#8249;</button>
+    <button class="lb-nav lb-next" onclick="navLightbox(1)"  aria-label="Siguiente">&#8250;</button>
+    <img class="lb-img" id="lbImg" src="" alt="">
+    <div class="lb-caption" id="lbCaption"></div>
+  </div>
+</div>
+
+<!-- Script del portafolio -->
+<script src="portafolio-data.js"></script>
+<script>
+(function() {
+  const VISIBLE_INIT = 9;
+  let lbIndex = 1;
+  let visibleItems = [];
+
+  // Filtros
+  const filters = document.getElementById('portfolioFilters');
+  if (filters) {
+    filters.addEventListener('click', function(e) {
+      const btn = e.target.closest('.pf-btn');
+      if (!btn) return;
+
+      filters.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.dataset.filter;
+      const items  = document.querySelectorAll('#portfolioGrid .portfolio-item');
+
+      visibleItems = [];
+      items.forEach(item => {
+        const show = filter === 'all' || item.dataset.style === filter;
+        item.classList.toggle('hidden', !show);
+        if (show) visibleItems.push(parseInt(item.dataset.index));
+      });
+    });
+  }
+
+  // Inicializar visibleItems
+  visibleItems = Array.from(document.querySelectorAll('#portfolioGrid .portfolio-item'))
+    .map(el => parseInt(el.dataset.index));
+
+  // Lightbox
+  window.openLightbox = function(idx) {
+    const item = PORTAFOLIO_DATA.find(i => i.index === idx);
+    if (!item) return;
+    lbIndex = idx;
+    document.getElementById('lbImg').src       = item.src;
+    document.getElementById('lbImg').alt       = 'Tatuaje ' + (item.style||item.name) + ' — Cristian Venega Los Andes';
+    document.getElementById('lbCaption').textContent = (item.style || item.name) + ' — Cristian Venega · Los Andes Ink';
+    document.getElementById('portfolioLightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  };
+
+  window.closeLightbox = function() {
+    document.getElementById('portfolioLightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  window.navLightbox = function(dir) {
+    const pos  = visibleItems.indexOf(lbIndex);
+    const next = visibleItems[(pos + dir + visibleItems.length) % visibleItems.length];
+    openLightbox(next);
+  };
+
+  // Cerrar con Escape / clic fuera
+  document.getElementById('portfolioLightbox').addEventListener('click', function(e) {
+    if (e.target === this) closeLightbox();
+  });
+  document.addEventListener('keydown', function(e) {
+    const lb = document.getElementById('portfolioLightbox');
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape')      closeLightbox();
+    if (e.key === 'ArrowLeft')   navLightbox(-1);
+    if (e.key === 'ArrowRight')  navLightbox(1);
+  });
+})();
+</script>

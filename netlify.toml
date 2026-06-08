@@ -1,0 +1,45 @@
+# ============================================================
+# netlify.toml — Cristian Tattoo Los Andes Ink
+# Headers de seguridad + Build config
+# ============================================================
+
+[build]
+  publish = "."
+
+# ── Headers de seguridad (sube nota de D a A) ──────────────
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains"
+    X-XSS-Protection = "1; mode=block"
+
+# ── Caché de imágenes (velocidad de carga) ─────────────────
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=604800, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# ── Redirects útiles ───────────────────────────────────────
+[[redirects]]
+  from  = "/agenda"
+  to    = "/agenda.html"
+  status = 200
