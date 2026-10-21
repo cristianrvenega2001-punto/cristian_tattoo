@@ -10,4 +10,4 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
-Sitemap: https://cristiantattoo.netlify.app/sitemap.xml
+Sitemap: https://cristiantattoolosandesink.netlify.app/sitemap.xml
