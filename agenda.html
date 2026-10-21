@@ -33,6 +33,7 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         /* ── NAVBAR ── */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0; z-index: 100;
@@ -47,6 +48,7 @@
         .nav-logo .logo-accent { color: var(--accent2); }
         .nav-back { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
         .nav-back:hover { color: var(--text); }
+
         /* ── HERO MINI ── */
         .agenda-hero {
             padding: 140px 24px 60px;
@@ -60,6 +62,7 @@
         .agenda-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: 4px; line-height: 1; margin-bottom: 12px; }
         .agenda-hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .agenda-hero p { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
         /* ── STEPPER ── */
         .stepper-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
         .step-indicators {
@@ -85,6 +88,7 @@
         .step-ind.done .s-circle { border-color: var(--success); background: var(--success); color: #fff; }
         .step-ind .s-label { font-size: 0.7rem; color: var(--text-muted); text-align: center; text-transform: uppercase; letter-spacing: 1px; }
         .step-ind.active .s-label { color: var(--text); }
+
         /* ── STEP PANELS ── */
         .step-panel { display: none; animation: fadeUp .4s ease; }
         .step-panel.active { display: block; }
@@ -92,6 +96,7 @@
         .step-title { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 8px; }
         .step-title span { color: var(--accent2); }
         .step-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; }
+
         /* ── CARDS DE ESTILO ── */
         .style-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
         .style-card {
@@ -103,6 +108,7 @@
         .style-card.selected { border-color: var(--accent); background: rgba(112,0,255,0.15); }
         .style-card .sc-icon { font-size: 1.6rem; margin-bottom: 8px; }
         .style-card .sc-name { font-weight: 700; font-size: 0.85rem; }
+
         /* ── TIER MINI ── */
         .tier-mini { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; margin-bottom: 24px; }
         .tier-mini-card {
@@ -114,6 +120,7 @@
         .tier-mini-card .tm-size { font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); }
         .tier-mini-card .tm-label { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
         .tier-mini-card .tm-disc { font-weight: 700; font-size: 0.8rem; color: var(--success); margin-top: 4px; }
+
         /* ── FORM FIELDS ── */
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
@@ -125,6 +132,7 @@
         }
         .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
         .form-group textarea { resize: vertical; min-height: 100px; }
+
         /* ── UPLOAD AREA ── */
         .upload-area {
             border: 2px dashed var(--border); border-radius: 16px; padding: 40px 24px;
@@ -137,6 +145,7 @@
         .upload-area .ua-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
         #previewWrap { display: none; margin-top: 16px; }
         #previewImg { max-width: 200px; border-radius: 12px; border: 2px solid var(--border); }
+
         /* ── BOTONES ── */
         .btn-row { display: flex; gap: 12px; margin-top: 32px; }
         .btn-next, .btn-submit-agenda {
@@ -153,6 +162,7 @@
             cursor: pointer; transition: all .2s;
         }
         .btn-prev:hover { border-color: var(--accent); color: var(--accent); }
+
         /* ── WHATSAPP FLOAT ── */
         .wa-float {
             position: fixed; bottom: 24px; right: 24px; z-index: 99;
@@ -162,6 +172,7 @@
             box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform .2s;
         }
         .wa-float:hover { transform: scale(1.1); }
+
         /* ── SUCCESS ── */
         .success-box {
             display: none; text-align: center; padding: 60px 24px;
@@ -172,6 +183,7 @@
         .success-box h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 12px; }
         .success-box p { color: var(--text-muted); }
         .success-box .btn-home { display: inline-flex; margin-top: 24px; padding: 14px 32px; border-radius: 12px; background: linear-gradient(90deg,var(--accent),var(--accent2)); color:#fff; text-decoration:none; font-weight:700; }
+
         /* ── RESUMEN ── */
         .summary-box { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
         .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
@@ -179,6 +191,7 @@
         .summary-row .sr-label { color: var(--text-muted); }
         .summary-row .sr-val { font-weight: 600; color: var(--text); }
         .discount-highlight { color: var(--success); font-weight: 700; font-size: 1rem; }
+
         @media (max-width: 600px) {
             .navbar { padding: 14px 20px; }
             .tier-mini { grid-template-columns: repeat(3,1fr); }
@@ -187,6 +200,7 @@
     </style>
 </head>
 <body>
+
     <nav class="navbar">
         <a href="index.html" class="nav-logo">
             <span class="logo-main">CRISTIAN</span><span class="logo-accent">TATTOO</span>
@@ -203,6 +217,7 @@
     </div>
 
     <div class="stepper-wrap">
+
         <!-- Step Indicators -->
         <div class="step-indicators">
             <div class="step-ind active" id="ind-1">
@@ -228,12 +243,14 @@
             <input type="hidden" name="form-name" value="Reservas_Detalladas">
             <input type="hidden" name="Estilo" id="hiddenEstilo" value="">
             <input type="hidden" name="Tamano" id="hiddenTamano" value="">
-            <input type="hidden" name="Descuento_Mundial" id="hiddenDescuento" value="">
+            <input type="hidden" name="Descuento_Agendando_Web" id="hiddenDescuento" value="">
 
-            <!-- STEP 1: Estilo y Tamaño -->
+            <!-- ══ STEP 1: Estilo y Tamaño ══ -->
             <div class="step-panel active" id="step-1">
+
                 <div class="step-title">Elige tu <span>Estilo</span></div>
                 <p class="step-subtitle">Selecciona el estilo de tatuaje que deseas.</p>
+
                 <div class="style-cards">
                     <div class="style-card" data-style="Blackwork">
                         <div class="sc-icon">⬛</div>
@@ -277,35 +294,45 @@
                     </div>
                 </div>
 
-                <div class="step-title" style="margin-top:32px">Tamaño con <span>Descuento Mundial</span></div>
-                <p class="step-subtitle">Selecciona el tamaño para ver tu descuento especial.</p>
+                <!-- ★ TÍTULO Y PORCENTAJES CORREGIDOS ★ -->
+                <div class="step-title" style="margin-top:32px">
+                    Tamaño con <span>Descuento por Agendar en mi Página Web</span>
+                </div>
+                <p class="step-subtitle">Selecciona el tamaño de tu tatuaje y obtén tu descuento exclusivo por reservar online.</p>
+
                 <div class="tier-mini">
-                    <div class="tier-mini-card" data-size="XS" data-disc="10%">
+                    <!-- XS: 5% OFF -->
+                    <div class="tier-mini-card" data-size="XS" data-disc="5%">
                         <div class="tm-size">XS</div>
                         <div class="tm-label">hasta 5×5 cm</div>
-                        <div class="tm-disc">10% OFF</div>
+                        <div class="tm-disc">5% OFF</div>
                     </div>
-                    <div class="tier-mini-card" data-size="S" data-disc="20%">
+                    <!-- S: 10% OFF -->
+                    <div class="tier-mini-card" data-size="S" data-disc="10%">
                         <div class="tm-size">S</div>
                         <div class="tm-label">6–10 cm</div>
-                        <div class="tm-disc">20% OFF</div>
+                        <div class="tm-disc">10% OFF</div>
                     </div>
-                    <div class="tier-mini-card" data-size="M" data-disc="30%">
+                    <!-- M: 15% OFF -->
+                    <div class="tier-mini-card" data-size="M" data-disc="15%">
                         <div class="tm-size">M</div>
                         <div class="tm-label">11–15 cm</div>
-                        <div class="tm-disc">30% OFF</div>
+                        <div class="tm-disc">15% OFF</div>
                     </div>
-                    <div class="tier-mini-card" data-size="L" data-disc="40%">
+                    <!-- L: 20% OFF -->
+                    <div class="tier-mini-card" data-size="L" data-disc="20%">
                         <div class="tm-size">L</div>
                         <div class="tm-label">16–25 cm</div>
-                        <div class="tm-disc">40% OFF</div>
+                        <div class="tm-disc">20% OFF</div>
                     </div>
-                    <div class="tier-mini-card" data-size="XL" data-disc="50%">
+                    <!-- XL: 25% OFF -->
+                    <div class="tier-mini-card" data-size="XL" data-disc="25%">
                         <div class="tm-size">XL</div>
                         <div class="tm-label">+26 cm</div>
-                        <div class="tm-disc">50% OFF</div>
+                        <div class="tm-disc">25% OFF</div>
                     </div>
                 </div>
+
                 <div class="btn-row">
                     <button type="button" class="btn-next" id="btn1Next">
                         Siguiente <i class="fa-solid fa-arrow-right"></i>
@@ -313,7 +340,7 @@
                 </div>
             </div>
 
-            <!-- STEP 2: Fecha y Hora -->
+            <!-- ══ STEP 2: Fecha y Hora ══ -->
             <div class="step-panel" id="step-2">
                 <div class="step-title">Elige <span>Fecha y Hora</span></div>
                 <p class="step-subtitle">Elige tu fecha preferida (te confirmo disponibilidad por WhatsApp).</p>
@@ -347,7 +374,7 @@
                 </div>
             </div>
 
-            <!-- STEP 3: Contacto -->
+            <!-- ══ STEP 3: Contacto ══ -->
             <div class="step-panel" id="step-3">
                 <div class="step-title">Tus <span>Datos</span></div>
                 <p class="step-subtitle">Para confirmar y coordinar tu cita.</p>
@@ -369,7 +396,7 @@
                 </div>
             </div>
 
-            <!-- STEP 4: Referencia + Resumen -->
+            <!-- ══ STEP 4: Referencia + Resumen ══ -->
             <div class="step-panel" id="step-4">
                 <div class="step-title">Imagen de <span>Referencia</span></div>
                 <p class="step-subtitle">Adjunta una imagen de referencia (opcional pero muy útil para el boceto).</p>
@@ -384,18 +411,41 @@
                     <p id="previewName" style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;"></p>
                 </div>
 
+                <!-- Resumen -->
                 <div style="margin-top:32px">
                     <div class="step-title" style="font-size:1.3rem">Resumen de tu <span>Reserva</span></div>
                     <div class="summary-box" id="summaryBox" style="margin-top:16px">
-                        <div class="summary-row"><span class="sr-label">Estilo:</span><span class="sr-val" id="sumEstilo">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Tamaño:</span><span class="sr-val" id="sumTamano">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Descuento Mundial:</span><span class="sr-val discount-highlight" id="sumDesc">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Zona:</span><span class="sr-val" id="sumZona">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Fecha deseada:</span><span class="sr-val" id="sumFecha">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Nombre:</span><span class="sr-val" id="sumNombre">—</span></div>
-                        <div class="summary-row"><span class="sr-label">WhatsApp:</span><span class="sr-val" id="sumWA">—</span></div>
+                        <div class="summary-row">
+                            <span class="sr-label">Estilo:</span>
+                            <span class="sr-val" id="sumEstilo">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="sr-label">Tamaño:</span>
+                            <span class="sr-val" id="sumTamano">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="sr-label">Descuento por agendar online:</span>
+                            <span class="sr-val discount-highlight" id="sumDesc">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="sr-label">Zona:</span>
+                            <span class="sr-val" id="sumZona">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="sr-label">Fecha deseada:</span>
+                            <span class="sr-val" id="sumFecha">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="sr-label">Nombre:</span>
+                            <span class="sr-val" id="sumNombre">—</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="sr-label">WhatsApp:</span>
+                            <span class="sr-val" id="sumWA">—</span>
+                        </div>
                     </div>
                 </div>
+
                 <div class="btn-row">
                     <button type="button" class="btn-prev" id="btn4Prev"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
                     <button type="submit" class="btn-submit-agenda" id="btnSubmit">
@@ -412,35 +462,37 @@
             <p>Cristian te contactará por WhatsApp en menos de 2 horas para confirmar tu cita.</p>
             <a href="index.html" class="btn-home"><i class="fa-solid fa-house"></i> Volver al inicio</a>
         </div>
-    </div>
+
+    </div><!-- /stepper-wrap -->
 
     <!-- WhatsApp Float -->
-    <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20agendar%20una%20cita" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20agendar%20una%20cita"
+       class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <script>
-        let currentStep = 1;
+        let currentStep  = 1;
         let selectedEstilo = '';
-        let selectedSize = '';
-        let selectedDisc = '';
+        let selectedSize   = '';
+        let selectedDisc   = '';
 
-        const steps = [1,2,3,4];
+        const steps = [1, 2, 3, 4];
 
         function goToStep(n) {
             document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
             document.getElementById('step-' + n).classList.add('active');
             steps.forEach(s => {
                 const ind = document.getElementById('ind-' + s);
-                ind.classList.remove('active','done');
+                ind.classList.remove('active', 'done');
                 if (s < n) ind.classList.add('done');
                 if (s === n) ind.classList.add('active');
             });
             currentStep = n;
-            window.scrollTo({top: 0, behavior: 'smooth'});
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        // Step 1 — Style selection
+        /* ── Selección de estilo ── */
         document.querySelectorAll('.style-card').forEach(card => {
             card.addEventListener('click', () => {
                 document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
@@ -450,59 +502,67 @@
             });
         });
 
-        // Step 1 — Size selection
+        /* ── Selección de tamaño ── */
         document.querySelectorAll('.tier-mini-card').forEach(card => {
             card.addEventListener('click', () => {
                 document.querySelectorAll('.tier-mini-card').forEach(c => c.classList.remove('selected'));
                 card.classList.add('selected');
                 selectedSize = card.dataset.size;
                 selectedDisc = card.dataset.disc;
-                document.getElementById('hiddenTamano').value = selectedSize;
+                document.getElementById('hiddenTamano').value   = selectedSize;
                 document.getElementById('hiddenDescuento').value = selectedDisc;
             });
         });
 
+        /* ── Navegación entre pasos ── */
         document.getElementById('btn1Next').addEventListener('click', () => {
             if (!selectedEstilo) { alert('Por favor selecciona un estilo.'); return; }
-            if (!selectedSize) { alert('Por favor selecciona un tamaño.'); return; }
+            if (!selectedSize)   { alert('Por favor selecciona un tamaño.'); return; }
             goToStep(2);
         });
 
         document.getElementById('btn2Prev').addEventListener('click', () => goToStep(1));
         document.getElementById('btn2Next').addEventListener('click', () => {
             const fecha = document.getElementById('agFecha').value;
-            const zona = document.getElementById('agZona').value;
-            const idea = document.getElementById('agIdea').value.trim();
-            if (!fecha || !zona || !idea) { alert('Por favor completa todos los campos de esta sección.'); return; }
+            const zona  = document.getElementById('agZona').value;
+            const idea  = document.getElementById('agIdea').value.trim();
+            if (!fecha || !zona || !idea) {
+                alert('Por favor completa todos los campos de esta sección.');
+                return;
+            }
             goToStep(3);
         });
 
         document.getElementById('btn3Prev').addEventListener('click', () => goToStep(2));
         document.getElementById('btn3Next').addEventListener('click', () => {
             const nombre = document.getElementById('agNombre').value.trim();
-            const wa = document.getElementById('agWA').value.trim();
-            if (!nombre || !wa) { alert('Por favor ingresa tu nombre y WhatsApp.'); return; }
-            // Update summary
-            document.getElementById('sumEstilo').textContent = selectedEstilo;
-            document.getElementById('sumTamano').textContent = selectedSize;
-            document.getElementById('sumDesc').textContent = selectedDisc;
-            document.getElementById('sumZona').textContent = document.getElementById('agZona').value;
+            const wa     = document.getElementById('agWA').value.trim();
+            if (!nombre || !wa) {
+                alert('Por favor ingresa tu nombre y WhatsApp.');
+                return;
+            }
+            /* Poblar resumen */
+            document.getElementById('sumEstilo').textContent  = selectedEstilo;
+            document.getElementById('sumTamano').textContent  = selectedSize;
+            document.getElementById('sumDesc').textContent    = selectedDisc;
+            document.getElementById('sumZona').textContent    = document.getElementById('agZona').value;
             const rawFecha = document.getElementById('agFecha').value;
-            document.getElementById('sumFecha').textContent = rawFecha ? new Date(rawFecha).toLocaleString('es-CL') : '—';
-            document.getElementById('sumNombre').textContent = nombre;
-            document.getElementById('sumWA').textContent = wa;
+            document.getElementById('sumFecha').textContent   = rawFecha
+                ? new Date(rawFecha).toLocaleString('es-CL') : '—';
+            document.getElementById('sumNombre').textContent  = nombre;
+            document.getElementById('sumWA').textContent      = wa;
             goToStep(4);
         });
 
         document.getElementById('btn4Prev').addEventListener('click', () => goToStep(3));
 
-        // File preview
-        document.getElementById('fileInput').addEventListener('change', function() {
+        /* ── Preview imagen ── */
+        document.getElementById('fileInput').addEventListener('change', function () {
             const file = this.files[0];
             if (file) {
                 const reader = new FileReader();
                 reader.onload = e => {
-                    document.getElementById('previewImg').src = e.target.result;
+                    document.getElementById('previewImg').src          = e.target.result;
                     document.getElementById('previewName').textContent = file.name;
                     document.getElementById('previewWrap').style.display = 'block';
                 };
@@ -510,7 +570,7 @@
             }
         });
 
-        // Form submit
+        /* ── Envío del formulario → Netlify Forms ── */
         const form = document.getElementById('agendaForm');
         form.addEventListener('submit', e => {
             e.preventDefault();
@@ -521,7 +581,7 @@
                     document.querySelector('.step-indicators').style.display = 'none';
                     document.getElementById('successBox').classList.add('show');
                 })
-                .catch(() => alert('Error al enviar. Por favor escríbenos directamente por WhatsApp.'));
+                .catch(() => alert('Error al enviar. Por favor escríbenos directamente por WhatsApp al +56 9 8738 3781.'));
         });
     </script>
 </body>

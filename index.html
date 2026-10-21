@@ -228,6 +228,87 @@
     }
     .btn-fb:hover { opacity: .9; transform: translateY(-2px); }
 
+    /* ── LIGHTBOX — estado abierto ── */
+    .lightbox {
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 9990;
+        background: rgba(0,0,0,.95);
+        backdrop-filter: blur(16px);
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        flex-direction: column;
+    }
+    .lightbox.open { display: flex !important; }
+    .lightbox .lb-inner {
+        max-width: 90vw;
+        max-height: 85vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+    }
+    .lightbox .lb-inner img {
+        max-width: 100%;
+        max-height: 80vh;
+        object-fit: contain;
+        border-radius: 10px;
+        display: block;
+    }
+    .lightbox .lb-caption {
+        color: rgba(255,255,255,.55);
+        font-size: 13px;
+        font-weight: 600;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        text-align: center;
+    }
+    .lightbox .lb-close,
+    .lightbox .lb-prev,
+    .lightbox .lb-next {
+        position: fixed;
+        background: rgba(255,255,255,.1);
+        border: 1px solid rgba(255,255,255,.15);
+        color: #fff;
+        cursor: pointer;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background .2s;
+        z-index: 9991;
+    }
+    .lightbox .lb-close:hover,
+    .lightbox .lb-prev:hover,
+    .lightbox .lb-next:hover { background: rgba(255,255,255,.22); }
+    .lightbox .lb-close { top: 18px; right: 18px; width: 42px; height: 42px; font-size: 20px; }
+    .lightbox .lb-prev  { top: 50%; transform: translateY(-50%); left: 16px;  width: 46px; height: 46px; font-size: 18px; }
+    .lightbox .lb-next  { top: 50%; transform: translateY(-50%); right: 16px; width: 46px; height: 46px; font-size: 18px; }
+
+    /* ── VIDEOS — overlay play visible ── */
+    .video-wrap { position: relative; }
+    .video-wrap.show-play-overlay .portfolio-video::before {
+        content: '▶';
+        position: absolute;
+        inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: rgba(255,255,255,.7);
+        background: rgba(0,0,0,.5);
+        border-radius: 14px;
+        pointer-events: none;
+    }
+    /* Hacer los videos más atractivos visualmente */
+    .portfolio-video {
+        background: #0a0a0a !important;
+        border: 1px solid rgba(255,255,255,.08) !important;
+        border-radius: 14px !important;
+    }
+
     /* ── FOOTER SOCIAL ── */
     .footer-socials a { transition: transform .2s, opacity .2s; }
     .footer-socials a:hover { opacity: .75; transform: translateY(-2px); }
@@ -518,252 +599,316 @@
     </section>
 
     <!-- ══════════════════════════════════════════
-         PROMO FIFA WORLD CUP 2026 — DISEÑO DINÁMICO
+         SECCIÓN TEMPORADA AGOSTO — PROMO LOCAL
     ═══════════════════════════════════════════════ -->
-    <section id="mundial-2026" class="wc-section">
 
-        <!-- Focos de estadio -->
-        <div class="wc-spot wc-spot-l" aria-hidden="true"></div>
-        <div class="wc-spot wc-spot-r" aria-hidden="true"></div>
-        <div class="wc-field-stripe"   aria-hidden="true"></div>
-        <div class="wc-field-bottom"   aria-hidden="true"></div>
+    <style>
+    /* ══ AGOSTO PROMO ══════════════════════════════════ */
+    .agosto-section {
+        position: relative;
+        overflow: hidden;
+        background: #000;
+        padding: 0;
+    }
 
-        <!-- HEADER -->
-        <div class="wc-header reveal-up">
-            <div class="wc-tag-row">
-                <span class="wc-tag wc-tag-promo"><i class="fa-solid fa-futbol" style="animation:spin 3s linear infinite"></i> Promo Especial</span>
-                <span class="wc-tag wc-tag-live"><span class="wc-live-pulse"></span> Válida Ahora</span>
+    /* Imagen de fondo al 28% de brillo */
+    .agosto-bg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center center;
+        filter: brightness(0.28);
+        z-index: 0;
+    }
+
+    /* Gradientes para profundidad */
+    .agosto-overlay {
+        position: absolute;
+        inset: 0;
+        background:
+            linear-gradient(180deg,
+                rgba(0,0,0,.72) 0%,
+                rgba(0,0,0,.10) 35%,
+                rgba(0,0,0,.10) 65%,
+                rgba(0,0,0,.82) 100%),
+            radial-gradient(ellipse 80% 60% at 50% 50%,
+                rgba(120,60,200,.08) 0%,
+                transparent 70%);
+        z-index: 1;
+        pointer-events: none;
+    }
+
+    /* Contenido */
+    .agosto-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 100px 24px 90px;
+        text-align: center;
+    }
+
+    /* Badge superior */
+    .agosto-badge-row {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 28px;
+    }
+    .agosto-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 18px;
+        border-radius: 100px;
+        font-size: 11px;
+        font-weight: 800;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+    }
+    .agosto-badge-gold  {
+        background: rgba(180,130,0,.18);
+        border: 1px solid rgba(200,160,0,.42);
+        color: #d4a800;
+    }
+    .agosto-badge-local {
+        background: rgba(120,60,200,.14);
+        border: 1px solid rgba(150,80,220,.35);
+        color: #b080ff;
+    }
+
+    /* Línea decorativa dorada */
+    .agosto-rule {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        justify-content: center;
+        margin-bottom: 24px;
+    }
+    .agosto-rule-line {
+        height: 1px;
+        width: 60px;
+        background: linear-gradient(90deg, transparent, rgba(200,160,0,.5));
+    }
+    .agosto-rule-line.rev {
+        background: linear-gradient(90deg, rgba(200,160,0,.5), transparent);
+    }
+    .agosto-rule-ico { font-size: 18px; }
+
+    /* Texto principal */
+    .agosto-headline {
+        font-family: 'Bebas Neue', sans-serif;
+        font-size: clamp(2.6rem, 8vw, 5.2rem);
+        line-height: 1.05;
+        letter-spacing: 1px;
+        color: #fff;
+        margin: 0 0 12px;
+    }
+    .agosto-headline .gold-word {
+        color: #d4a800;
+        text-shadow: 0 0 40px rgba(212,168,0,.45);
+    }
+    .agosto-headline .purple-word {
+        background: linear-gradient(135deg, #c060ff, #8030cc);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    /* Texto secundario */
+    .agosto-body {
+        font-size: clamp(15px, 2.5vw, 18px);
+        color: rgba(255,255,255,.65);
+        line-height: 1.75;
+        max-width: 640px;
+        margin: 0 auto 36px;
+    }
+    .agosto-body strong {
+        color: rgba(255,255,255,.92);
+        font-weight: 700;
+    }
+    .agosto-body em {
+        color: #c890ff;
+        font-style: normal;
+        font-weight: 600;
+    }
+
+    /* Pilares destacados */
+    .agosto-pillars {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-bottom: 40px;
+    }
+    .agosto-pillar {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        background: rgba(255,255,255,.05);
+        border: 1px solid rgba(255,255,255,.09);
+        border-radius: 10px;
+        padding: 9px 16px;
+        font-size: 13px;
+        font-weight: 600;
+        color: rgba(255,255,255,.6);
+        white-space: nowrap;
+    }
+    .agosto-pillar .pi { font-size: 15px; }
+
+    /* CTAs */
+    .agosto-cta-row {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        flex-wrap: wrap;
+        margin-bottom: 20px;
+    }
+
+    .agosto-btn-main {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(135deg, #b08000, #d4a800, #8a6000);
+        background-size: 200% 200%;
+        color: #000;
+        font-size: 16px;
+        font-weight: 800;
+        padding: 17px 36px;
+        border-radius: 100px;
+        text-decoration: none;
+        letter-spacing: .5px;
+        transition: transform .25s, box-shadow .25s, background-position .4s;
+        box-shadow: 0 8px 36px rgba(180,140,0,.3);
+    }
+    .agosto-btn-main:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 50px rgba(180,140,0,.45);
+        background-position: right center;
+    }
+
+    .agosto-btn-sec {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: transparent;
+        border: 1px solid rgba(255,255,255,.2);
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        padding: 17px 32px;
+        border-radius: 100px;
+        text-decoration: none;
+        letter-spacing: .3px;
+        transition: background .2s, border-color .2s, transform .2s;
+    }
+    .agosto-btn-sec:hover {
+        background: rgba(255,255,255,.07);
+        border-color: rgba(255,255,255,.35);
+        transform: translateY(-2px);
+    }
+
+    /* Nota local SEO */
+    .agosto-local-note {
+        font-size: 12px;
+        color: rgba(255,255,255,.28);
+        margin-top: 20px;
+        line-height: 1.6;
+    }
+    .agosto-local-note a {
+        color: rgba(180,130,255,.5);
+        text-decoration: none;
+    }
+    </style>
+
+    <section id="temporada-agosto" class="agosto-section">
+
+        <!-- Imagen de fondo (tu logo nuevo) al 28% de brillo -->
+        <img src="assets/promo/imagen-fondo-agosto.png"
+             alt="Cristian Tattoo Los Andes Ink — Agosto 2026"
+             class="agosto-bg"
+             loading="lazy">
+        <div class="agosto-overlay"></div>
+
+        <div class="agosto-content reveal-up">
+
+            <!-- Badges locales -->
+            <div class="agosto-badge-row">
+                <span class="agosto-badge agosto-badge-gold">
+                    🎨 Agosto 2026 — Temporada de Oro
+                </span>
+                <span class="agosto-badge agosto-badge-local">
+                    <i class="fa-solid fa-location-dot"></i> Los Andes, Chile
+                </span>
             </div>
-            <h2 class="wc-title">PROMOCIÓN <span class="wc-gold">FIFA WORLD CUP</span> 2026</h2>
-            <p class="wc-subtitle">Chile es sede. Inmortaliza el momento en tu piel con <strong style="color:#ffd700">descuento de campeón</strong>.</p>
-        </div>
 
-        <!-- TROFEO SVG animado (sin logos externos) -->
-        <div class="wc-trophy-wrap reveal-up">
-            <svg class="wc-trophy-svg" width="220" height="200" viewBox="0 0 220 200" xmlns="http://www.w3.org/2000/svg" aria-label="Trofeo FIFA World Cup 2026" role="img">
-                <defs>
-                    <radialGradient id="tg1" cx="38%" cy="22%"><stop offset="0%" stop-color="#fff9c4"/><stop offset="45%" stop-color="#ffd700"/><stop offset="100%" stop-color="#a06000"/></radialGradient>
-                    <radialGradient id="tg2" cx="50%" cy="50%"><stop offset="0%" stop-color="rgba(255,215,0,.18)"/><stop offset="100%" stop-color="transparent"/></radialGradient>
-                    <filter id="tglow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                    <linearGradient id="baseGrad" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#ffd700"/><stop offset="100%" stop-color="#8b6000"/></linearGradient>
-                </defs>
-                <!-- Halo -->
-                <ellipse cx="110" cy="100" rx="90" ry="85" fill="url(#tg2)"/>
-                <!-- Rayos -->
-                <g stroke="#ffd700" stroke-width=".8" opacity=".2">
-                    <line x1="110" y1="20" x2="110" y2="0"/><line x1="150" y1="30" x2="165" y2="14"/>
-                    <line x1="178" y1="60" x2="198" y2="52"/><line x1="70" y1="30" x2="55" y2="14"/>
-                    <line x1="42" y1="60" x2="22" y2="52"/>
-                </g>
-                <!-- Copa principal -->
-                <g filter="url(#tglow)">
-                    <path d="M80 28 Q68 55 66 82 Q64 106 80 118 L80 138 L68 148 L152 148 L140 138 L140 118 Q156 106 154 82 Q152 55 140 28 Z" fill="url(#tg1)"/>
-                    <!-- Asa izquierda -->
-                    <path d="M68 55 Q44 60 46 82 Q48 102 68 96" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
-                    <!-- Asa derecha -->
-                    <path d="M152 55 Q176 60 174 82 Q172 102 152 96" fill="none" stroke="#ffd700" stroke-width="8" stroke-linecap="round"/>
-                    <!-- Mapa mundo en la copa -->
-                    <ellipse cx="110" cy="82" rx="26" ry="28" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.25)" stroke-width="1"/>
-                    <text x="110" y="91" text-anchor="middle" font-size="22" fill="rgba(255,255,255,.7)">🌍</text>
-                    <!-- Brillo -->
-                    <ellipse cx="94" cy="52" rx="12" ry="8" fill="rgba(255,255,255,.22)" transform="rotate(-20,94,52)"/>
-                </g>
-                <!-- Base escalonada -->
-                <rect x="78" y="148" width="64" height="12" rx="3" fill="url(#baseGrad)"/>
-                <rect x="68" y="158" width="84" height="9"  rx="3" fill="#c89000"/>
-                <rect x="56" y="165" width="108" height="10" rx="4" fill="url(#baseGrad)"/>
-                <rect x="44" y="173" width="132" height="8"  rx="4" fill="#a07000"/>
-                <!-- Texto 2026 -->
-                <text x="110" y="188" text-anchor="middle" font-family="'Bebas Neue',sans-serif" font-size="16" fill="#ffd700" letter-spacing="4" opacity=".9">2026</text>
-                <!-- Estrellas flotantes -->
-                <g fill="#ffd700" opacity=".6"><circle cx="30" cy="40" r="2"/><circle cx="188" cy="35" r="2"/><circle cx="20" cy="110" r="1.5"/><circle cx="200" cy="115" r="1.5"/><circle cx="55" cy="170" r="1.5"/><circle cx="168" cy="168" r="1.5"/></g>
-            </svg>
-        </div>
-
-        <!-- TIER CARDS -->
-        <div class="wc-tiers-wrap reveal-up">
-            <div class="wc-tiers">
-
-                <!-- TIER 1: 10% — todo junio -->
-                <div class="wc-tier wc-tier-june">
-                    <div class="wc-tier-num">1</div>
-                    <span class="wc-tier-ico">⚽</span>
-                    <span class="wc-tier-pct">10%</span>
-                    <span class="wc-tier-off">OFF</span>
-                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
-                    <span class="wc-tier-cond">Todo junio 2026<br>Solo agenda por la web</span>
-                    <a href="agenda.html" class="wc-tier-btn"><i class="fa-solid fa-calendar-check"></i> Agendar</a>
-                </div>
-
-                <!-- TIER 2: 20% — todo junio -->
-                <div class="wc-tier wc-tier-june">
-                    <div class="wc-tier-num">2</div>
-                    <span class="wc-tier-ico">🥅</span>
-                    <span class="wc-tier-pct">20%</span>
-                    <span class="wc-tier-off">OFF</span>
-                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
-                    <span class="wc-tier-cond">Todo junio 2026<br>Solo agenda por la web</span>
-                    <a href="agenda.html" class="wc-tier-btn"><i class="fa-solid fa-calendar-check"></i> Agendar</a>
-                </div>
-
-                <!-- TIER 3: 30% — todo junio -->
-                <div class="wc-tier wc-tier-june">
-                    <div class="wc-tier-badge">⭐ Más pedido</div>
-                    <div class="wc-tier-num">3</div>
-                    <span class="wc-tier-ico">🌟</span>
-                    <span class="wc-tier-pct">30%</span>
-                    <span class="wc-tier-off">OFF</span>
-                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
-                    <span class="wc-tier-cond">Todo junio 2026<br>Solo agenda por la web</span>
-                    <a href="agenda.html" class="wc-tier-btn"><i class="fa-solid fa-calendar-check"></i> Agendar</a>
-                </div>
-
-                <!-- TIER 4: 40% — predice marcador pre-partido (cualquier partido Mundial) -->
-                <div class="wc-tier wc-tier-predict" onclick="openPredict('40')" role="button" tabindex="0" aria-label="Obtener 40% de descuento prediciendo el marcador">
-                    <div class="wc-tier-num">4</div>
-                    <span class="wc-tier-ico">🏆</span>
-                    <span class="wc-tier-pct">40%</span>
-                    <span class="wc-tier-off">OFF</span>
-                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
-                    <span class="wc-tier-cond">Durante el Mundial<br>Predice el marcador exacto<br><em style="color:rgba(255,140,0,.6)">antes del pitazo inicial</em></span>
-                    <button class="wc-tier-btn" type="button"><i class="fa-solid fa-futbol"></i> Predecir ahora</button>
-                </div>
-
-                <!-- TIER 5: 50% — solo la FINAL, predice marcador -->
-                <div class="wc-tier wc-tier-final" onclick="openPredict('50')" role="button" tabindex="0" aria-label="Obtener 50% de descuento prediciendo el marcador de la final">
-                    <div class="wc-tier-badge">👑 La Final</div>
-                    <div class="wc-tier-num">5</div>
-                    <span class="wc-tier-ico">🥇</span>
-                    <span class="wc-tier-pct">50%</span>
-                    <span class="wc-tier-off">OFF</span>
-                    <span class="wc-tier-lbl">Cualquier<br>tamaño</span>
-                    <span class="wc-tier-cond"><strong style="color:#ffd700">Solo la Gran Final</strong><br>Predice el marcador exacto<br><em style="color:rgba(255,215,0,.55)">antes del pitazo inicial</em></span>
-                    <button class="wc-tier-btn" type="button"><i class="fa-solid fa-trophy"></i> Predecir Final</button>
-                </div>
-
+            <!-- Línea decorativa -->
+            <div class="agosto-rule">
+                <div class="agosto-rule-line"></div>
+                <span class="agosto-rule-ico">💀</span>
+                <div class="agosto-rule-line rev"></div>
             </div>
-        </div>
 
-        <!-- CTAs -->
-        <div class="wc-cta-row reveal-up">
-            <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20aprovechar%20la%20Promo%20FIFA%20World%20Cup%202026%21" target="_blank" rel="noopener noreferrer" class="btn-mundial">
-                <i class="fa-brands fa-whatsapp"></i> Cotizar con Descuento
-            </a>
-            <a href="agenda.html" class="btn-mundial-sec">
-                <i class="fa-solid fa-calendar-check"></i> Agendar Cita Online
-            </a>
-        </div>
-        <p class="wc-disclaimer">* 10/20/30%: válidos agendando por la web durante junio 2026. 40%: válido en cualquier partido del Mundial prediciendo el marcador exacto ANTES del inicio. 50%: solo la Gran Final, mismas condiciones. Comentarios durante o después del partido no son válidos.</p>
+            <!-- Titular principal -->
+            <h2 class="agosto-headline">
+                No Pierdas la<br>
+                <span class="gold-word">Oportunidad de ORO</span><br>
+                de Tatuarte
+            </h2>
 
-        <!-- Ticker inferior -->
-        <div class="wc-ticker" aria-hidden="true">
-            <div class="wc-ticker-track">
-                <span>COMENTA EL MARCADOR ANTES DEL PARTIDO</span><span class="wt-sep">⚽</span>
-                <span>SI ACIERTAS GANAS TU DESCUENTO</span><span class="wt-sep">🏆</span>
-                <span>AGENDA TU CITA Y TATÚATE</span><span class="wt-sep">⭐</span>
-                <span>40% OFF EN CUALQUIER PARTIDO DEL MUNDIAL</span><span class="wt-sep">⚽</span>
-                <span>50% OFF SOLO EN LA GRAN FINAL</span><span class="wt-sep">👑</span>
-                <span>10/20/30% TODO JUNIO 2026</span><span class="wt-sep">🎨</span>
-                <!-- duplicado para loop continuo -->
-                <span>COMENTA EL MARCADOR ANTES DEL PARTIDO</span><span class="wt-sep">⚽</span>
-                <span>SI ACIERTAS GANAS TU DESCUENTO</span><span class="wt-sep">🏆</span>
-                <span>AGENDA TU CITA Y TATÚATE</span><span class="wt-sep">⭐</span>
-                <span>40% OFF EN CUALQUIER PARTIDO DEL MUNDIAL</span><span class="wt-sep">⚽</span>
-                <span>50% OFF SOLO EN LA GRAN FINAL</span><span class="wt-sep">👑</span>
-                <span>10/20/30% TODO JUNIO 2026</span><span class="wt-sep">🎨</span>
+            <!-- Cuerpo del texto — optimizado con SEO local -->
+            <p class="agosto-body">
+                Agosto es la <strong>mejor temporada para tatuarse en Los Andes</strong> y en toda la
+                Región de Valparaíso — cicatrización ideal, temperatura perfecta, sin sol intenso que dañe la tinta.
+                <br><br>
+                <strong>No esperes más.</strong> Agenda tu hora hoy y disfruta de
+                <em>arte permanente en la comodidad de tu hogar</em>.<br>
+                El diseño que tienes en mente lo <strong>creamos 100% personalizado para ti</strong>,
+                desde el boceto hasta el tatuaje terminado — a domicilio en Los Andes,
+                San Esteban, Calle Larga y toda la Provincia.
+            </p>
+
+            <!-- Pilares de valor -->
+            <div class="agosto-pillars">
+                <span class="agosto-pillar"><span class="pi">🏠</span> A domicilio en Los Andes</span>
+                <span class="agosto-pillar"><span class="pi">✏️</span> Boceto personalizado gratis</span>
+                <span class="agosto-pillar"><span class="pi">🧪</span> Materiales estériles 100%</span>
+                <span class="agosto-pillar"><span class="pi">⭐</span> 28 años de experiencia</span>
+                <span class="agosto-pillar"><span class="pi">🎨</span> Todos los estilos</span>
             </div>
-        </div>
 
+            <!-- CTAs -->
+            <div class="agosto-cta-row">
+                <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20agendar%20mi%20cita%20de%20tatuaje%20a%20domicilio%20en%20Los%20Andes!%20Me%20interesa%20un%20dise%C3%B1o%20personalizado."
+                   class="agosto-btn-main"
+                   target="_blank"
+                   rel="noopener noreferrer">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Agendar por WhatsApp
+                </a>
+                <a href="agenda.html" class="agosto-btn-sec">
+                    <i class="fa-solid fa-calendar-check"></i>
+                    Reservar Online
+                </a>
+            </div>
+
+            <!-- Nota SEO local (texto pequeño) -->
+            <p class="agosto-local-note">
+                Servicio profesional de tatuajes a domicilio en Los Andes, San Esteban, Calle Larga, Rinconada y Santa María —
+                Provincia de Los Andes, Región de Valparaíso, Chile.<br>
+                <a href="https://www.google.com/search?q=Cristian+Tattoo+Los+Andes+Ink" target="_blank" rel="noopener noreferrer">
+                    Ver en Google Business
+                </a>
+            </p>
+
+        </div>
     </section>
 
-    <!-- ══ MODAL PREDICCIÓN 40% ══ -->
-    <div id="pred40" class="pred-overlay" role="dialog" aria-modal="true" aria-labelledby="pred40Title">
-        <div class="pred-box pred-box-40">
-            <button class="pred-close" onclick="closePredict('40')" aria-label="Cerrar">×</button>
-            <span class="pred-pill pred-pill-40">🏆 40% OFF — Cualquier Partido</span>
-            <h2 class="pred-title" id="pred40Title">Predice el Marcador</h2>
-            <p class="pred-desc">Ingresa tu pronóstico <strong>antes del pitazo inicial</strong>.<br>Si aciertas el marcador exacto, ¡el 40% es tuyo para tatuarte!</p>
-            <div id="pred40Form">
-                <form name="Prediccion-40" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form40" novalidate>
-                    <input type="hidden" name="form-name" value="Prediccion-40">
-                    <input type="hidden" name="Descuento" value="40%">
-                    <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
-                    <div class="pred-group">
-                        <label for="p40name">Tu nombre *</label>
-                        <input type="text" id="p40name" name="Nombre" placeholder="Ej: Matías González" required>
-                    </div>
-                    <div class="pred-group">
-                        <label for="p40wa">WhatsApp *</label>
-                        <input type="tel" id="p40wa" name="WhatsApp" placeholder="+56 9 XXXX XXXX" required>
-                    </div>
-                    <div class="pred-group">
-                        <label for="p40partido">Partido *</label>
-                        <input type="text" id="p40partido" name="Partido" placeholder="Ej: Argentina vs Brasil — Cuartos de Final" required>
-                    </div>
-                    <div class="pred-group">
-                        <label>Marcador exacto que predices *</label>
-                        <div class="score-row">
-                            <input type="number" name="Goles_Local" id="p40g1" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
-                            <span class="score-vs">:</span>
-                            <input type="number" name="Goles_Visita" id="p40g2" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
-                        </div>
-                        <div class="score-teams"><span>Local</span><span>Visita</span></div>
-                    </div>
-                    <button type="button" class="pred-submit pred-submit-40" onclick="submitPredict('40')">
-                        <i class="fa-solid fa-futbol"></i> Enviar Mi Pronóstico
-                    </button>
-                </form>
-                <p class="pred-note">⏰ Solo válido antes del inicio del partido. Tu predicción quedará registrada con fecha y hora. Cristian verificará el resultado y te contactará si acertaste.</p>
-            </div>
-            <div id="pred40Ok" class="pred-ok pred-ok-40">
-                <h3>✅ Pronóstico Registrado</h3>
-                <p>Cristian recibirá tu predicción. Si aciertas el marcador exacto te contactará por WhatsApp para confirmar tu <strong style="color:#ff9000">40% de descuento</strong>.</p>
-            </div>
-        </div>
-    </div>
 
-    <!-- ══ MODAL PREDICCIÓN 50% — SOLO LA FINAL ══ -->
-    <div id="pred50" class="pred-overlay" role="dialog" aria-modal="true" aria-labelledby="pred50Title">
-        <div class="pred-box pred-box-50">
-            <button class="pred-close" onclick="closePredict('50')" aria-label="Cerrar">×</button>
-            <span class="pred-pill pred-pill-50">👑 50% OFF — Solo La Gran Final</span>
-            <h2 class="pred-title" id="pred50Title">Predice La Final</h2>
-            <p class="pred-desc">Ingresa tu pronóstico del marcador de la <strong>Gran Final FIFA World Cup 2026</strong> antes del pitazo inicial.<br>Si aciertas el marcador exacto, ¡50% de descuento en cualquier tatuaje!</p>
-            <div id="pred50Form">
-                <form name="Prediccion-Final-50" method="POST" data-netlify="true" netlify-honeypot="bot-field" id="form50" novalidate>
-                    <input type="hidden" name="form-name" value="Prediccion-Final-50">
-                    <input type="hidden" name="Descuento" value="50% — LA FINAL">
-                    <input type="hidden" name="Partido" value="Gran Final FIFA World Cup 2026">
-                    <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
-                    <div class="pred-group">
-                        <label for="p50name">Tu nombre *</label>
-                        <input type="text" id="p50name" name="Nombre" placeholder="Ej: Valentina Rojas" required>
-                    </div>
-                    <div class="pred-group">
-                        <label for="p50wa">WhatsApp *</label>
-                        <input type="tel" id="p50wa" name="WhatsApp" placeholder="+56 9 XXXX XXXX" required>
-                    </div>
-                    <div class="pred-group">
-                        <label>Marcador exacto de la Final *</label>
-                        <div class="score-row">
-                            <input type="number" name="Goles_Local" id="p50g1" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
-                            <span class="score-vs">:</span>
-                            <input type="number" name="Goles_Visita" id="p50g2" min="0" max="20" placeholder="0" required style="width:70px;flex:0 0 70px">
-                        </div>
-                        <div class="score-teams"><span>Equipo 1</span><span>Equipo 2</span></div>
-                    </div>
-                    <button type="button" class="pred-submit pred-submit-50" onclick="submitPredict('50')">
-                        <i class="fa-solid fa-trophy"></i> Enviar Mi Pronóstico Final
-                    </button>
-                </form>
-                <p class="pred-note">⏰ Solo válido antes del inicio de la Gran Final. El envío queda registrado con hora exacta. ¡Este es el descuento máximo del año!</p>
-            </div>
-            <div id="pred50Ok" class="pred-ok pred-ok-50">
-                <h3>🏆 Pronóstico de la Final Registrado</h3>
-                <p>Si aciertas el marcador exacto de la Gran Final, Cristian te contactará por WhatsApp para confirmar tu <strong style="color:#ffd700">50% de descuento</strong> en cualquier tatuaje.</p>
-            </div>
-        </div>
-    </div>
+
 
     <!-- ========= PROCESO ========= -->
     <section id="proceso" class="process-section">
@@ -1308,84 +1453,114 @@
     })();
     </script>
 
-    <!-- JS modales de predicción Mundial -->
+    <!-- JS lightbox + videos -->
     <script>
-    // Abrir modal
-    function openPredict(tier) {
-        document.getElementById('pred' + tier).classList.add('open');
-        document.body.style.overflow = 'hidden';
-    }
-    // Cerrar modal
-    function closePredict(tier) {
-        document.getElementById('pred' + tier).classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    // Cerrar al clic en overlay
-    document.querySelectorAll('.pred-overlay').forEach(el => {
-        el.addEventListener('click', function(e) {
-            if (e.target === this) closePredict(this.id.replace('pred',''));
-        });
-    });
-    // Cerrar con Escape
-    document.addEventListener('keydown', e => {
-        if (e.key === 'Escape') {
-            ['40','50'].forEach(t => {
-                document.getElementById('pred'+t).classList.remove('open');
-            });
+    /* ══ LIGHTBOX PORTAFOLIO — CORREGIDO ══════════════
+       El script.js genera .portafolio-item > .portafolio-wrapper > img
+       Hay que capturar el clic en el item y abrir la imagen correctamente */
+    (function() {
+        let lbItems = [];
+        let lbCurrent = 0;
+        const lb      = document.getElementById('lightbox');
+        const lbImg   = document.getElementById('lbImg');
+        const lbCap   = document.getElementById('lbCaption');
+        const lbClose = document.getElementById('lbClose');
+        const lbPrev  = document.getElementById('lbPrev');
+        const lbNext  = document.getElementById('lbNext');
+
+        function openLB(index) {
+            if (!lbItems.length) return;
+            lbCurrent = (index + lbItems.length) % lbItems.length;
+            const item = lbItems[lbCurrent];
+            lbImg.src = item.src;
+            lbImg.alt = item.caption;
+            if (lbCap) lbCap.textContent = item.caption;
+            lb.classList.add('open');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeLB() {
+            lb.classList.remove('open');
             document.body.style.overflow = '';
+            lbImg.src = '';
         }
-    });
-    // Teclado en tier cards
-    document.querySelectorAll('.wc-tier-predict, .wc-tier-final').forEach(card => {
-        card.addEventListener('keydown', e => {
-            if (e.key === 'Enter' || e.key === ' ') card.click();
+
+        /* Delegación de eventos: escucha clics en el grid */
+        document.addEventListener('click', function(e) {
+            const item = e.target.closest('.portafolio-item');
+            if (!item) return;
+
+            /* Recoger TODOS los items visibles en orden */
+            lbItems = Array.from(document.querySelectorAll('#portafolio .portafolio-item:not([style*="display: none"])'))
+                .map(el => {
+                    const img = el.querySelector('img');
+                    const cap = el.querySelector('.portafolio-overlay span');
+                    return {
+                        src:     img ? img.src     : '',
+                        caption: cap ? cap.textContent : ''
+                    };
+                });
+
+            const allItems = Array.from(document.querySelectorAll('#portafolio .portafolio-item:not([style*="display: none"])'));
+            const idx = allItems.indexOf(item);
+            openLB(idx);
         });
-    });
 
-    // Enviar pronóstico
-    async function submitPredict(tier) {
-        const form   = document.getElementById('form' + tier);
-        const nombre = form.querySelector('[name="Nombre"]').value.trim();
-        const wa     = form.querySelector('[name="WhatsApp"]').value.trim();
-        const g1     = form.querySelector('[name="Goles_Local"]').value;
-        const g2     = form.querySelector('[name="Goles_Visita"]').value;
-        const partido = tier === '40'
-            ? (form.querySelector('[name="Partido"]')?.value.trim() || '')
-            : 'Gran Final FIFA World Cup 2026';
+        if (lbClose) lbClose.addEventListener('click', closeLB);
+        if (lbPrev)  lbPrev.addEventListener('click',  () => openLB(lbCurrent - 1));
+        if (lbNext)  lbNext.addEventListener('click',  () => openLB(lbCurrent + 1));
+        if (lb)      lb.addEventListener('click', e => { if (e.target === lb) closeLB(); });
+        document.addEventListener('keydown', e => {
+            if (!lb || !lb.classList.contains('open')) return;
+            if (e.key === 'Escape')     closeLB();
+            if (e.key === 'ArrowLeft')  openLB(lbCurrent - 1);
+            if (e.key === 'ArrowRight') openLB(lbCurrent + 1);
+        });
+    })();
 
-        if (!nombre || !wa || g1 === '' || g2 === '') {
-            alert('Por favor completa todos los campos obligatorios.');
-            return;
-        }
+    /* ══ VIDEOS: mostrar frame del video como thumbnail ═══
+       Carga el video silencioso, avanza 1 seg, captura el frame en canvas  */
+    (function() {
+        document.querySelectorAll('.portfolio-video').forEach(function(video) {
+            /* Si ya tiene poster real, no hacer nada */
+            const posterSrc = video.getAttribute('poster') || '';
 
-        /* 1. Envío a Netlify Forms → llega a tu correo al deployer */
-        try {
-            const body = new URLSearchParams();
-            new FormData(form).forEach((v, k) => body.append(k, v));
-            await fetch('/', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: body.toString()
+            /* Crear canvas temporal para capturar frame */
+            const tmpVideo = document.createElement('video');
+            tmpVideo.src        = video.querySelector('source') ? video.querySelector('source').src : '';
+            tmpVideo.muted      = true;
+            tmpVideo.playsInline = true;
+            tmpVideo.preload    = 'metadata';
+            tmpVideo.currentTime = 1.5;
+
+            tmpVideo.addEventListener('loadeddata', function() {
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width  = tmpVideo.videoWidth  || 640;
+                    canvas.height = tmpVideo.videoHeight || 360;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(tmpVideo, 0, 0, canvas.width, canvas.height);
+                    const dataURL = canvas.toDataURL('image/jpeg', 0.85);
+                    /* Aplicar como poster solo si el poster actual no existe */
+                    if (!posterSrc || posterSrc.includes('poster-coverup') || posterSrc.includes('poster-carrusel')) {
+                        video.setAttribute('poster', dataURL);
+                    }
+                } catch(err) {
+                    /* CORS u otro error: agregar overlay de play visible */
+                    video.closest('.video-wrap').classList.add('show-play-overlay');
+                }
+                tmpVideo.src = '';
             });
-        } catch(err) { console.warn('Netlify form:', err); }
 
-        /* 2. También abrir WhatsApp con el pronóstico */
-        const descuento = tier === '50' ? '50% (La Final)' : '40%';
-        const msg = encodeURIComponent(
-            `⚽ Pronóstico FIFA World Cup 2026 — ${descuento} OFF\n\n` +
-            `👤 Nombre: ${nombre}\n` +
-            `📱 WhatsApp: ${wa}\n` +
-            `🏟️ Partido: ${partido}\n` +
-            `🎯 Marcador que predigo: ${g1} : ${g2}\n\n` +
-            `Envío registrado antes del partido. Si acierto el marcador exacto, ¡confirmo el descuento!`
-        );
-        window.open(`https://wa.me/56987383781?text=${msg}`, '_blank', 'noopener,noreferrer');
-
-        /* 3. Mostrar confirmación en el modal */
-        document.getElementById('pred' + tier + 'Form').style.display = 'none';
-        document.getElementById('pred' + tier + 'Ok').classList.add('show');
-    }
+            /* Fallback: si no puede cargar metadata, mostrar overlay de play */
+            tmpVideo.addEventListener('error', function() {
+                const wrap = video.closest('.video-wrap');
+                if (wrap) wrap.classList.add('show-play-overlay');
+            });
+        });
+    })();
     </script>
+
+
 
 </body>
 </html>
