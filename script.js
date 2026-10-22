@@ -1,326 +1,181 @@
 /* =========================================
    CRISTIAN TATTOO — LOS ANDES INK
-   Script v2.0 — Professional Redesign
+   script.js v3 — Rediseño octubre 2026
    ========================================= */
+(function () {
+    'use strict';
 
-document.addEventListener('DOMContentLoaded', () => {
+    const $ = id => document.getElementById(id);
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // ─── 1. CUSTOM CURSOR ───────────────────────────────
-    const dot   = document.getElementById('cursorDot');
-    const ring  = document.getElementById('cursorRing');
-    const chibi = document.getElementById('chibiCursor');
-    let mx = 0, my = 0, rx = 0, ry = 0, cx = 0, cy = 0;
-
-    document.addEventListener('mousemove', e => {
-        mx = e.clientX; my = e.clientY;
-        if (dot) {
-            dot.style.left  = mx + 'px';
-            dot.style.top   = my + 'px';
-        }
-    });
-
-    const lerpCursor = () => {
-        // Ring follow
-        rx += (mx - rx) * 0.12;
-        ry += (my - ry) * 0.12;
-        if (ring) {
-            ring.style.left = rx + 'px';
-            ring.style.top  = ry + 'px';
-        }
-
-        requestAnimationFrame(lerpCursor);
-    };
-    lerpCursor();
-
-    document.querySelectorAll('a, button, .care-tab, .star, .gallery-item').forEach(el => {
-        el.addEventListener('mouseenter', () => ring?.classList.add('hovered'));
-        el.addEventListener('mouseleave', () => ring?.classList.remove('hovered'));
-    });
-
-
-    // ─── 2. NAVBAR SCROLL ───────────────────────────────
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        navbar.classList.toggle('scrolled', window.scrollY > 40);
-    });
-
-
-    // ─── 3. HAMBURGER MENU ──────────────────────────────
-    const hamburger   = document.getElementById('hamburger');
-    const mobileMenu  = document.getElementById('mobileMenu');
-
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-        document.body.style.overflow = mobileMenu.classList.contains('open') ? 'hidden' : '';
-    });
-
-    document.querySelectorAll('.mob-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('open');
-            mobileMenu.classList.remove('open');
-            document.body.style.overflow = '';
-        });
-    });
-
-
-    // ─── 4. HERO CANVAS — PARTICLE INK ──────────────────
-    const canvas = document.getElementById('heroCanvas');
-    if (canvas) {
-        const ctx = canvas.getContext('2d');
-        let W, H, particles = [];
-
-        const resize = () => {
-            W = canvas.width  = canvas.offsetWidth;
-            H = canvas.height = canvas.offsetHeight;
+    // ─── 1. FONDO DE ESTRELLAS NEÓN ─────────────────────
+    const sky = $('sky');
+    if (sky) {
+        const x = sky.getContext('2d');
+        const cols = ['#b44dff', '#ff3fb4', '#ffd21f', '#3fe8ff', '#efe7d6'];
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        let W, H, stars = [], shots = [];
+        const size = () => {
+            W = sky.width = innerWidth * dpr;
+            H = sky.height = innerHeight * dpr;
+            stars = Array.from({ length: Math.round(innerWidth * innerHeight / 5000) }, () => ({
+                x: Math.random() * W, y: Math.random() * H, r: (Math.random() * 1.4 + .4) * dpr,
+                c: cols[Math.random() * cols.length | 0], p: Math.random() * 6.28, s: .6 + Math.random() * 1.6
+            }));
         };
-        resize();
-        window.addEventListener('resize', resize);
-
-        class Particle {
-            constructor() { this.reset(); }
-            reset() {
-                this.x  = Math.random() * W;
-                this.y  = Math.random() * H;
-                this.r  = Math.random() * 1.5 + 0.3;
-                this.vx = (Math.random() - 0.5) * 0.3;
-                this.vy = (Math.random() - 0.5) * 0.3;
-                this.a  = Math.random() * 0.4 + 0.05;
-                this.c  = Math.random() > 0.5
-                    ? `rgba(112,0,255,${this.a})`
-                    : `rgba(200,0,176,${this.a})`;
+        const shot = () => {
+            const a = Math.PI * (.15 + Math.random() * .15);
+            shots.push({ x: Math.random() * W * .8, y: Math.random() * H * .4, vx: Math.cos(a) * 14 * dpr, vy: Math.sin(a) * 14 * dpr, life: 1, c: cols[Math.random() * 4 | 0] });
+        };
+        const draw = t => {
+            x.clearRect(0, 0, W, H);
+            for (const s of stars) {
+                x.globalAlpha = reduce ? .8 : .35 + .65 * Math.abs(Math.sin(t / 1000 * s.s + s.p));
+                x.fillStyle = s.c; x.shadowColor = s.c; x.shadowBlur = 8 * dpr;
+                x.beginPath(); x.arc(s.x, s.y, s.r, 0, 6.28); x.fill();
             }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                if (this.x < 0 || this.x > W || this.y < 0 || this.y > H) this.reset();
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = this.c;
-                ctx.fill();
-            }
-        }
-
-        const COUNT = window.innerWidth < 768 ? 50 : 120;
-        for (let i = 0; i < COUNT; i++) particles.push(new Particle());
-
-        // Draw connecting lines between nearby particles
-        const drawLines = () => {
-            for (let i = 0; i < particles.length; i++) {
-                for (let j = i + 1; j < particles.length; j++) {
-                    const dx = particles[i].x - particles[j].x;
-                    const dy = particles[i].y - particles[j].y;
-                    const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 80) {
-                        ctx.beginPath();
-                        ctx.moveTo(particles[i].x, particles[i].y);
-                        ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(112,0,255,${0.07 * (1 - dist/80)})`;
-                        ctx.lineWidth = 0.5;
-                        ctx.stroke();
-                    }
+            if (!reduce) {
+                if (Math.random() < .012) shot();
+                shots = shots.filter(s => s.life > 0);
+                for (const s of shots) {
+                    const g = x.createLinearGradient(s.x, s.y, s.x - s.vx * 9, s.y - s.vy * 9);
+                    g.addColorStop(0, s.c); g.addColorStop(1, 'transparent');
+                    x.globalAlpha = s.life; x.strokeStyle = g; x.shadowColor = s.c; x.shadowBlur = 14 * dpr; x.lineWidth = 2.2 * dpr;
+                    x.beginPath(); x.moveTo(s.x, s.y); x.lineTo(s.x - s.vx * 9, s.y - s.vy * 9); x.stroke();
+                    s.x += s.vx; s.y += s.vy; s.life -= .012;
                 }
             }
+            x.globalAlpha = 1; x.shadowBlur = 0;
+            if (!reduce) requestAnimationFrame(draw);
         };
-
-        const animate = () => {
-            ctx.clearRect(0, 0, W, H);
-            particles.forEach(p => { p.update(); p.draw(); });
-            drawLines();
-            requestAnimationFrame(animate);
-        };
-        animate();
+        addEventListener('resize', size);
+        size();
+        requestAnimationFrame(draw);
     }
 
-
-    // ─── 5. SCROLL REVEAL ───────────────────────────────
-    const revealEls = document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right');
-    const observer  = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, { threshold: 0.12 });
-
-    revealEls.forEach(el => observer.observe(el));
-
-
-    // ─── 6. STATS COUNTER ───────────────────────────────
-    const statNums   = document.querySelectorAll('.stat-num');
-    let   counted    = false;
-    const countStats = () => {
-        if (counted) return;
-        statNums.forEach(el => {
-            const target = parseInt(el.dataset.target);
-            const step   = target / 60;
-            let   cur    = 0;
-            const timer  = setInterval(() => {
-                cur += step;
-                if (cur >= target) { cur = target; clearInterval(timer); }
-                el.textContent = Math.floor(cur);
-            }, 16);
-        });
-        counted = true;
-    };
-
-    const statsSection = document.querySelector('.hero-stats');
-    if (statsSection) {
-        const statsObs = new IntersectionObserver(entries => {
-            if (entries[0].isIntersecting) { countStats(); statsObs.disconnect(); }
-        }, { threshold: 0.5 });
-        statsObs.observe(statsSection);
+    // ─── 2. MENÚ DEL CELULAR ────────────────────────────
+    const menuBtn = $('menuBtn'), menu = $('menu');
+    if (menuBtn && menu) {
+        const setMenu = open => { menu.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); menuBtn.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú'); };
+        menuBtn.addEventListener('click', () => setMenu(!menu.classList.contains('open')));
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setMenu(false)));
     }
 
+    // ─── 3. PROMO DE HALLOWEEN (se oculta sola después del 31-oct) ─
+    if (new Date() > new Date('2026-11-01T00:00:00-03:00')) {
+        $('halloween')?.remove();
+        document.querySelectorAll('.hw-link').forEach(a => a.remove());
+    }
 
-    // ─── 7. CARE SECTION TABS ───────────────────────────
-    const tabs   = document.querySelectorAll('.care-tab');
-    const panels = document.querySelectorAll('.care-panel');
+    // ─── 4. PORTAFOLIO POR ESTILO + GALERÍA ─────────────
+    const data = JSON.parse($('portafolio')?.textContent || '{"img":[],"groups":[]}');
+    const gal = $('gal'), gi = $('galImg'), th = $('galThumbs');
+    let cur = null, pos = 0, lastBtn = null;
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            tabs.forEach(t => t.classList.remove('active'));
-            panels.forEach(p => p.classList.remove('active'));
-            tab.classList.add('active');
-            document.querySelector(`[data-panel="${tab.dataset.tab}"]`)?.classList.add('active');
+    const show = p => {
+        pos = (p + cur.i.length) % cur.i.length;
+        const im = data.img[cur.i[pos]];
+        gi.src = im.s;
+        gi.alt = im.a;
+        $('galCount').textContent = (pos + 1) + ' / ' + cur.i.length;
+        th.querySelectorAll('button').forEach((t, j) => {
+            t.setAttribute('aria-current', j === pos);
+            if (j === pos) t.scrollIntoView({ block: 'nearest', inline: 'center' });
         });
-    });
-
-
-    // ─── 8. STAR RATING MODAL ───────────────────────────
-    const stars     = document.querySelectorAll('.star');
-    const puntInput = document.getElementById('puntuacion');
-
-    stars.forEach((star, i) => {
-        star.addEventListener('click', () => {
-            if (puntInput) puntInput.value = i + 1;
-            stars.forEach((s, j) => s.classList.toggle('active', j <= i));
-        });
-        star.addEventListener('mouseenter', () => {
-            stars.forEach((s, j) => s.classList.toggle('active', j <= i));
-        });
-    });
-    document.querySelector('.star-rating')?.addEventListener('mouseleave', () => {
-        const val = parseInt(puntInput?.value || 5);
-        stars.forEach((s, j) => s.classList.toggle('active', j < val));
-    });
-
-
-    // ─── 9. REVIEW MODAL ────────────────────────────────
-    const modal       = document.getElementById('reviewModal');
-    const btnOpen     = document.getElementById('btnOpenReview');
-    const btnClose    = document.getElementById('closeModal');
-    const revSuccess  = document.getElementById('revSuccess');
-    const reviewForm  = document.getElementById('reviewForm');
-
-    const openModal  = () => { modal.classList.add('open'); document.body.style.overflow = 'hidden'; };
-    const closeModal = () => {
-        modal.classList.remove('open');
-        document.body.style.overflow = '';
-        revSuccess?.classList.add('hidden');
-        reviewForm?.reset();
-        stars.forEach(s => s.classList.add('active'));
-        if (puntInput) puntInput.value = 5;
     };
+    const openGal = k => {
+        cur = data.groups[k];
+        $('galTitle').textContent = cur.n;
+        th.innerHTML = '';
+        cur.i.forEach((ix, j) => {
+            const t = document.createElement('button');
+            t.type = 'button';
+            t.setAttribute('aria-label', 'Foto ' + (j + 1));
+            const img = document.createElement('img');
+            img.src = data.img[ix].s; img.alt = ''; img.loading = 'lazy';
+            t.appendChild(img);
+            t.addEventListener('click', () => show(j));
+            th.appendChild(t);
+        });
+        gal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        show(0);
+        $('galClose').focus();
+    };
+    const closeGal = () => { gal.hidden = true; document.body.style.overflow = ''; lastBtn?.focus(); };
 
-    btnOpen?.addEventListener('click', openModal);
-    btnClose?.addEventListener('click', closeModal);
-    modal?.addEventListener('click', e => { if (e.target === modal) closeModal(); });
-    document.addEventListener('keydown', e => { if (e.key === 'Escape' && modal?.classList.contains('open')) closeModal(); });
+    document.querySelectorAll('.scard').forEach(b => b.addEventListener('click', () => { lastBtn = b; openGal(+b.dataset.style); }));
+    if (gal) {
+        $('galClose').addEventListener('click', closeGal);
+        $('galPrev').addEventListener('click', () => show(pos - 1));
+        $('galNext').addEventListener('click', () => show(pos + 1));
+        gi.addEventListener('click', () => show(pos + 1));
+        let sx = null;
+        gi.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+        gi.addEventListener('touchend', e => {
+            if (sx === null) return;
+            const dx = e.changedTouches[0].clientX - sx;
+            if (Math.abs(dx) > 40) show(pos + (dx < 0 ? 1 : -1));
+            sx = null;
+        });
+    }
 
-    reviewForm?.addEventListener('submit', e => {
+    // ─── 5. GUÍA DE CUIDADOS (pestañas) ─────────────────
+    const tabs = document.querySelectorAll('.tabs .chip');
+    tabs.forEach(b => b.addEventListener('click', () => {
+        tabs.forEach(o => o.setAttribute('aria-selected', o === b));
+        ['antes', 'despues', 'infeccion'].forEach(p => { $('p-' + p).hidden = p !== b.dataset.p; });
+    }));
+
+    // ─── 6. ENVÍO A NETLIFY FORMS ───────────────────────
+    const send = form => fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(new FormData(form)).toString()
+    });
+
+    // Reserva rápida: llega a Netlify y además abre WhatsApp con el resumen
+    const booking = $('bookingForm');
+    booking?.addEventListener('submit', async e => {
         e.preventDefault();
-        fetch('/', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(new FormData(reviewForm)).toString()
-        })
-        .then(() => {
-            revSuccess?.classList.remove('hidden');
-            setTimeout(closeModal, 4000);
-        })
-        .catch(() => alert('Hubo un error al enviar. Por favor, intenta de nuevo o escríbeme por WhatsApp.'));
+        const v = id => $(id).value.trim();
+        try { await send(booking); } catch (err) { console.warn('Netlify form error:', err); }
+        const fecha = v('resFecha');
+        const fechaFmt = fecha ? new Date(fecha).toLocaleString('es-CL', { weekday: 'long', day: 'numeric', month: 'long', hour: '2-digit', minute: '2-digit' }) : '';
+        const msg = encodeURIComponent(`Hola Cristian! Acabo de reservar desde tu página web 🎨\n\n👤 Nombre: ${v('resNombre')}\n📱 WhatsApp: ${v('resWhatsApp')}\n📅 Fecha deseada: ${fechaFmt}\n✏️ Idea: ${v('resDetalles')}\n\nQuedo atento/a a tu confirmación!`);
+        window.open(`https://wa.me/56987383781?text=${msg}`, '_blank', 'noopener,noreferrer');
+        booking.hidden = true;
+        $('bookingSuccess').hidden = false;
     });
 
+    // Reseñas
+    const modal = $('reviewModal'), review = $('reviewForm');
+    const closeReview = () => { modal.hidden = true; document.body.style.overflow = ''; };
+    $('btnOpenReview')?.addEventListener('click', () => { modal.hidden = false; document.body.style.overflow = 'hidden'; $('revNombre').focus(); });
+    $('closeReview')?.addEventListener('click', closeReview);
+    modal?.addEventListener('click', e => { if (e.target === modal) closeReview(); });
+    review?.addEventListener('submit', e => {
+        e.preventDefault();
+        send(review)
+            .then(() => { review.hidden = true; $('revSuccess').hidden = false; setTimeout(closeReview, 4000); })
+            .catch(() => alert('Hubo un error al enviar. Por favor, intenta de nuevo o escríbeme por WhatsApp.'));
+    });
 
-    // ─── 10. BOOKING FORM ───────────────────────────────
-    // El envío lo maneja el script del final de index.html (Netlify + WhatsApp).
-    // Antes se enviaba dos veces y cada reserva llegaba duplicada.
+    // ─── 7. TECLADO: ESC cierra, flechas en la galería ──
+    addEventListener('keydown', e => {
+        if (gal && !gal.hidden) {
+            if (e.key === 'Escape') closeGal();
+            if (e.key === 'ArrowRight') show(pos + 1);
+            if (e.key === 'ArrowLeft') show(pos - 1);
+        } else if (modal && !modal.hidden && e.key === 'Escape') {
+            closeReview();
+        }
+    });
 
-    // ─── 10b. CORREO (se arma al cargar, no queda escrito en el HTML) ─
+    // ─── 8. CORREO (se arma al cargar, no queda escrito en el HTML) ─
     document.querySelectorAll('.js-mail').forEach(a => {
         const mail = `${a.dataset.u}@${a.dataset.d}`;
         a.href = `mailto:${mail}`;
         a.textContent = mail;
     });
-
-    // ─── 11. PROMO MODAL ────────────────────────────────
-    const promoModal = document.getElementById('promoModal');
-    const closePromo = document.getElementById('closePromo');
-
-    if (promoModal) {
-        // Show after 2.5 seconds if not already closed in this session
-        if (!sessionStorage.getItem('promoClosed')) {
-            setTimeout(() => {
-                promoModal.classList.add('open');
-                document.body.style.overflow = 'hidden';
-            }, 2500);
-        }
-
-        const closePromoModal = () => {
-            promoModal.classList.remove('open');
-            document.body.style.overflow = '';
-            sessionStorage.setItem('promoClosed', 'true');
-        };
-
-        closePromo?.addEventListener('click', closePromoModal);
-        promoModal.addEventListener('click', e => { if (e.target === promoModal) closePromoModal(); });
-        document.addEventListener('keydown', e => { if (e.key === 'Escape' && promoModal.classList.contains('open')) closePromoModal(); });
-    }
-
-});
-document.addEventListener('DOMContentLoaded', () => {
-    const grid = document.getElementById('portafolio');
-    const filterBtns = document.querySelectorAll('.filter-btn');
-
-    if (!grid || typeof portafolioData === 'undefined') return;
-
-    // 1. Pintar todas las fotos del portafolio automáticamente
-    portafolioData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = `portafolio-item ${item.category.toLowerCase().replace(' ', '-')}`;
-        card.innerHTML = `
-            <div class="portafolio-wrapper">
-                <img src="${item.src}" alt="Tatuaje ${item.category}" loading="lazy">
-                <div class="portafolio-overlay">
-                    <span>${item.category}</span>
-                </div>
-            </div>
-        `;
-        grid.appendChild(card);
-    });
-
-    // 2. Hacer funcionar los botones de filtros (Realismo, Blackwork, etc)
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            const filter = btn.getAttribute('data-filter');
-            const items = document.querySelectorAll('.portafolio-item');
-
-            items.forEach(item => {
-                if (filter === 'all' || item.classList.contains(filter)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        });
-    });
-});
-
-
+})();

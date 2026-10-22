@@ -7,26 +7,27 @@
     <meta name="description" content="Agenda tu cita de tatuaje a domicilio en Los Andes con Cristian Venega. Formulario de reserva en 4 simples pasos. Servicio profesional en tu hogar.">
     <meta name="robots" content="index, follow">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Barlow+Condensed:wght@500;600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="favicon.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
         .consent-check { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 6px; font-size: .85rem; line-height: 1.45; color: rgba(255,255,255,.75); cursor: pointer; }
-        .consent-check input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: #7000ff; }
+        .consent-check input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: #b44dff; }
         .consent-check a { color: inherit; text-decoration: underline; }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg: #07070d;
+            --bg: #07050c;
             --bg2: #0d0d1a;
             --surface: #111122;
-            --border: rgba(112,0,255,0.2);
-            --accent: #7000ff;
-            --accent2: #c800b0;
-            --gold: #f0c040;
+            --border: rgba(180,77,255,0.2);
+            --accent: #b44dff;
+            --accent2: #ff3fb4;
+            --gold: #d4a106;
             --text: #e8e8f0;
             --text-muted: #888899;
             --success: #00d68f;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-body: 'Urbanist', sans-serif;
+            --font-display: 'Barlow Condensed', 'Arial Narrow', sans-serif;
+            --font-body: 'Barlow', system-ui, sans-serif;
         }
         html { scroll-behavior: smooth; }
         body {
@@ -56,7 +57,7 @@
         .agenda-hero {
             padding: 140px 24px 60px;
             text-align: center;
-            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(112,0,255,0.15), transparent);
+            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(180,77,255,0.15), transparent);
         }
         .agenda-hero .tag {
             display: inline-block; padding: 6px 18px; border: 1px solid var(--accent); border-radius: 50px;
@@ -108,7 +109,7 @@
             transition: all .2s; user-select: none;
         }
         .style-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .style-card.selected { border-color: var(--accent); background: rgba(112,0,255,0.15); }
+        .style-card.selected { border-color: var(--accent); background: rgba(180,77,255,0.15); }
         .style-card .sc-icon { font-size: 1.6rem; margin-bottom: 8px; }
         .style-card .sc-name { font-weight: 700; font-size: 0.85rem; }
 
@@ -141,7 +142,7 @@
             border: 2px dashed var(--border); border-radius: 16px; padding: 40px 24px;
             text-align: center; cursor: pointer; transition: all .2s; position: relative;
         }
-        .upload-area:hover { border-color: var(--accent); background: rgba(112,0,255,0.05); }
+        .upload-area:hover { border-color: var(--accent); background: rgba(180,77,255,0.05); }
         .upload-area input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
         .upload-area .ua-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 12px; }
         .upload-area .ua-text { font-size: 0.9rem; color: var(--text-muted); }
@@ -206,7 +207,7 @@
 
     <nav class="navbar">
         <a href="index.html" class="nav-logo">
-            <span class="logo-main">CRISTIAN</span><span class="logo-accent">TATTOO</span>
+            <img src="assets/marca/logo-128.webp" alt="Logo Cristian Tattoo Los Andes Ink" width="38" height="38" style="border-radius:50%;box-shadow:0 0 12px #b44dff"><span style="font-family:'Pirata One',Georgia,serif;font-size:1.5rem;letter-spacing:.5px;color:#efe7d6">Cristian Tattoo</span>
         </a>
         <a href="index.html" class="nav-back">
             <i class="fa-solid fa-arrow-left"></i> Volver al sitio
