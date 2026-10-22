@@ -1134,7 +1134,7 @@
                     </a>
                 </div>
                 <div class="booking-form-wrap reveal-right">
-                    <!-- Formulario Netlify Forms → correo cristianrvenega2001@gmail.com -->
+                    <!-- Formulario Netlify Forms -->
                     <form id="bookingForm"
                           name="Reservas"
                           method="POST"
@@ -1161,14 +1161,18 @@
                             <label for="resDetalles">Tu idea (zona, tamaño, diseño) *</label>
                             <textarea id="resDetalles" name="Detalles_Tatuaje" rows="3" required placeholder="Ej: Brazo derecho, 10x10cm, calavera tradicional con rosas..."></textarea>
                         </div>
+                        <label class="consent-check" for="resConsent">
+                            <input type="checkbox" id="resConsent" name="Consentimiento" value="Acepto" required>
+                            <span>Acepto que Cristian Tattoo use estos datos solo para responder mi solicitud, según la <a href="privacidad.html" target="_blank">política de privacidad</a>. Puedo pedir que se borren cuando quiera.</span>
+                        </label>
                         <button type="submit" class="btn-submit">
                             <i class="fa-solid fa-calendar-check"></i> Solicitar Reserva
                         </button>
-                        <div id="bookingSuccess" class="form-success hidden">
-                            <i class="fa-solid fa-circle-check"></i>
-                            <div><strong>¡Reserva Enviada!</strong><p>Te contactaré por WhatsApp para confirmar los detalles.</p></div>
-                        </div>
                     </form>
+                    <div id="bookingSuccess" class="form-success hidden">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <div><strong>¡Reserva Enviada!</strong><p>Te contactaré por WhatsApp para confirmar los detalles.</p></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1207,7 +1211,7 @@
                     <h4>Contacto</h4>
                     <ul>
                         <li><i class="fa-brands fa-whatsapp"></i> <a href="https://wa.me/56987383781" style="color:inherit;text-decoration:none;">+56 9 8738 3781</a></li>
-                        <li><i class="fa-solid fa-envelope"></i> <a href="mailto:cristianrvenega2001@gmail.com" style="color:inherit;text-decoration:none;font-size:12px">cristianrvenega2001@gmail.com</a></li>
+                        <li><i class="fa-solid fa-envelope"></i> <a class="js-mail" data-u="cristianrvenega2001" data-d="gmail.com" href="#agenda" style="color:inherit;text-decoration:none;font-size:12px">Escríbeme por correo</a></li>
                         <li><i class="fa-solid fa-location-dot"></i> Los Andes, Chile</li>
                         <li><i class="fa-brands fa-instagram"></i> @cristiantattoolosandesink</li>
                     </ul>
@@ -1215,7 +1219,7 @@
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 Cristian Tattoo | Los Andes Ink. Todos los derechos reservados.</p>
-                <p>Diseño web profesional · Verificado por Google</p>
+                <p><a href="privacidad.html" style="color:inherit">Política de privacidad</a> · Sin cookies de seguimiento</p>
             </div>
         </div>
     </footer>
@@ -1249,6 +1253,10 @@
                     <label for="revExperiencia">Tu experiencia (servicio, higiene, calidad) *</label>
                     <textarea id="revExperiencia" name="Experiencia" rows="4" required placeholder="El tatuaje quedó genial y fue muy cómodo..."></textarea>
                 </div>
+                <label class="consent-check" for="revConsent" style="margin-top:15px">
+                    <input type="checkbox" id="revConsent" name="Consentimiento" value="Acepto" required>
+                    <span>Acepto que mi nombre (o inicial) y mi reseña se publiquen en esta web, según la <a href="privacidad.html" target="_blank">política de privacidad</a>.</span>
+                </label>
                 <button type="submit" class="btn-submit" style="margin-top:20px;width:100%">Enviar Reseña</button>
                 <div id="revSuccess" class="form-success hidden" style="margin-top:15px">
                     <i class="fa-solid fa-circle-check"></i>
@@ -1423,7 +1431,7 @@
             const fecha   = document.getElementById('resFecha').value;
             const detalle = document.getElementById('resDetalles').value.trim();
             try {
-                const body = new URLSearchParams({ 'form-name':'Reservas','Nombre':nombre,'WhatsApp':wa,'Fecha_Deseada':fecha,'Detalles_Tatuaje':detalle });
+                const body = new URLSearchParams({ 'form-name':'Reservas','Nombre':nombre,'WhatsApp':wa,'Fecha_Deseada':fecha,'Detalles_Tatuaje':detalle,'Consentimiento':'Acepto' });
                 await fetch('/', { method:'POST', headers:{'Content-Type':'application/x-www-form-urlencoded'}, body: body.toString() });
             } catch(err) { console.warn('Netlify form error:', err); }
             const fechaFmt = fecha ? new Date(fecha).toLocaleString('es-CL',{weekday:'long',year:'numeric',month:'long',day:'numeric',hour:'2-digit',minute:'2-digit'}) : fecha;

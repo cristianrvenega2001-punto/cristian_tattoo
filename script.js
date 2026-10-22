@@ -33,8 +33,8 @@ document.addEventListener('DOMContentLoaded', () => {
     lerpCursor();
 
     document.querySelectorAll('a, button, .care-tab, .star, .gallery-item').forEach(el => {
-        el.addEventListener('mouseenter', () => ring.classList.add('hovered'));
-        el.addEventListener('mouseleave', () => ring.classList.remove('hovered'));
+        el.addEventListener('mouseenter', () => ring?.classList.add('hovered'));
+        el.addEventListener('mouseleave', () => ring?.classList.remove('hovered'));
     });
 
 
@@ -233,34 +233,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
     reviewForm?.addEventListener('submit', e => {
         e.preventDefault();
-        revSuccess?.classList.remove('hidden');
-        console.log('Reseña enviada:', {
-            nombre: document.getElementById('revNombre')?.value,
-            experiencia: document.getElementById('revExperiencia')?.value,
-            puntuacion: puntInput?.value
-        });
-        setTimeout(closeModal, 4000);
-    });
-
-
-    // ─── 10. BOOKING FORM (Netlify AJAX) ─────────────────
-    const bookingForm    = document.getElementById('bookingForm');
-    const bookingSuccess = document.getElementById('bookingSuccess');
-
-    bookingForm?.addEventListener('submit', e => {
-        e.preventDefault();
-        const formData = new FormData(bookingForm);
         fetch('/', {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(formData).toString()
+            body: new URLSearchParams(new FormData(reviewForm)).toString()
         })
         .then(() => {
-            bookingSuccess?.classList.remove('hidden');
-            bookingForm.reset();
-            setTimeout(() => bookingSuccess?.classList.add('hidden'), 6000);
+            revSuccess?.classList.remove('hidden');
+            setTimeout(closeModal, 4000);
         })
         .catch(() => alert('Hubo un error al enviar. Por favor, intenta de nuevo o escríbeme por WhatsApp.'));
+    });
+
+
+    // ─── 10. BOOKING FORM ───────────────────────────────
+    // El envío lo maneja el script del final de index.html (Netlify + WhatsApp).
+    // Antes se enviaba dos veces y cada reserva llegaba duplicada.
+
+    // ─── 10b. CORREO (se arma al cargar, no queda escrito en el HTML) ─
+    document.querySelectorAll('.js-mail').forEach(a => {
+        const mail = `${a.dataset.u}@${a.dataset.d}`;
+        a.href = `mailto:${mail}`;
+        a.textContent = mail;
     });
 
     // ─── 11. PROMO MODAL ────────────────────────────────

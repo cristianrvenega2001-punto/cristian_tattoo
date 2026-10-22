@@ -10,6 +10,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
+        .consent-check { display: flex; gap: 10px; align-items: flex-start; margin: 18px 0 6px; font-size: .85rem; line-height: 1.45; color: rgba(255,255,255,.75); cursor: pointer; }
+        .consent-check input { width: 18px; height: 18px; margin-top: 2px; flex: none; accent-color: #7000ff; }
+        .consent-check a { color: inherit; text-decoration: underline; }
         *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
             --bg: #07070d;
@@ -394,6 +397,10 @@
                     <label for="agEmail">Email (opcional)</label>
                     <input type="email" id="agEmail" name="Email" placeholder="tucorreo@gmail.com">
                 </div>
+                <label class="consent-check" for="agConsent">
+                    <input type="checkbox" id="agConsent" name="Consentimiento" value="Acepto">
+                    <span>Acepto que Cristian Tattoo use estos datos y la imagen que adjunte solo para responder mi solicitud, según la <a href="privacidad.html" target="_blank">política de privacidad</a>. Puedo pedir que se borren cuando quiera.</span>
+                </label>
                 <div class="btn-row">
                     <button type="button" class="btn-prev" id="btn3Prev"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
                     <button type="button" class="btn-next" id="btn3Next">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
@@ -545,6 +552,10 @@
                 alert('Por favor ingresa tu nombre y WhatsApp.');
                 return;
             }
+            if (!document.getElementById('agConsent').checked) {
+                alert('Para continuar, acepta la política de privacidad.');
+                return;
+            }
             /* Poblar resumen */
             document.getElementById('sumEstilo').textContent  = selectedEstilo;
             document.getElementById('sumTamano').textContent  = selectedSize;
@@ -578,6 +589,7 @@
         const form = document.getElementById('agendaForm');
         form.addEventListener('submit', e => {
             e.preventDefault();
+            if (!document.getElementById('agConsent').checked) { goToStep(3); return; }
             const formData = new FormData(form);
             fetch('/', { method: 'POST', body: formData })
                 .then(() => {

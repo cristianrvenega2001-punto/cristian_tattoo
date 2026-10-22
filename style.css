@@ -1518,3 +1518,8 @@ input, textarea, select { font-family: var(--font-body); }
     .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
     .scroll-badge { display: none; }
 }
+
+/* --- CASILLA DE CONSENTIMIENTO (Ley 21.719) --- */
+.consent-check{display:flex;gap:10px;align-items:flex-start;margin:14px 0 4px;font-size:.85rem;line-height:1.45;color:rgba(255,255,255,.75);text-transform:none;letter-spacing:0;cursor:pointer}
+.consent-check input{width:18px;height:18px;margin-top:2px;flex:none;accent-color:#7000ff}
+.consent-check a{color:inherit;text-decoration:underline}
