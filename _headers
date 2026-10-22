@@ -12,11 +12,12 @@
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
 
+# CSS y JS: el navegador siempre pregunta si hay versión nueva
 /*.css
-  Cache-Control: public, max-age=604800, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /*.js
-  Cache-Control: public, max-age=604800, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
