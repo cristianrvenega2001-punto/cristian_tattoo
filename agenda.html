@@ -2,527 +2,123 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agendar Cita | Cristian Tattoo Los Andes Ink</title>
-    <meta name="description" content="Agenda tu cita de tatuaje a domicilio en Los Andes con Cristian Venega. Formulario de reserva en 4 simples pasos. Servicio profesional en tu hogar.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Agendar cita | Cristian Tattoo Los Andes Ink</title>
+    <meta name="description" content="Agenda tu tatuaje a domicilio en Los Andes, el Valle del Aconcagua, Santiago, Viña del Mar o Valparaíso con Cristian Venega. Reserva en 4 pasos con descuento por agendar online.">
     <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f3efe6">
+    <link rel="canonical" href="https://cristiantattoolosandesink.netlify.app/agenda.html">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="apple-touch-icon" href="assets/marca/apple-touch-icon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <style>
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        :root {
-            --bg: #07070d;
-            --bg2: #0d0d1a;
-            --surface: #111122;
-            --border: rgba(112,0,255,0.2);
-            --accent: #7000ff;
-            --accent2: #c800b0;
-            --gold: #f0c040;
-            --text: #e8e8f0;
-            --text-muted: #888899;
-            --success: #00d68f;
-            --font-display: 'Bebas Neue', sans-serif;
-            --font-body: 'Urbanist', sans-serif;
-        }
-        html { scroll-behavior: smooth; }
-        body {
-            background: var(--bg);
-            color: var(--text);
-            font-family: var(--font-body);
-            min-height: 100vh;
-            overflow-x: hidden;
-        }
-        /* ── NAVBAR ── */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 18px 40px;
-            background: rgba(7,7,13,0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--border);
-        }
-        .nav-logo { text-decoration: none; display: flex; align-items: center; gap: 6px; font-family: var(--font-display); font-size: 1.4rem; letter-spacing: 2px; }
-        .nav-logo .logo-main { color: var(--text); }
-        .nav-logo .logo-accent { color: var(--accent2); }
-        .nav-back { display: flex; align-items: center; gap: 8px; text-decoration: none; color: var(--text-muted); font-size: 0.9rem; font-weight: 500; transition: color .2s; }
-        .nav-back:hover { color: var(--text); }
-        /* ── HERO MINI ── */
-        .agenda-hero {
-            padding: 140px 24px 60px;
-            text-align: center;
-            background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(112,0,255,0.15), transparent);
-        }
-        .agenda-hero .tag {
-            display: inline-block; padding: 6px 18px; border: 1px solid var(--accent); border-radius: 50px;
-            color: var(--accent); font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 16px;
-        }
-        .agenda-hero h1 { font-family: var(--font-display); font-size: clamp(2.5rem, 6vw, 4.5rem); letter-spacing: 4px; line-height: 1; margin-bottom: 12px; }
-        .agenda-hero h1 span { background: linear-gradient(90deg, var(--accent), var(--accent2)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .agenda-hero p { color: var(--text-muted); font-size: 1rem; max-width: 500px; margin: 0 auto; }
-        /* ── STEPPER ── */
-        .stepper-wrap { max-width: 680px; margin: 0 auto; padding: 0 24px 80px; }
-        .step-indicators {
-            display: flex; align-items: center; justify-content: center;
-            gap: 0; margin-bottom: 48px; position: relative;
-        }
-        .step-indicators::before {
-            content: ''; position: absolute; top: 20px; left: 15%; right: 15%; height: 2px;
-            background: var(--border); z-index: 0;
-        }
-        .step-ind {
-            display: flex; flex-direction: column; align-items: center; gap: 8px;
-            flex: 1; position: relative; z-index: 1;
-        }
-        .step-ind .s-circle {
-            width: 40px; height: 40px; border-radius: 50%;
-            border: 2px solid var(--border); background: var(--bg2);
-            display: flex; align-items: center; justify-content: center;
-            font-weight: 700; font-size: 0.85rem; color: var(--text-muted);
-            transition: all .3s;
-        }
-        .step-ind.active .s-circle { border-color: var(--accent); background: var(--accent); color: #fff; }
-        .step-ind.done .s-circle { border-color: var(--success); background: var(--success); color: #fff; }
-        .step-ind .s-label { font-size: 0.7rem; color: var(--text-muted); text-align: center; text-transform: uppercase; letter-spacing: 1px; }
-        .step-ind.active .s-label { color: var(--text); }
-        /* ── STEP PANELS ── */
-        .step-panel { display: none; animation: fadeUp .4s ease; }
-        .step-panel.active { display: block; }
-        @keyframes fadeUp { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
-        .step-title { font-family: var(--font-display); font-size: 1.8rem; letter-spacing: 2px; margin-bottom: 8px; }
-        .step-title span { color: var(--accent2); }
-        .step-subtitle { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 32px; }
-        /* ── CARDS DE ESTILO ── */
-        .style-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 24px; }
-        .style-card {
-            padding: 18px 12px; border-radius: 12px; border: 2px solid var(--border);
-            background: var(--surface); cursor: pointer; text-align: center;
-            transition: all .2s; user-select: none;
-        }
-        .style-card:hover { border-color: var(--accent); transform: translateY(-2px); }
-        .style-card.selected { border-color: var(--accent); background: rgba(112,0,255,0.15); }
-        .style-card .sc-icon { font-size: 1.6rem; margin-bottom: 8px; }
-        .style-card .sc-name { font-weight: 700; font-size: 0.85rem; }
-        /* ── TIER MINI ── */
-        .tier-mini { display: grid; grid-template-columns: repeat(5,1fr); gap: 8px; margin-bottom: 24px; }
-        .tier-mini-card {
-            padding: 12px 8px; border-radius: 10px; border: 1px solid var(--border);
-            background: var(--surface); text-align: center; cursor: pointer; transition: all .2s;
-        }
-        .tier-mini-card:hover { border-color: var(--gold); }
-        .tier-mini-card.selected { border-color: var(--gold); background: rgba(240,192,64,0.1); }
-        .tier-mini-card .tm-size { font-family: var(--font-display); font-size: 1.2rem; color: var(--gold); }
-        .tier-mini-card .tm-label { font-size: 0.65rem; color: var(--text-muted); margin-top: 2px; }
-        .tier-mini-card .tm-disc { font-weight: 700; font-size: 0.8rem; color: var(--success); margin-top: 4px; }
-        /* ── FORM FIELDS ── */
-        .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 0.85rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
-        .form-group input, .form-group textarea, .form-group select {
-            width: 100%; padding: 14px 16px; border-radius: 12px;
-            border: 1px solid var(--border); background: var(--surface);
-            color: var(--text); font-family: var(--font-body); font-size: 1rem;
-            outline: none; transition: border-color .2s;
-        }
-        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { border-color: var(--accent); }
-        .form-group textarea { resize: vertical; min-height: 100px; }
-        /* ── UPLOAD AREA ── */
-        .upload-area {
-            border: 2px dashed var(--border); border-radius: 16px; padding: 40px 24px;
-            text-align: center; cursor: pointer; transition: all .2s; position: relative;
-        }
-        .upload-area:hover { border-color: var(--accent); background: rgba(112,0,255,0.05); }
-        .upload-area input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-        .upload-area .ua-icon { font-size: 2.5rem; color: var(--accent); margin-bottom: 12px; }
-        .upload-area .ua-text { font-size: 0.9rem; color: var(--text-muted); }
-        .upload-area .ua-sub { font-size: 0.75rem; color: var(--text-muted); margin-top: 4px; }
-        #previewWrap { display: none; margin-top: 16px; }
-        #previewImg { max-width: 200px; border-radius: 12px; border: 2px solid var(--border); }
-        /* ── BOTONES ── */
-        .btn-row { display: flex; gap: 12px; margin-top: 32px; }
-        .btn-next, .btn-submit-agenda {
-            flex: 1; padding: 16px 24px; border-radius: 12px; border: none;
-            background: linear-gradient(90deg, var(--accent), var(--accent2));
-            color: #fff; font-family: var(--font-body); font-weight: 700; font-size: 1rem;
-            cursor: pointer; transition: all .2s; display: flex; align-items: center; justify-content: center; gap: 8px;
-        }
-        .btn-next:hover, .btn-submit-agenda:hover { opacity: 0.9; transform: translateY(-1px); }
-        .btn-prev {
-            padding: 16px 24px; border-radius: 12px;
-            border: 1px solid var(--border); background: transparent;
-            color: var(--text); font-family: var(--font-body); font-weight: 600; font-size: 1rem;
-            cursor: pointer; transition: all .2s;
-        }
-        .btn-prev:hover { border-color: var(--accent); color: var(--accent); }
-        /* ── WHATSAPP FLOAT ── */
-        .wa-float {
-            position: fixed; bottom: 24px; right: 24px; z-index: 99;
-            width: 56px; height: 56px; border-radius: 50%;
-            background: #25D366; display: flex; align-items: center; justify-content: center;
-            text-decoration: none; font-size: 1.6rem; color: #fff;
-            box-shadow: 0 4px 20px rgba(37,211,102,0.4); transition: transform .2s;
-        }
-        .wa-float:hover { transform: scale(1.1); }
-        /* ── SUCCESS ── */
-        .success-box {
-            display: none; text-align: center; padding: 60px 24px;
-            background: var(--surface); border-radius: 20px; border: 1px solid var(--success);
-        }
-        .success-box.show { display: block; animation: fadeUp .4s ease; }
-        .success-box .s-icon { font-size: 4rem; color: var(--success); margin-bottom: 20px; }
-        .success-box h3 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 12px; }
-        .success-box p { color: var(--text-muted); }
-        .success-box .btn-home { display: inline-flex; margin-top: 24px; padding: 14px 32px; border-radius: 12px; background: linear-gradient(90deg,var(--accent),var(--accent2)); color:#fff; text-decoration:none; font-weight:700; }
-        /* ── RESUMEN ── */
-        .summary-box { background: var(--surface); border-radius: 16px; border: 1px solid var(--border); padding: 24px; margin-bottom: 24px; }
-        .summary-row { display: flex; justify-content: space-between; align-items: center; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
-        .summary-row:last-child { border-bottom: none; }
-        .summary-row .sr-label { color: var(--text-muted); }
-        .summary-row .sr-val { font-weight: 600; color: var(--text); }
-        .discount-highlight { color: var(--success); font-weight: 700; font-size: 1rem; }
-        @media (max-width: 600px) {
-            .navbar { padding: 14px 20px; }
-            .tier-mini { grid-template-columns: repeat(3,1fr); }
-            .style-cards { grid-template-columns: repeat(2,1fr); }
-        }
-    </style>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=UnifrakturMaguntia&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500&text=k&display=swap">
+    <link rel="stylesheet" href="style.css?v=20261119e">
+    <script>document.documentElement.classList.add("js");</script>
 </head>
-<body>
-    <nav class="navbar">
-        <a href="index.html" class="nav-logo">
-            <span class="logo-main">CRISTIAN</span><span class="logo-accent">TATTOO</span>
-        </a>
-        <a href="index.html" class="nav-back">
-            <i class="fa-solid fa-arrow-left"></i> Volver al sitio
-        </a>
-    </nav>
+<body class="sub">
+<a class="skip" href="#contenido">Saltar al contenido</a>
+<header class="top">
+  <a class="top-place top-back" href="index.html">Volver al sitio</a>
+  <a class="brand" href="index.html" aria-label="Cristian Tattoo Los Andes Ink, inicio"><img src="assets/marca/logo-128.webp" alt="" width="128" height="128"><span>Cristian Tattoo <span class="brand-2">Los Andes In<span class="brand-k">k</span></span></span></a>
+  <a class="btn btn--sm btn--line" href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20vengo%20de%20tu%20p%C3%A1gina%20web%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">WhatsApp</a>
+</header>
 
-    <div class="agenda-hero">
-        <span class="tag"><i class="fa-solid fa-calendar-check"></i> Reserva tu sesión</span>
-        <h1>AGENDA TU <span>CITA</span></h1>
-        <p>Completa el formulario y te confirmo por WhatsApp en menos de 2 horas.</p>
-    </div>
+<main id="contenido" class="page">
+  <section class="page-head">
+    <h1>Agenda tu cita</h1>
+    <p class="s-lead">Cuatro pasos y te confirmo por WhatsApp en menos de 2 horas.</p>
+  </section>
+  <section class="page-in">
+    <ol class="ag-steps" aria-label="Pasos de la reserva">
+      <li data-ind="1" aria-current="step"><b>1</b> Estilo</li><li data-ind="2"><b>2</b> Fecha</li><li data-ind="3"><b>3</b> Contacto</li><li data-ind="4"><b>4</b> Referencia</li>
+    </ol>
+    <form id="agendaForm" class="ag-form" name="Reservas_Detalladas" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data">
+      <input type="hidden" name="form-name" value="Reservas_Detalladas">
+      <p hidden><label>No llenar: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
 
-    <div class="stepper-wrap">
-        <!-- Step Indicators -->
-        <div class="step-indicators">
-            <div class="step-ind active" id="ind-1">
-                <div class="s-circle">1</div>
-                <span class="s-label">Estilo</span>
-            </div>
-            <div class="step-ind" id="ind-2">
-                <div class="s-circle">2</div>
-                <span class="s-label">Fecha</span>
-            </div>
-            <div class="step-ind" id="ind-3">
-                <div class="s-circle">3</div>
-                <span class="s-label">Contacto</span>
-            </div>
-            <div class="step-ind" id="ind-4">
-                <div class="s-circle">4</div>
-                <span class="s-label">Referencia</span>
-            </div>
+      <fieldset class="ag-panel is-active" data-step="1">
+        <legend class="ag-title">Estilo y tamaño</legend>
+        <p class="ag-q">¿Qué estilo buscas?</p>
+        <div class="pick"><label class="pick-i"><input type="radio" name="Estilo" value="Realismo" required><span>Realismo</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Negro y gris" required><span>Negro y gris</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Fine line" required><span>Fine line</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Blackwork" required><span>Blackwork</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Full color" required><span>Full color</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Watercolor" required><span>Watercolor</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Lettering" required><span>Lettering</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Geométrico" required><span>Geométrico</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Tribal" required><span>Tribal</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Anime / Pop" required><span>Anime / Pop</span></label><label class="pick-i"><input type="radio" name="Estilo" value="Cover-up" required><span>Cover-up</span></label><label class="pick-i"><input type="radio" name="Estilo" value="No sé aún" required><span>No sé aún</span></label></div>
+        <p class="ag-q">¿De qué tamaño? Agendando aquí tienes descuento.</p>
+        <div class="pick pick--size"><label class="pick-i pick-i--size"><input type="radio" name="Tamano" value="XS (hasta 5 × 5 cm) con 5% de descuento" data-sum="XS, hasta 5 × 5 cm" data-disc="5%" required><span><b>XS</b><small>hasta 5 × 5 cm</small><em>5% de descuento</em></span></label><label class="pick-i pick-i--size"><input type="radio" name="Tamano" value="S (6 a 10 cm) con 10% de descuento" data-sum="S, 6 a 10 cm" data-disc="10%" required><span><b>S</b><small>6 a 10 cm</small><em>10% de descuento</em></span></label><label class="pick-i pick-i--size"><input type="radio" name="Tamano" value="M (11 a 15 cm) con 15% de descuento" data-sum="M, 11 a 15 cm" data-disc="15%" required><span><b>M</b><small>11 a 15 cm</small><em>15% de descuento</em></span></label><label class="pick-i pick-i--size"><input type="radio" name="Tamano" value="L (16 a 25 cm) con 20% de descuento" data-sum="L, 16 a 25 cm" data-disc="20%" required><span><b>L</b><small>16 a 25 cm</small><em>20% de descuento</em></span></label><label class="pick-i pick-i--size"><input type="radio" name="Tamano" value="XL (más de 26 cm) con 25% de descuento" data-sum="XL, más de 26 cm" data-disc="25%" required><span><b>XL</b><small>más de 26 cm</small><em>25% de descuento</em></span></label></div>
+        <div class="ag-nav"><button class="btn" type="button" data-go="2">Siguiente</button></div>
+      </fieldset>
+
+      <fieldset class="ag-panel" data-step="2">
+        <legend class="ag-title">Fecha y zona</legend>
+        <p class="ag-q">Elige tu fecha preferida. Te confirmo la disponibilidad por WhatsApp.</p>
+        <div class="ag-fields">
+          <label for="agFecha">Fecha y hora deseada<input type="datetime-local" id="agFecha" name="Fecha_Deseada" required></label>
+          <label for="agZona">Zona del cuerpo<select id="agZona" name="Zona_Cuerpo" required><option value="">Elige una zona</option><option>Brazo / Antebrazo</option><option>Hombro</option><option>Pecho / Clavícula</option><option>Espalda</option><option>Costado / Costillas</option><option>Pierna / Gemelo</option><option>Tobillo / Pie</option><option>Muñeca</option><option>Cuello</option><option>Otro</option></select></label>
+          <label for="agComuna">Comuna o ciudad<input id="agComuna" name="Comuna" autocomplete="address-level2" placeholder="Ej: Los Andes, San Felipe, Viña del Mar" maxlength="80"></label>
+          <label for="agIdea">Tu idea<textarea id="agIdea" name="Descripcion_Idea" rows="4" required maxlength="1500" placeholder="Ej: un león en el antebrazo derecho, realismo con sombras oscuras"></textarea></label>
         </div>
+        <div class="ag-nav"><button class="btn btn--line" type="button" data-go="1">Anterior</button><button class="btn" type="button" data-go="3">Siguiente</button></div>
+      </fieldset>
 
-        <form id="agendaForm" name="Reservas_Detalladas" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" novalidate>
-            <p style="display:none"><label>No fill: <input name="bot-field"></label></p>
-            <input type="hidden" name="form-name" value="Reservas_Detalladas">
-            <input type="hidden" name="Estilo" id="hiddenEstilo" value="">
-            <input type="hidden" name="Tamano" id="hiddenTamano" value="">
-            <input type="hidden" name="Descuento_Mundial" id="hiddenDescuento" value="">
-
-            <!-- STEP 1: Estilo y Tamaño -->
-            <div class="step-panel active" id="step-1">
-                <div class="step-title">Elige tu <span>Estilo</span></div>
-                <p class="step-subtitle">Selecciona el estilo de tatuaje que deseas.</p>
-                <div class="style-cards">
-                    <div class="style-card" data-style="Blackwork">
-                        <div class="sc-icon">⬛</div>
-                        <div class="sc-name">Blackwork</div>
-                    </div>
-                    <div class="style-card" data-style="Realismo">
-                        <div class="sc-icon">🎭</div>
-                        <div class="sc-name">Realismo</div>
-                    </div>
-                    <div class="style-card" data-style="Full Color">
-                        <div class="sc-icon">🌈</div>
-                        <div class="sc-name">Full Color</div>
-                    </div>
-                    <div class="style-card" data-style="Fine Line">
-                        <div class="sc-icon">✨</div>
-                        <div class="sc-name">Fine Line</div>
-                    </div>
-                    <div class="style-card" data-style="Watercolor">
-                        <div class="sc-icon">🎨</div>
-                        <div class="sc-name">Watercolor</div>
-                    </div>
-                    <div class="style-card" data-style="Lettering">
-                        <div class="sc-icon">✍️</div>
-                        <div class="sc-name">Lettering</div>
-                    </div>
-                    <div class="style-card" data-style="Geométrico">
-                        <div class="sc-icon">🔷</div>
-                        <div class="sc-name">Geométrico</div>
-                    </div>
-                    <div class="style-card" data-style="Tribal">
-                        <div class="sc-icon">🗿</div>
-                        <div class="sc-name">Tribal</div>
-                    </div>
-                    <div class="style-card" data-style="Anime / Pop">
-                        <div class="sc-icon">⚡</div>
-                        <div class="sc-name">Anime / Pop</div>
-                    </div>
-                    <div class="style-card" data-style="Otro / No sé">
-                        <div class="sc-icon">❓</div>
-                        <div class="sc-name">No sé aún</div>
-                    </div>
-                </div>
-
-                <div class="step-title" style="margin-top:32px">Tamaño con <span>Descuento Mundial</span></div>
-                <p class="step-subtitle">Selecciona el tamaño para ver tu descuento especial.</p>
-                <div class="tier-mini">
-                    <div class="tier-mini-card" data-size="XS" data-disc="10%">
-                        <div class="tm-size">XS</div>
-                        <div class="tm-label">hasta 5×5 cm</div>
-                        <div class="tm-disc">10% OFF</div>
-                    </div>
-                    <div class="tier-mini-card" data-size="S" data-disc="20%">
-                        <div class="tm-size">S</div>
-                        <div class="tm-label">6–10 cm</div>
-                        <div class="tm-disc">20% OFF</div>
-                    </div>
-                    <div class="tier-mini-card" data-size="M" data-disc="30%">
-                        <div class="tm-size">M</div>
-                        <div class="tm-label">11–15 cm</div>
-                        <div class="tm-disc">30% OFF</div>
-                    </div>
-                    <div class="tier-mini-card" data-size="L" data-disc="40%">
-                        <div class="tm-size">L</div>
-                        <div class="tm-label">16–25 cm</div>
-                        <div class="tm-disc">40% OFF</div>
-                    </div>
-                    <div class="tier-mini-card" data-size="XL" data-disc="50%">
-                        <div class="tm-size">XL</div>
-                        <div class="tm-label">+26 cm</div>
-                        <div class="tm-disc">50% OFF</div>
-                    </div>
-                </div>
-                <div class="btn-row">
-                    <button type="button" class="btn-next" id="btn1Next">
-                        Siguiente <i class="fa-solid fa-arrow-right"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- STEP 2: Fecha y Hora -->
-            <div class="step-panel" id="step-2">
-                <div class="step-title">Elige <span>Fecha y Hora</span></div>
-                <p class="step-subtitle">Elige tu fecha preferida (te confirmo disponibilidad por WhatsApp).</p>
-                <div class="form-group">
-                    <label for="agFecha">Fecha y Hora *</label>
-                    <input type="datetime-local" id="agFecha" name="Fecha_Deseada" required>
-                </div>
-                <div class="form-group">
-                    <label for="agZona">Zona del cuerpo *</label>
-                    <select id="agZona" name="Zona_Cuerpo" required>
-                        <option value="">Selecciona una zona...</option>
-                        <option>Brazo / Antebrazo</option>
-                        <option>Hombro</option>
-                        <option>Pecho / Clavícula</option>
-                        <option>Espalda</option>
-                        <option>Costado / Costillas</option>
-                        <option>Pierna / Gemelo</option>
-                        <option>Tobillo / Pie</option>
-                        <option>Muñeca</option>
-                        <option>Cuello</option>
-                        <option>Otro</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="agIdea">Describe tu idea *</label>
-                    <textarea id="agIdea" name="Descripcion_Idea" rows="3" placeholder="Ej: Quiero un león en el brazo derecho, estilo realismo, con sombras oscuras..." required></textarea>
-                </div>
-                <div class="btn-row">
-                    <button type="button" class="btn-prev" id="btn2Prev"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
-                    <button type="button" class="btn-next" id="btn2Next">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-            </div>
-
-            <!-- STEP 3: Contacto -->
-            <div class="step-panel" id="step-3">
-                <div class="step-title">Tus <span>Datos</span></div>
-                <p class="step-subtitle">Para confirmar y coordinar tu cita.</p>
-                <div class="form-group">
-                    <label for="agNombre">Nombre y Apellido *</label>
-                    <input type="text" id="agNombre" name="Nombre" required placeholder="Juan Pérez">
-                </div>
-                <div class="form-group">
-                    <label for="agWA">WhatsApp *</label>
-                    <input type="tel" id="agWA" name="WhatsApp" required placeholder="+56 9 8738 3781">
-                </div>
-                <div class="form-group">
-                    <label for="agEmail">Email (opcional)</label>
-                    <input type="email" id="agEmail" name="Email" placeholder="tucorreo@gmail.com">
-                </div>
-                <div class="btn-row">
-                    <button type="button" class="btn-prev" id="btn3Prev"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
-                    <button type="button" class="btn-next" id="btn3Next">Siguiente <i class="fa-solid fa-arrow-right"></i></button>
-                </div>
-            </div>
-
-            <!-- STEP 4: Referencia + Resumen -->
-            <div class="step-panel" id="step-4">
-                <div class="step-title">Imagen de <span>Referencia</span></div>
-                <p class="step-subtitle">Adjunta una imagen de referencia (opcional pero muy útil para el boceto).</p>
-                <div class="upload-area" id="uploadArea">
-                    <input type="file" id="fileInput" name="Imagen_Referencia" accept="image/*">
-                    <div class="ua-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                    <div class="ua-text">Arrastra tu imagen aquí o haz clic para buscar</div>
-                    <div class="ua-sub">JPG, PNG, WEBP · Máx. 5 MB</div>
-                </div>
-                <div id="previewWrap">
-                    <img id="previewImg" src="" alt="Vista previa">
-                    <p id="previewName" style="font-size:0.8rem;color:var(--text-muted);margin-top:8px;"></p>
-                </div>
-
-                <div style="margin-top:32px">
-                    <div class="step-title" style="font-size:1.3rem">Resumen de tu <span>Reserva</span></div>
-                    <div class="summary-box" id="summaryBox" style="margin-top:16px">
-                        <div class="summary-row"><span class="sr-label">Estilo:</span><span class="sr-val" id="sumEstilo">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Tamaño:</span><span class="sr-val" id="sumTamano">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Descuento Mundial:</span><span class="sr-val discount-highlight" id="sumDesc">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Zona:</span><span class="sr-val" id="sumZona">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Fecha deseada:</span><span class="sr-val" id="sumFecha">—</span></div>
-                        <div class="summary-row"><span class="sr-label">Nombre:</span><span class="sr-val" id="sumNombre">—</span></div>
-                        <div class="summary-row"><span class="sr-label">WhatsApp:</span><span class="sr-val" id="sumWA">—</span></div>
-                    </div>
-                </div>
-                <div class="btn-row">
-                    <button type="button" class="btn-prev" id="btn4Prev"><i class="fa-solid fa-arrow-left"></i> Anterior</button>
-                    <button type="submit" class="btn-submit-agenda" id="btnSubmit">
-                        <i class="fa-solid fa-calendar-check"></i> Enviar Reserva
-                    </button>
-                </div>
-            </div>
-        </form>
-
-        <!-- SUCCESS -->
-        <div class="success-box" id="successBox">
-            <div class="s-icon"><i class="fa-solid fa-circle-check"></i></div>
-            <h3>¡Reserva Enviada!</h3>
-            <p>Cristian te contactará por WhatsApp en menos de 2 horas para confirmar tu cita.</p>
-            <a href="index.html" class="btn-home"><i class="fa-solid fa-house"></i> Volver al inicio</a>
+      <fieldset class="ag-panel" data-step="3">
+        <legend class="ag-title">Tus datos</legend>
+        <p class="ag-q">Solo para confirmar y coordinar tu cita.</p>
+        <div class="ag-fields">
+          <label for="agNombre">Nombre y apellido<input id="agNombre" name="Nombre" autocomplete="name" required maxlength="80" placeholder="Juan Pérez"></label>
+          <label for="agWA">WhatsApp<input type="tel" id="agWA" name="WhatsApp" inputmode="tel" autocomplete="tel" required maxlength="20" placeholder="+56 9 1234 5678"></label>
+          <label for="agEmail">Correo (opcional)<input type="email" id="agEmail" name="Email" autocomplete="email" maxlength="120" placeholder="tucorreo@gmail.com"></label>
+          <label class="consent" for="agConsent"><input type="checkbox" id="agConsent" name="Consentimiento" value="Acepto" required><span>Acepto que Cristian Tattoo use estos datos y la imagen que adjunte solo para responder mi solicitud, según la <a href="privacidad.html" target="_blank" rel="noopener">política de privacidad</a>. Puedo pedir que se borren cuando quiera.</span></label>
         </div>
+        <div class="ag-nav"><button class="btn btn--line" type="button" data-go="2">Anterior</button><button class="btn" type="button" data-go="4">Siguiente</button></div>
+      </fieldset>
+
+      <fieldset class="ag-panel" data-step="4">
+        <legend class="ag-title">Referencia</legend>
+        <p class="ag-q">Una imagen de referencia ayuda mucho para tu diseño. Es opcional.</p>
+        <label class="ag-file" for="fileInput"><span>Elige una imagen</span><small>JPG, PNG o WEBP, máximo 5 MB</small><input type="file" id="fileInput" name="Imagen_Referencia" accept="image/jpeg,image/png,image/webp"></label>
+        <figure class="ag-preview" id="previewWrap" hidden><figcaption id="previewName"></figcaption></figure>
+        <h2 class="ag-sumt">Tu reserva</h2>
+        <dl class="ag-sum">
+          <dt>Estilo</dt><dd id="sumEstilo">Sin elegir</dd>
+          <dt>Tamaño</dt><dd id="sumTamano">Sin elegir</dd>
+          <dt>Descuento</dt><dd id="sumDesc">Sin elegir</dd>
+          <dt>Zona</dt><dd id="sumZona">Sin elegir</dd>
+          <dt>Fecha</dt><dd id="sumFecha">Sin elegir</dd>
+          <dt>Nombre</dt><dd id="sumNombre">Sin escribir</dd>
+          <dt>WhatsApp</dt><dd id="sumWA">Sin escribir</dd>
+        </dl>
+        <div class="ag-nav ag-nav--last"><button class="btn btn--line" type="button" data-go="3">Anterior</button><button class="btn" type="submit" id="btnSubmit">Enviar reserva</button></div>
+      </fieldset>
+      <p class="form-msg" id="formMsg" role="alert" hidden></p>
+    </form>
+    <div class="form-ok" id="successBox" hidden tabindex="-1">
+      <strong>Reserva enviada</strong>
+      <p>Te escribo por WhatsApp en menos de 2 horas para confirmar tu cita.</p>
+      <a class="btn" href="index.html">Volver al inicio</a>
     </div>
+  </section>
+</main>
 
-    <!-- WhatsApp Float -->
-    <a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20quiero%20agendar%20una%20cita" class="wa-float" target="_blank" rel="noopener" aria-label="WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+<footer class="foot" id="redes">
+  <div class="foot-in">
+    <h2>Sígueme</h2>
+    <ul class="redes">
+        <li><a href="https://www.instagram.com/cristiantattoolosandesink/" target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M7.0301.084c-1.2768.0602-2.1487.264-2.911.5634-.7888.3075-1.4575.72-2.1228 1.3877-.6652.6677-1.075 1.3368-1.3802 2.127-.2954.7638-.4956 1.6365-.552 2.914-.0564 1.2775-.0689 1.6882-.0626 4.947.0062 3.2586.0206 3.6671.0825 4.9473.061 1.2765.264 2.1482.5635 2.9107.308.7889.72 1.4573 1.388 2.1228.6679.6655 1.3365 1.0743 2.1285 1.38.7632.295 1.6361.4961 2.9134.552 1.2773.056 1.6884.069 4.9462.0627 3.2578-.0062 3.668-.0207 4.9478-.0814 1.28-.0607 2.147-.2652 2.9098-.5633.7889-.3086 1.4578-.72 2.1228-1.3881.665-.6682 1.0745-1.3378 1.3795-2.1284.2957-.7632.4966-1.636.552-2.9124.056-1.2809.0692-1.6898.063-4.948-.0063-3.2583-.021-3.6668-.0817-4.9465-.0607-1.2797-.264-2.1487-.5633-2.9117-.3084-.7889-.72-1.4568-1.3876-2.1228C21.2982 1.33 20.628.9208 19.8378.6165 19.074.321 18.2017.1197 16.9244.0645 15.6471.0093 15.236-.005 11.977.0014 8.718.0076 8.31.0215 7.0301.0839m.1402 21.6932c-1.17-.0509-1.8053-.2453-2.2287-.408-.5606-.216-.96-.4771-1.3819-.895-.422-.4178-.6811-.8186-.9-1.378-.1644-.4234-.3624-1.058-.4171-2.228-.0595-1.2645-.072-1.6442-.079-4.848-.007-3.2037.0053-3.583.0607-4.848.05-1.169.2456-1.805.408-2.2282.216-.5613.4762-.96.895-1.3816.4188-.4217.8184-.6814 1.3783-.9003.423-.1651 1.0575-.3614 2.227-.4171 1.2655-.06 1.6447-.072 4.848-.079 3.2033-.007 3.5835.005 4.8495.0608 1.169.0508 1.8053.2445 2.228.408.5608.216.96.4754 1.3816.895.4217.4194.6816.8176.9005 1.3787.1653.4217.3617 1.056.4169 2.2263.0602 1.2655.0739 1.645.0796 4.848.0058 3.203-.0055 3.5834-.061 4.848-.051 1.17-.245 1.8055-.408 2.2294-.216.5604-.4763.96-.8954 1.3814-.419.4215-.8181.6811-1.3783.9-.4224.1649-1.0577.3617-2.2262.4174-1.2656.0595-1.6448.072-4.8493.079-3.2045.007-3.5825-.006-4.848-.0608M16.953 5.5864A1.44 1.44 0 1 0 18.39 4.144a1.44 1.44 0 0 0-1.437 1.4424M5.8385 12.012c.0067 3.4032 2.7706 6.1557 6.173 6.1493 3.4026-.0065 6.157-2.7701 6.1506-6.1733-.0065-3.4032-2.771-6.1565-6.174-6.1498-3.403.0067-6.156 2.771-6.1496 6.1738M8 12.0077a4 4 0 1 1 4.008 3.9921A3.9996 3.9996 0 0 1 8 12.0077" fill="currentColor"/></svg><span class="visually-hidden">Instagram</span><b>@cristiantattoolosandesink</b></a></li>
+        <li><a href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20vengo%20de%20tu%20p%C3%A1gina%20web%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" fill="currentColor"/></svg><span class="visually-hidden">WhatsApp</span><b>+56 9 8738 3781</b></a></li>
+        <li><a href="https://www.facebook.com/cristiantattoolosandesink/" target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" fill="currentColor"/></svg><span class="visually-hidden">Facebook, página</span><b>Cristian Tattoo Los Andes Ink</b></a></li>
+        <li><a href="https://www.facebook.com/cristian.venega.71" target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z" fill="currentColor"/></svg><span class="visually-hidden">Facebook, perfil</span><b>Cristian Venega</b></a></li>
+        <li><a href="https://www.tiktok.com/@cristiantattoo12" target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" fill="currentColor"/></svg><span class="visually-hidden">TikTok</span><b>@cristiantattoo12</b></a></li>
+        <li><a href="https://kwai-video.com/u/@Cristian_Venega/qmy1CaWo" target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M18.315 12.264c2.33 0 4.218 1.88 4.218 4.2V19.8c0 2.32-1.888 4.2-4.218 4.2h-6.202a4.218 4.218 0 0 1-4.023-2.938l-3.676 1.833a2.04 2.04 0 0 1-2.731-.903 2.015 2.015 0 0 1-.216-.907v-5.94a2.03 2.03 0 0 1 2.035-2.024 2.044 2.044 0 0 1 .919.218l3.673 1.85a4.218 4.218 0 0 1 4.02-2.925zm-.062 2.162h-6.078c-1.153 0-2.09.921-2.108 2.065v3.247c0 1.148.925 2.081 2.073 2.1h6.113c1.153 0 2.09-.922 2.109-2.065v-3.247a2.104 2.104 0 0 0-2.074-2.1zM4.18 15.72a.554.554 0 0 0-.555.542v3.734a.556.556 0 0 0 .798.496l.01-.004 3.463-1.756V17.51l-3.467-1.73a.557.557 0 0 0-.249-.06zM9.28 0a5.667 5.667 0 0 1 4.98 2.965 4.921 4.921 0 0 1 3.36-1.317c2.714 0 4.913 2.177 4.913 4.863 0 2.686-2.2 4.863-4.912 4.863a4.921 4.921 0 0 1-3.996-2.034 5.651 5.651 0 0 1-4.345 2.034c-3.131 0-5.67-2.546-5.67-5.687C3.61 2.546 6.149 0 9.28 0Zm8.34 3.926c-1.441 0-2.61 1.157-2.61 2.585s1.169 2.585 2.61 2.585c1.443 0 2.612-1.157 2.612-2.585s-1.169-2.585-2.611-2.585zM9.28 2.287a3.395 3.395 0 0 0-3.39 3.4c0 1.877 1.518 3.4 3.39 3.4a3.395 3.395 0 0 0 3.39-3.4c0-1.878-1.518-3.4-3.39-3.4z" fill="currentColor"/></svg><span class="visually-hidden">Kwai</span><b>@Cristian_Venega</b></a></li>
+        <li><a href="https://www.google.com/search?q=Cristian+Tattoo+Los+Andes+Ink" target="_blank" rel="noopener"><svg class="r-ico" viewBox="0 0 24 24" width="40" height="40" aria-hidden="true" focusable="false"><path d="M12.48 10.92v3.28h7.84c-.24 1.84-.853 3.187-1.787 4.133-1.147 1.147-2.933 2.4-6.053 2.4-4.827 0-8.6-3.893-8.6-8.72s3.773-8.72 8.6-8.72c2.6 0 4.507 1.027 5.907 2.347l2.307-2.307C18.747 1.44 16.133 0 12.48 0 5.867 0 .307 5.387.307 12s5.56 12 12.173 12c3.573 0 6.267-1.173 8.373-3.36 2.16-2.16 2.84-5.213 2.84-7.667 0-.76-.053-1.467-.173-2.053H12.48z" fill="currentColor"/></svg><span class="visually-hidden">Google</span><b>Cristian Tattoo Los Andes Ink</b></a></li>
+      </ul>
+  </div>
+  <p class="mega" aria-hidden="true">Cristian Tattoo</p>
+  <div class="foot-base">
+    <p>Cristian Tattoo Los Andes Ink, @cristiantattoolosandesink. Tatuajes a domicilio en Los Andes, el Valle del Aconcagua, Santiago, Viña del Mar y Valparaíso desde 1998. Correo: <a class="js-mail" data-u="cristianrvenega2001" data-d="gmail.com" href="agenda.html">Escríbeme por correo</a>.</p>
+    <p>© 2026 Cristian Tattoo Los Andes Ink. <a href="privacidad.html">Política de privacidad</a>. Sin cookies de seguimiento.</p>
+  </div>
+</footer>
 
-    <script>
-        let currentStep = 1;
-        let selectedEstilo = '';
-        let selectedSize = '';
-        let selectedDisc = '';
-
-        const steps = [1,2,3,4];
-
-        function goToStep(n) {
-            document.querySelectorAll('.step-panel').forEach(p => p.classList.remove('active'));
-            document.getElementById('step-' + n).classList.add('active');
-            steps.forEach(s => {
-                const ind = document.getElementById('ind-' + s);
-                ind.classList.remove('active','done');
-                if (s < n) ind.classList.add('done');
-                if (s === n) ind.classList.add('active');
-            });
-            currentStep = n;
-            window.scrollTo({top: 0, behavior: 'smooth'});
-        }
-
-        // Step 1 — Style selection
-        document.querySelectorAll('.style-card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.style-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedEstilo = card.dataset.style;
-                document.getElementById('hiddenEstilo').value = selectedEstilo;
-            });
-        });
-
-        // Step 1 — Size selection
-        document.querySelectorAll('.tier-mini-card').forEach(card => {
-            card.addEventListener('click', () => {
-                document.querySelectorAll('.tier-mini-card').forEach(c => c.classList.remove('selected'));
-                card.classList.add('selected');
-                selectedSize = card.dataset.size;
-                selectedDisc = card.dataset.disc;
-                document.getElementById('hiddenTamano').value = selectedSize;
-                document.getElementById('hiddenDescuento').value = selectedDisc;
-            });
-        });
-
-        document.getElementById('btn1Next').addEventListener('click', () => {
-            if (!selectedEstilo) { alert('Por favor selecciona un estilo.'); return; }
-            if (!selectedSize) { alert('Por favor selecciona un tamaño.'); return; }
-            goToStep(2);
-        });
-
-        document.getElementById('btn2Prev').addEventListener('click', () => goToStep(1));
-        document.getElementById('btn2Next').addEventListener('click', () => {
-            const fecha = document.getElementById('agFecha').value;
-            const zona = document.getElementById('agZona').value;
-            const idea = document.getElementById('agIdea').value.trim();
-            if (!fecha || !zona || !idea) { alert('Por favor completa todos los campos de esta sección.'); return; }
-            goToStep(3);
-        });
-
-        document.getElementById('btn3Prev').addEventListener('click', () => goToStep(2));
-        document.getElementById('btn3Next').addEventListener('click', () => {
-            const nombre = document.getElementById('agNombre').value.trim();
-            const wa = document.getElementById('agWA').value.trim();
-            if (!nombre || !wa) { alert('Por favor ingresa tu nombre y WhatsApp.'); return; }
-            // Update summary
-            document.getElementById('sumEstilo').textContent = selectedEstilo;
-            document.getElementById('sumTamano').textContent = selectedSize;
-            document.getElementById('sumDesc').textContent = selectedDisc;
-            document.getElementById('sumZona').textContent = document.getElementById('agZona').value;
-            const rawFecha = document.getElementById('agFecha').value;
-            document.getElementById('sumFecha').textContent = rawFecha ? new Date(rawFecha).toLocaleString('es-CL') : '—';
-            document.getElementById('sumNombre').textContent = nombre;
-            document.getElementById('sumWA').textContent = wa;
-            goToStep(4);
-        });
-
-        document.getElementById('btn4Prev').addEventListener('click', () => goToStep(3));
-
-        // File preview
-        document.getElementById('fileInput').addEventListener('change', function() {
-            const file = this.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = e => {
-                    document.getElementById('previewImg').src = e.target.result;
-                    document.getElementById('previewName').textContent = file.name;
-                    document.getElementById('previewWrap').style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Form submit
-        const form = document.getElementById('agendaForm');
-        form.addEventListener('submit', e => {
-            e.preventDefault();
-            const formData = new FormData(form);
-            fetch('/', { method: 'POST', body: formData })
-                .then(() => {
-                    form.style.display = 'none';
-                    document.querySelector('.step-indicators').style.display = 'none';
-                    document.getElementById('successBox').classList.add('show');
-                })
-                .catch(() => alert('Error al enviar. Por favor escríbenos directamente por WhatsApp.'));
-        });
-    </script>
+<a class="wa-float" href="https://wa.me/56987383781?text=Hola%20Cristian%2C%20vengo%20de%20tu%20p%C3%A1gina%20web%20y%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener" aria-label="Escríbeme por WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true"><path fill="currentColor" d="M12 2.5a9.4 9.4 0 0 0-8.1 14.2L2.5 21.5l4.9-1.3A9.4 9.4 0 1 0 12 2.5zm0 17.2c-1.5 0-2.9-.4-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A7.8 7.8 0 1 1 12 19.7zm4.3-5.8c-.2-.1-1.4-.7-1.6-.8-.2-.1-.4-.1-.5.1l-.7.9c-.1.2-.3.2-.5.1a6.4 6.4 0 0 1-3.2-2.8c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.7-1.7c-.2-.4-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1c0 1.2.9 2.4 1 2.6.1.2 1.8 2.7 4.3 3.8 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.1z"/></svg></a>
+<script src="pages.js?v=20261119e"></script>
 </body>
 </html>

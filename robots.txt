@@ -1,6 +1,6 @@
 User-agent: *
 Allow: /
-Disallow: /assets/portfolio/
+Allow: /assets/
 
 # Bloquear rastreadores de IA
 User-agent: GPTBot
@@ -10,4 +10,4 @@ Disallow: /
 User-agent: CCBot
 Disallow: /
 
-Sitemap: https://cristiantattoo.netlify.app/sitemap.xml
+Sitemap: https://cristiantattoolosandesink.netlify.app/sitemap.xml
