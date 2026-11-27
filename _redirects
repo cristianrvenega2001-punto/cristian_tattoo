@@ -1,0 +1,12 @@
+# Archivos internos: no se publican
+/INSTRUCCIONES.md        /404.html  404!
+/README.md               /404.html  404!
+/generar-portafolio.js   /404.html  404!
+/portafolio-section.html /404.html  404!
+/netlify.toml            /404.html  404!
+/_headers                /404.html  404!
+/_redirects              /404.html  404!
+/.git/*                  /404.html  404!
+
+# Rutas útiles
+/agenda                  /agenda.html  200
